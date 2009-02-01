@@ -1,1 +1,2 @@
 (require 'psvn)
+(require 'magit)

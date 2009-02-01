@@ -8,8 +8,6 @@
   "Where am I? At \"work\" or at \"play\"?")
 
 (setq mo-dotfiles-dir (file-name-directory load-file-name))
-;;(setq mo-dotfiles-dir (file-name-directory
-;;		       (or (buffer-file-name) load-file-name)))
 (setq mo-vendor-dir (concat mo-dotfiles-dir "vendor"))
 
 (add-to-list 'load-path mo-dotfiles-dir)

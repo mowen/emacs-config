@@ -1,2 +1,6 @@
 My Emacs config. Directory layout inspired by defunkt's setup, with ideas from
 technomancy.
+
+Needs a number of packages in a "vendor" sub dir. I haven't pushed those to Git.
+
+My plan is to get it to work on both OS X and Windows.
