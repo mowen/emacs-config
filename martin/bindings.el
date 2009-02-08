@@ -33,6 +33,12 @@
 ;;(global-set-key "\M-q" 'mo-quote-word)
 
 ;; -----------------------------------------------------------------------------
+;; Function keys
+
+(global-set-key [f5] 'eshell)
+(global-set-key [f7] 'mo-erc-connect-to-freenode)
+
+;; -----------------------------------------------------------------------------
 ;; Org Mode Keys
 
 (global-set-key [f8] 'org-remember)
