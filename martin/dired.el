@@ -6,7 +6,7 @@
 	     (define-key dired-mode-map (kbd "C-c C-s")
 	       '(lambda ()
 		  (interactive)
-		  (svn-status default-directory)))))
+		  (mo-context-sensitive-vc-status default-directory)))))
 
 ;; ----------------------------------------
 ;; TRAMP Setup
