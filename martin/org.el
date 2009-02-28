@@ -6,7 +6,7 @@
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(setq org-directory (expand-file-name "~/OrgMode/"))
+;; org-directory is set in the platform-specific files (darwin, windows-nt)
 (setq org-default-notes-file (concat org-directory "Notes.org"))
 (setq org-archive-location (concat org-directory "Archive.org"))
 (org-remember-insinuate)

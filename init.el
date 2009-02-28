@@ -13,6 +13,9 @@
 (add-to-list 'load-path mo-dotfiles-dir)
 (add-to-list 'load-path mo-vendor-dir)
 
+;; Load OS specific file
+(load (concat "martin/" (symbol-name system-type)))
+
 ; custom place to save customizations
 (setq custom-file "martin/custom.el")
 (load custom-file)
@@ -31,6 +34,3 @@
 ;; Load passwords.el file if it exists.
 (if (file-exists-p (concat mo-dotfiles-dir "martin/passwords.el"))
     (load "martin/passwords"))
-
-;; Load OS specific file
-(load (concat "martin/" (symbol-name system-type)))
