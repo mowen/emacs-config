@@ -24,13 +24,9 @@
 (global-set-key (kbd "C-x g") 'rename-buffer)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
 
-(global-set-key (kbd "M-k") ;; Used to be kill-sentence
-		'mo-copy-line-as-kill)
-(global-set-key [M-backspace] ;; Used to be backward-kill-word
-		'mo-copy-word-as-kill)
-(global-set-key [C-backspace] ;; Used to be backward-kill-word
-		'mo-backward-kill-word)
-;;(global-set-key "\M-q" 'mo-quote-word)
+(global-set-key (kbd "M-k")   'mo-copy-line-as-kill)  ; Used to be kill-sentence	
+(global-set-key [M-backspace] 'mo-copy-word-as-kill)  ; Used to be backward-kill-word
+(global-set-key [C-backspace] 'mo-backward-kill-word) ; Used to be backward-kill-word
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys
@@ -41,8 +37,15 @@
 ;; -----------------------------------------------------------------------------
 ;; Org Mode Keys
 
-(global-set-key [f8] 'org-remember)
 (global-set-key (kbd "C-c r") 'org-remember)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
+
+;; -----------------------------------------------------------------------------
+;; Window switching
+
+(global-set-key [M-left]  'windmove-left)  ; move to left windnow
+(global-set-key [M-right] 'windmove-right) ; move to right window
+(global-set-key [M-up]    'windmove-up)    ; move to upper window
+(global-set-key [M-down]  'windmove-down)  ; move to downer window
