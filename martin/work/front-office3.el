@@ -25,21 +25,13 @@
        (fov3-node-p (nth 3 node))))
 
 (defun fov3-collect-children (node)
-  "Get the children of the NODE."
+  "Get the children of the NODE. Returns a list of children
+rather without their whitespace separators."
   (cond
    ((null node) ())
    ((fov3-node-p (car node))
     (cons (car node) (fov3-collect-children (cdr node))))
    (t (fov3-collect-children (cdr node)))))
-
-(defun fov3-get-children (node)
-  "Get the children of the NODE."
-  (car (fov3-collect-children node)))
-
-;; Why doesn't this nested call work?
-(fov3-get-children (fov3-get-children table18))
-
-(equal row5 (fov3-get-children table18))
 
 (defun fov3-newline-p (string)
   "Does STRING start with a newline?"
@@ -49,20 +41,19 @@
 
 ;; Need to check the children as well. The name may not match the parent, but it
 ;; may match one of the children.
-(defun fov3-collect-nodes (l name &optional collector)
-  "Collect all of the nodes with NAME in list L."
-  (let ((col (or collector '())))
-    (cond
-     ((null l) col)
-     ((and (fov3-node-p (car l))
-	   (eq name (xml-node-name (car l))))
-      (cond
-       ((fov3-node-parent-p (car l))
-	(fov3-collect-nodes (cdr l) name
-			    (cons col (fov3-collect-nodes (fov3-collect-children (car l)) name))))
-       (t (cons col (car l) (fov3-collect-nodes (cdr l) name)))))
-      (t
-      (fov3-collect-nodes (cdr l) name col)))))
+(defun fov3-select-nodes (list name)
+  "Select all of the nodes with NAME in LIST."
+  (cond
+   ((null list) ())
+   ((fov3-node-p (car list))
+    (cond 
+     ((eq name (xml-node-name (car list)))
+      (cons (car list) (fov3-select-nodes (cdr list) name)))
+     ((fov3-node-parent-p (car list))
+      (cons (fov3-select-nodes (fov3-collect-children (car list)) name)
+	    (fov3-select-nodes (cdr list) name)))
+     (t (fov3-select-nodes (cdr list) name))))
+   (t (fov3-select-nodes (cdr list) name))))
 
 (if fov3-mode-map
     nil
@@ -89,70 +80,8 @@
 
 (provide 'fov3-mode)
 
-;; -----------------------------------------------------------------------------
-;; Testing code
+;; (setq visibility 	(fov3-get-nodes 'VisibilityRules))
+;; (setq user-code 	(fov3-get-nodes 'UserCode))
+;; (setq tables 	(fov3-get-nodes 'FormDefinition))
+;; (setq controls	(fov3-get-nodes 'BackOfficeControls))
 
-(setq table18 '(Table ((id . "table18") (name . "tblLocationOther") (repeat . "N") (allowAdd . "N") (allowSelect . "N") (allowEdit . "N") (rowPos . "5") (visibleOnload . "N") (visibilityRuleType . "S") (visibilityRuleName . "selLocationOther") (autoPlainText . "N") (tableSummary . "") (restrictSSAccess . "N")) "
-        " (Row ((id . "5")) "
-          " (Column ((id . "0")) "
-            " (Style ((font-name . "") (font-color . "") (font-size . "") (backcolor . "") (align . "right") (font-bold . "N") (font-underline . "N") (font-italic . "N"))) "
-            " (PlainText ((id . "plaintext12") (associatedControl . "")) "Other Location") "
-          ") "
-          " (Column ((id . "1")) "
-            " (Style ((font-name . "") (font-color . "") (font-size . "") (backcolor . "") (align . "left") (font-bold . "N") (font-underline . "N") (font-italic . "N"))) "
-            " (Control ((id . "textarea1") (name . "txaOther") (type . "TextArea") (mand . "N") (workflow . "Y") (searchable . "N") (postback . "N") (visibleOnload . "Y") (visibilityRuleType . "") (visibilityRuleName . "") (mapvariable . "")) "
-              " (CtlTextArea ((def . "") (rownum . "4") (colnum . "20"))) "
-            ") "
-          ") "
-        ") "
-      "))
-
-(setq row5 '(Row ((id . "5")) "
-          " (Column ((id . "0")) "
-            " (Style ((font-name . "") (font-color . "") (font-size . "") (backcolor . "") (align . "right") (font-bold . "N") (font-underline . "N") (font-italic . "N"))) "
-            " (PlainText ((id . "plaintext12") (associatedControl . "")) "Other Location") "
-          ") "
-          " (Column ((id . "1")) "
-            " (Style ((font-name . "") (font-color . "") (font-size . "") (backcolor . "") (align . "left") (font-bold . "N") (font-underline . "N") (font-italic . "N"))) "
-            " (Control ((id . "textarea1") (name . "txaOther") (type . "TextArea") (mand . "N") (workflow . "Y") (searchable . "N") (postback . "N") (visibleOnload . "Y") (visibilityRuleType . "") (visibilityRuleName . "") (mapvariable . "")) "
-              " (CtlTextArea ((def . "") (rownum . "4") (colnum . "20"))) "
-            ") "
-          ") "
-        "))
-
-(setq column0 '(Column ((id . "0")) "
-            " (Style ((font-name . "") (font-color . "") (font-size . "") (backcolor . "") (align . "right") (font-bold . "N") (font-underline . "N") (font-italic . "N"))) "
-            " (PlainText ((id . "plaintext12") (associatedControl . "")) "Other Location") "
-          "))
-
-;;(fov3-node-p table18) ;; t
-;;(fov3-node-p row5) ;; t
-;;(fov3-node-p column0) ;; t
-
-;;(fov3-node-eq 'Row row5) ;; t
-
-;;(fov3-node-parent-p row5) ;; t
-;;(fov3-node-parent-p table18) ;; t
-;;(fov3-node-parent-p column0) ;; nil
-
-;;(fov3-collect-nodes table18 'Column)
-
-;;- first element symbol
-;;- second element alist
-;;- third element string
-;;- fourth element child node
-
-(fov3-collect-children table18)
-(fov3-collect-children row5)
-(car (fov3-collect-children row5))
-(car (cdr (fov3-collect-children row5)))
-
-;;(setq service-xml (xml-parse-file "MOpestCont.xml"))
-;;(print service-xml)
-;;(fov3-read-node service-xml)
-
-;; xml.el has functions for getting attributes of a node, and getting children of a node
-;; xml-get-children should provide ideas for building a list of matched nodes. 
-;; (xml-get-children service-xml 'Controls)
-
-(xml-node-name row5)
