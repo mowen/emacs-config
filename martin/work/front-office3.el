@@ -24,19 +24,22 @@
   (and (> (length node) 3)
        (fov3-node-p (nth 3 node))))
 
-(defun fov3-collect-children (node &optional children)
+(defun fov3-collect-children (node)
   "Get the children of the NODE."
-  (let ((c (or children '())))
-    (cond
-     ((null node) c)
-     ((fov3-node-p (car node))
-      (fov3-collect-children (cdr node) (cons (car node) c)))
-     (t (fov3-collect-children (cdr node) c)))))
+  (cond
+   ((null node) ())
+   ((fov3-node-p (car node))
+    (cons (car node) (fov3-collect-children (cdr node))))
+   (t (fov3-collect-children (cdr node)))))
+
+(defun fov3-get-children (node)
+  "Get the children of the NODE."
+  (car (fov3-collect-children node)))
 
 ;; Why doesn't this nested call work?
-(fov3-collect-children (fov3-collect-children table18))
+(fov3-get-children (fov3-get-children table18))
 
-(equal row5 (fov3-collect-children table18))
+(equal row5 (fov3-get-children table18))
 
 (defun fov3-newline-p (string)
   "Does STRING start with a newline?"
@@ -86,6 +89,7 @@
 
 (provide 'fov3-mode)
 
+;; -----------------------------------------------------------------------------
 ;; Testing code
 
 (setq table18 '(Table ((id . "table18") (name . "tblLocationOther") (repeat . "N") (allowAdd . "N") (allowSelect . "N") (allowEdit . "N") (rowPos . "5") (visibleOnload . "N") (visibilityRuleType . "S") (visibilityRuleName . "selLocationOther") (autoPlainText . "N") (tableSummary . "") (restrictSSAccess . "N")) "
