@@ -1,6 +1,8 @@
 ;; -----------------------------------------------------------------------------
 ;; Front Office V3 Mode Testing code
 
+(load-file "front-office3.el")
+
 (setq table18 '(Table ((id . "table18") (name . "tblLocationOther") (repeat . "N") (allowAdd . "N") (allowSelect . "N") (allowEdit . "N") (rowPos . "5") (visibleOnload . "N") (visibilityRuleType . "S") (visibilityRuleName . "selLocationOther") (autoPlainText . "N") (tableSummary . "") (restrictSSAccess . "N")) "
         " (Row ((id . "5")) "
           " (Column ((id . "0")) "
@@ -53,8 +55,14 @@
 (fov3-collect-children row5)
 (car (fov3-collect-children row5))
 (car (cdr (fov3-collect-children row5)))
-(fov3-collect-children service-xml)
+(fov3-collect-children fov3-service-xml)
 
-(setq service-xml (xml-parse-file "MOpestCont.xml"))
-(fov3-select-nodes service-xml 'Table)
+(setq fov3-service-xml (car (xml-parse-file "MOpestCont.xml")))
+(setq tables (fov3-select-nodes fov3-service-xml 'Table))
+
+(fov3-select-nodes table18 'Column)
 ;;(print service-xml)
+
+(progn
+  (setq fov3-service-xml (fov3--strip-newlines fov3-service-xml))
+  (fov3-debug-data))

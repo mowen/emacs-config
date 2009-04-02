@@ -21,14 +21,15 @@
 
 (defun fov3-node-parent-p (node)
   "Is NODE a parent?"
-  (and (> (length node) 3)
+  (and (listp node)
+       (> (length node) 3)
        (fov3-node-p (nth 3 node))))
 
 (defun fov3-collect-children (node)
   "Get the children of the NODE. Returns a list of children
 rather without their whitespace separators."
   (cond
-   ((null node) ())
+   ((null node) '())
    ((fov3-node-p (car node))
     (cons (car node) (fov3-collect-children (cdr node))))
    (t (fov3-collect-children (cdr node)))))
@@ -39,12 +40,27 @@ rather without their whitespace separators."
       (= (aref string 0) ?\n)
     nil))
 
+;; Why isn't this working?
+;; Some of the children don't strip out the strings
+(defun fov3--strip-newlines (list)
+  "Strip all of the whitespace strings from the service XML node."
+  (cond
+   ((null list) '())
+   ((fov3-node-parent-p (car list))
+    (cons (fov3--strip-newlines (fov3-collect-children (car list)))
+	  (fov3--strip-newlines (cdr list))))
+   ((fov3-node-p (car list))
+    (cons (fov3--strip-newlines (car list))
+	  (fov3--strip-newlines (cdr list))))
+   ((fov3-newline-p (car list)) (fov3--strip-newlines (cdr list)))
+   (t (cons (car list) (fov3--strip-newlines (cdr list))))))
+
 ;; Need to check the children as well. The name may not match the parent, but it
 ;; may match one of the children.
 (defun fov3-select-nodes (list name)
   "Select all of the nodes with NAME in LIST."
   (cond
-   ((null list) ())
+   ((null list) '())
    ((fov3-node-p (car list))
     (cond 
      ((eq name (xml-node-name (car list)))
@@ -54,6 +70,18 @@ rather without their whitespace separators."
 	    (fov3-select-nodes (cdr list) name)))
      (t (fov3-select-nodes (cdr list) name))))
    (t (fov3-select-nodes (cdr list) name))))
+
+(defun fov3-debug-data ()
+  "Display fov3-service-xml in a temporary buffer."
+  (interactive)
+  (let ((new-buffer (generate-new-buffer "fov3-node")))
+    (set-buffer new-buffer)
+    (insert (format "%S" fov3-service-xml))
+    (switch-to-buffer new-buffer))
+    (goto-char (point-min)))
+
+(defun fov3--load-service ()
+  "Load all of the service data.")
 
 (if fov3-mode-map
     nil
@@ -76,7 +104,7 @@ rather without their whitespace separators."
 \\{fov3-mode-map}"
   (interactive)
   (fov3--init)
-  (setq service-xml (fov3-parse-buffer)))
+  (setq fov3-service-xml (car (fov3-parse-buffer))))
 
 (provide 'fov3-mode)
 
