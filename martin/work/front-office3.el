@@ -113,3 +113,30 @@ rather without their whitespace separators."
 ;; (setq tables 	(fov3-get-nodes 'FormDefinition))
 ;; (setq controls	(fov3-get-nodes 'BackOfficeControls))
 
+(require 'tree-widget)
+(require 'tree-mode)
+
+(defun xml-tree-widget (root)
+  (cond
+   ((null root) nil)
+   ((listp root)
+    (let ((elem (xml-node-name root))
+	  (children (remove-if (function stringp) (xml-node-children root))))
+      `(tree-widget :node (push-button
+			   :tag ,(format "%s" elem)
+			   :format "%[%t%]\n"
+			   :xml-node ,root
+			   :notify ,(lambda (widget &rest rest)
+				      (message (format "%s"
+						       (widget-get widget :xml-node)))))
+		    ,@(mapcar (lambda (x) (xml-tree-widget x)) children))))))
+
+(defun fov3-create-tree-widget ()
+  (interactive)
+  (let ((new-buffer (generate-new-buffer "fov3-xml-tree")))
+    (set-buffer new-buffer)
+    (widget-apply-action
+     (widget-create (xml-tree-widget (car service-xml))))
+    (switch-to-buffer new-buffer)
+    (tree-mode)
+    (goto-char (point-min))))
