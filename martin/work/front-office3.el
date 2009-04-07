@@ -116,14 +116,15 @@ rather without their whitespace separators."
 (require 'tree-widget)
 (require 'tree-mode)
 
-(defun xml-attributes-widget (attribute)
+(defun xml-attribute-widget (attribute)
   "Generate an editable field for attribute."
   (cond
-   ((null attributes) nil)
-   (t '((text :format "%s: " :value (car attribute))
-	(editable-field :value (cdr attribute)
-			:notify (lambda (widget &rest ignore)
-				  (message (widget-value widget))))))))
+   ((null attribute) nil)
+   (t `(editable-field
+	:format ,(concat (format "%S" (car attribute)) ": %v")
+	:notify ,(lambda (widget &rest ignore)
+		   (message (widget-value widget)))
+	,(cdr attribute)))))
 
 (defun xml-tree-widget (root)
   "Generate a tree widget representing the XML in ROOT."
@@ -140,7 +141,7 @@ rather without their whitespace separators."
 			   :notify ,(lambda (widget &rest rest)
 				      (message (format "%s"
 						       (widget-get widget :xml-node)))))
-		    ,@(mapcar (lambda (x) (xml-attributes-widget x)) attributes)
+		    ,@(mapcar (lambda (x) (xml-attribute-widget x)) attributes)
 		    ,@(mapcar (lambda (x) (xml-tree-widget x)) children))))))
 
 (defun fov3-create-tree-widget ()
