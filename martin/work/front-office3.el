@@ -116,11 +116,22 @@ rather without their whitespace separators."
 (require 'tree-widget)
 (require 'tree-mode)
 
+(defun xml-attributes-widget (attribute)
+  "Generate an editable field for attribute."
+  (cond
+   ((null attributes) nil)
+   (t '((text :format "%s: " :value (car attribute))
+	(editable-field :value (cdr attribute)
+			:notify (lambda (widget &rest ignore)
+				  (message (widget-value widget))))))))
+
 (defun xml-tree-widget (root)
+  "Generate a tree widget representing the XML in ROOT."
   (cond
    ((null root) nil)
    ((listp root)
     (let ((elem (xml-node-name root))
+	  (attributes (xml-node-attributes root))
 	  (children (remove-if (function stringp) (xml-node-children root))))
       `(tree-widget :node (push-button
 			   :tag ,(format "%s" elem)
@@ -129,6 +140,7 @@ rather without their whitespace separators."
 			   :notify ,(lambda (widget &rest rest)
 				      (message (format "%s"
 						       (widget-get widget :xml-node)))))
+		    ,@(mapcar (lambda (x) (xml-attributes-widget x)) attributes)
 		    ,@(mapcar (lambda (x) (xml-tree-widget x)) children))))))
 
 (defun fov3-create-tree-widget ()
@@ -140,3 +152,5 @@ rather without their whitespace separators."
     (switch-to-buffer new-buffer)
     (tree-mode)
     (goto-char (point-min))))
+
+(setq service-xml (xml-parse-file "MOpestCont.xml"))
