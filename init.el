@@ -4,8 +4,8 @@
 
 (require 'cl) ;; Common Lisp
 
-(defvar mo-location 'play
-  "Where am I? At \"work\" or at \"play\"?")
+(defvar mo-location 'home
+  "Where am I? At \"work\" or at \"home\"?")
 
 (setq mo-dotfiles-dir (file-name-directory load-file-name))
 (setq mo-vendor-dir (concat mo-dotfiles-dir "vendor"))
