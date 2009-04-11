@@ -13,6 +13,7 @@
   (erc :server "irc.freenode.net"
        :port 6667
        :nick "martyziff"
-       :full-name "Martin Owen"))
+       :full-name "Martin Owen"
+       :password erc-freenode-password))
 
 ;;(setq erc-autojoin-channels-alist '(("freenode.net" "#geekup" "#emacs")))

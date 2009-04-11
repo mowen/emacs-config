@@ -13,6 +13,10 @@
 (add-to-list 'load-path mo-dotfiles-dir)
 (add-to-list 'load-path mo-vendor-dir)
 
+;; Load passwords.el file if it exists.
+(if (file-exists-p (concat mo-dotfiles-dir "martin/passwords.el"))
+    (load "martin/passwords"))
+
 ;; Load OS specific file
 (load (concat "martin/" (symbol-name system-type)))
 
@@ -30,7 +34,3 @@
 
 ;; Load location specific file
 (load (concat "martin/" (symbol-name mo-location)))
-
-;; Load passwords.el file if it exists.
-(if (file-exists-p (concat mo-dotfiles-dir "martin/passwords.el"))
-    (load "martin/passwords"))
