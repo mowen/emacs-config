@@ -13,5 +13,9 @@
 (color-theme-initialize)
 
 ;;(color-theme-vim-colors)
-(load (concat mo-vendor-dir "/color-theme-twilight"))
-(color-theme-twilight)
+
+;;(load (concat mo-vendor-dir "/color-theme-twilight"))
+;;(color-theme-twilight)
+
+(load (concat mo-vendor-dir "/zenburn.el"))
+(zenburn)
