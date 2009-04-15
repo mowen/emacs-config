@@ -1,13 +1,10 @@
 (define-skeleton xhtml-trans-skeleton
   "Inserts a skeletal XHTML file with the DOCTYPE declaration for the XHTML 1.0 Transitional DTD"
   nil
-  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" "
-  "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+  "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
   "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
   "<head>\n"
   "<meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n"
-  "<meta name=\"Author\" content=\"" (skeleton-read "Enter author: ") "\" />\n"
   "<title>" (skeleton-read "Enter title: ") "</title>\n"
   "</head>\n"
   "<body>\n"
