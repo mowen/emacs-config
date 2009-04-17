@@ -71,14 +71,15 @@ rather without their whitespace separators."
      (t (fov3-select-nodes (cdr list) name))))
    (t (fov3-select-nodes (cdr list) name))))
 
-(defun fov3-debug-data ()
-  "Display fov3-service-xml in a temporary buffer."
+(defun fov3-debug-data (list)
+  "Display Front Office V3 node LIST in a temporary buffer."
   (interactive)
   (let ((new-buffer (generate-new-buffer "fov3-node")))
     (set-buffer new-buffer)
-    (insert (format "%S" fov3-service-xml))
-    (switch-to-buffer new-buffer))
-    (goto-char (point-min)))
+    (insert (format "%S" list))
+    (switch-to-buffer new-buffer)
+    (emacs-lisp-mode)
+    (goto-char (point-min))))
 
 (defun fov3--load-service ()
   "Load all of the service data.")
