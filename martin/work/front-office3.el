@@ -12,7 +12,8 @@
        (atom (car l))
        (listp (car (cdr l)))
        (if (> (length l) 2)
-	   (stringp (nth 2 l)))))
+	   (stringp (nth 2 l))
+	 t)))
 
 (defun fov3-node-eq (name node)
   "Is NODE named NAME?"
@@ -42,6 +43,7 @@ rather without their whitespace separators."
 
 ;; Why isn't this working?
 ;; Some of the children don't strip out the strings
+;; RETEST - now that fov3-node-p has been fixed
 (defun fov3--strip-newlines (list)
   "Strip all of the whitespace strings from the service XML node."
   (cond
@@ -55,21 +57,23 @@ rather without their whitespace separators."
    ((fov3-newline-p (car list)) (fov3--strip-newlines (cdr list)))
    (t (cons (car list) (fov3--strip-newlines (cdr list))))))
 
-;; Need to check the children as well. The name may not match the parent, but it
-;; may match one of the children.
-(defun fov3-select-nodes (list name)
-  "Select all of the nodes with NAME in LIST."
+(defun fov3-select-nodes (root name)
+  "Select all of the nodes with NAME in ROOT."
   (cond
-   ((null list) '())
-   ((fov3-node-p (car list))
+   ((null root) '())
+   ((fov3-node-p (car root))
     (cond 
-     ((eq name (xml-node-name (car list)))
-      (cons (car list) (fov3-select-nodes (cdr list) name)))
-     ((fov3-node-parent-p (car list))
-      (cons (fov3-select-nodes (fov3-collect-children (car list)) name)
-	    (fov3-select-nodes (cdr list) name)))
-     (t (fov3-select-nodes (cdr list) name))))
-   (t (fov3-select-nodes (cdr list) name))))
+     ((eq name (xml-node-name (car root)))
+      (cons (car root) (fov3-select-nodes (cdr root) name)))
+     ((fov3-node-parent-p (car root))
+      ;; Using append rather than cons as it will remove the nils returned by
+      ;; (fov3-select-nodes (cdr root) name). Will cause problems if I want to
+      ;; preserve nested structure, but that should only happen if a node name
+      ;; occurs at more than one level (Style is an example.)
+      (append (fov3-select-nodes (fov3-collect-children (car root)) name)
+	      (fov3-select-nodes (cdr root) name)))
+     (t (fov3-select-nodes (cdr root) name))))
+   (t (fov3-select-nodes (cdr root) name))))
 
 (defun fov3-debug-data (list)
   "Display Front Office V3 node LIST in a temporary buffer."
