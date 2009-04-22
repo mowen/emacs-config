@@ -12,6 +12,15 @@
 ;; XML Mode
 ;; ----------------------------------------
 
+(defun mo-nxml-indent-buffer ()
+  "Indent the whole buffer correctly."
+  (interactive)
+  (let ((xml (xml-parse-region (point-min) (point-max) (current-buffer))))
+    (save-excursion
+      (erase-buffer)
+      (goto-char (point-min))
+      (insert (xml-print xml)))))
+
 (defun mo-nxml-mark-node ()
   "Mark the node contained on the current line."
   (interactive)
@@ -29,5 +38,6 @@
  	  '(lambda () 
  	     (setq nxml-slash-auto-complete-flag t)
 	     (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
+	     (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
 	     (if (eq mo-location 'work)
 		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))))
