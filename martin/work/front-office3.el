@@ -12,7 +12,8 @@
        (atom (car l))
        (listp (car (cdr l)))
        (if (> (length l) 2)
-	   (stringp (nth 2 l))
+	   (or (stringp (nth 2 l))
+	       (listp (nth 2 l)))
 	 t)))
 
 (defun fov3-node-eq (name node)
@@ -23,12 +24,11 @@
 (defun fov3-node-parent-p (node)
   "Is NODE a parent?"
   (and (listp node)
-       (> (length node) 3)
-       (fov3-node-p (nth 3 node))))
+       (> (length node) 2)
+       (fov3-node-p (nth 2 node))))
 
 (defun fov3-collect-children (node)
-  "Get the children of the NODE. Returns a list of children
-rather without their whitespace separators."
+  "Get the children of the NODE."
   (cond
    ((null node) '())
    ((fov3-node-p (car node))
@@ -37,26 +37,40 @@ rather without their whitespace separators."
 
 (defun fov3-newline-p (string)
   "Does STRING start with a newline?"
-  (if (stringp string)
+  (if (and (stringp string)
+	   (> (length string) 0))
       (= (aref string 0) ?\n)
     nil))
 
-;; Why isn't this working?
-;; Some of the children don't strip out the strings
-;; RETEST - now that fov3-node-p has been fixed
-(defun fov3--strip-newlines (list)
-  "Strip all of the whitespace strings from the service XML node."
-  (cond
-   ((null list) '())
-   ((fov3-node-parent-p (car list))
-    (cons (fov3--strip-newlines (fov3-collect-children (car list)))
-	  (fov3--strip-newlines (cdr list))))
-   ((fov3-node-p (car list))
-    (cons (fov3--strip-newlines (car list))
-	  (fov3--strip-newlines (cdr list))))
-   ((fov3-newline-p (car list)) (fov3--strip-newlines (cdr list)))
-   (t (cons (car list) (fov3--strip-newlines (cdr list))))))
+;; TODO: Recursion may not be the best option here
+(defun fov3-remove-newlines (root)
+  "Strip all of the whitespace strings from ROOT."
+  (cond 
+   ((null root) '())
+   ((fov3-newline-p root) '())
+   ((stringp root) root)
+   ((fov3-newline-p (car root))
+    (fov3-remove-newlines (cdr root)))
+   ((or (stringp (car root))
+	(atom (car root)))
+    (cons (car root) (fov3-remove-newlines (cdr root))))
+   ((listp (car root))
+    (cons (fov3-remove-newlines (car root))
+	  (fov3-remove-newlines (cdr root))))))
 
+(defun fov3-restore-newlines (root)
+  "Restore newlines according to xml.el indentation."
+  (with-temp-buffer
+    (xml-debug-print (cons root '()))
+    (xml-parse-region (point-min)
+		      (point-max)
+		      (current-buffer))))
+
+;; -----------------------------------------------------------------------------
+;; Node selection
+
+;; TODO: Allow the option of an attribute to select on too.
+;; Attribute will be given as a single element assoc list.
 (defun fov3-select-nodes (root name)
   "Select all of the nodes with NAME in ROOT."
   (cond
@@ -75,23 +89,78 @@ rather without their whitespace separators."
      (t (fov3-select-nodes (cdr root) name))))
    (t (fov3-select-nodes (cdr root) name))))
 
-(defun fov3-debug-data (list)
+(defun fov3-node-id (node)
+  "Get the 'id' attribute of NODE."
+  (let ((attributes (xml-node-attributes node)))
+    (cdr (assoc 'id attributes))))
+
+(defun fov3-select-node-id (root name id)
+  "Select the node with NAME and ID attribute."
+  (let ((node-list (fov3-select-nodes root name)))
+    (setq node-list
+	  (mapcar '(lambda (node)
+		     (if (string= id (fov3-node-id node)) node)) node-list))
+    (car (remove-if (function null) node-list))))
+
+;; NOTE copy-tree can be used to copy a nested list
+
+;; TODO: The references shouldn't need to include the node name and attributes
+;; (basically just add 2 to each.)
+(defun fov3-get-tree (root list-of-refs)
+  "Select the (potentially nested) tree in ROOT given by
+LIST-OF-REFS."
+  (cond
+   ((null list-of-refs) '())
+   ((null (cdr list-of-refs)) (nth (car list-of-refs) root))
+   (t (fov3-select-tree (nth (car list-of-refs) root) (cdr list-of-refs)))))
+
+;; -----------------------------------------------------------------------------
+;; Form Definition Manipulation
+
+(defun fov3-table-count ()
+  "Get the number of tables in the service."
+  (length (fov3-select-nodes fov3-form-definition 'Table)))
+
+(defun fov3-row-count (table)
+  "Get the number of rows in TABLE."
+  (length (fov3-select-nodes table 'Row)))
+
+(defun fov3-column-count (row)
+  "Get the number of columns in ROW."
+  (length (fov3-select-nodes row 'Column)))
+
+;; -----------------------------------------------------------------------------
+;; Debugging
+
+(defun fov3-debug-data (list &optional buffer-name)
   "Display Front Office V3 node LIST in a temporary buffer."
   (interactive)
-  (let ((new-buffer (generate-new-buffer "fov3-node")))
+  (let* ((new-buffer-name (or buffer-name "fov3-node"))
+	 (new-buffer (generate-new-buffer new-buffer-name)))
     (set-buffer new-buffer)
     (insert (format "%S" list))
     (switch-to-buffer new-buffer)
     (emacs-lisp-mode)
     (goto-char (point-min))))
 
-(defun fov3--load-service ()
-  "Load all of the service data.")
+(defun fov3-debug-form-definition ()
+  "Display the Form Definition."
+  (interactive)
+  (fov3-debug-data fov3-form-definition "fov3-form-definition"))
+
+(defun fov3-debug-visibility-rules ()
+  "Display the Visiblity Rules."
+  (interactive)
+  (fov3-debug-data fov3-visibility-rules "fov3-visibility-rules"))
+
+;; -----------------------------------------------------------------------------
+;; Init
 
 (if fov3-mode-map
     nil
   (setq fov3-mode-map (make-sparse-keymap))
-  (define-key fov3-mode-map "\C-c\p" 'fov3-debug-data))
+  (define-key fov3-mode-map "\C-c\f" 'fov3-debug-form-definition)
+  (define-key fov3-mode-map "\C-c\v" 'fov3-debug-visibility-rules))
 
 (defun fov3-parse-buffer ()
   (xml-parse-region (point-min) (point-max)))
@@ -109,14 +178,14 @@ rather without their whitespace separators."
 \\{fov3-mode-map}"
   (interactive)
   (fov3--init)
-  (setq fov3-service-xml (car (fov3-parse-buffer))))
+  (setq fov3-service-xml (car (fov3-parse-buffer)))
+  (setq fov3-form-definition (car (fov3-select-nodes fov3-service-xml 'FormDefinition)))
+  (setq fov3-visibility-rules (car (fov3-select-nodes fov3-service-xml 'VisiblityRules))))
 
 (provide 'fov3-mode)
 
-;; (setq visibility 	(fov3-get-nodes 'VisibilityRules))
-;; (setq user-code 	(fov3-get-nodes 'UserCode))
-;; (setq tables 	(fov3-get-nodes 'FormDefinition))
-;; (setq controls	(fov3-get-nodes 'BackOfficeControls))
+;; -----------------------------------------------------------------------------
+;; Widget stuff
 
 (require 'tree-widget)
 (require 'tree-mode)
@@ -158,5 +227,3 @@ rather without their whitespace separators."
     (switch-to-buffer new-buffer)
     (tree-mode)
     (goto-char (point-min))))
-
-(setq service-xml (xml-parse-file "MOpestCont.xml"))
