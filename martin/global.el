@@ -22,3 +22,11 @@
 
 (defalias 'rps 'replace-string)
 (defalias 'qr 'query-replace)
+
+;; ----------------------------------------
+;; Bookmarks
+
+;; When opening a bookmark, name the buffer after the bookmark
+(add-hook 'bookmark-after-jump-hook
+	  '(lambda ()
+	     (rename-buffer bookmark-current-bookmark)))
