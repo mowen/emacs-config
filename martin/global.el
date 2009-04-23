@@ -20,6 +20,9 @@
 (put 'upcase-region 'disabled nil)   ;; Don't disable Upper Case Region command
 (put 'downcase-region 'disabled nil) ;; Or Down Case Region
 
+(setq max-lisp-eval-depth 40000)
+(setq max-specpdl-size 100000)
+
 (defalias 'rps 'replace-string)
 (defalias 'qr 'query-replace)
 
