@@ -27,13 +27,9 @@
        (> (length node) 2)
        (fov3-node-p (nth 2 node))))
 
-(defun fov3-collect-children (node)
+(defun fov3-get-children (node)
   "Get the children of the NODE."
-  (cond
-   ((null node) '())
-   ((fov3-node-p (car node))
-    (cons (car node) (fov3-collect-children (cdr node))))
-   (t (fov3-collect-children (cdr node)))))
+  (nthcdr 2 node))
 
 (defun fov3-newline-p (string)
   "Does STRING start with a newline?"
@@ -84,22 +80,33 @@
       ;; (fov3-select-nodes (cdr root) name). Will cause problems if I want to
       ;; preserve nested structure, but that should only happen if a node name
       ;; occurs at more than one level (Style is an example.)
-      (append (fov3-select-nodes (fov3-collect-children (car root)) name)
+      (append (fov3-select-nodes (fov3-get-children (car root)) name)
 	      (fov3-select-nodes (cdr root) name)))
      (t (fov3-select-nodes (cdr root) name))))
    (t (fov3-select-nodes (cdr root) name))))
 
+(defun fov3-node-has-attr-value (node attr-name attr-value)
+  "Check if the NODE's attribute with ATTR-NAME has ATTR-VALUE."
+  (let ((attr (fov3-node-get-attribute node attr-name)))
+    (if (null attr)
+	nil
+      (string= attr-value (cdr attr)))))
+
 (defun fov3-node-id (node)
   "Get the 'id' attribute of NODE."
-  (let ((attributes (xml-node-attributes node)))
-    (cdr (assoc 'id attributes))))
+  (fov3-node-get-attribute node 'id))
 
-(defun fov3-select-node-id (root name id)
-  "Select the node with NAME and ID attribute."
+;; TODO: Make the parameters to this consistent with the node-get/set-attribute
+;; functions (or should this be able to take more than one attr?)
+(defun fov3-select-node-with-attr (root name attr-alist)
+  "Select the node with NAME and ATTRibute."
   (let ((node-list (fov3-select-nodes root name)))
     (setq node-list
 	  (mapcar '(lambda (node)
-		     (if (string= id (fov3-node-id node)) node)) node-list))
+		     (if (fov3-node-has-attr-value node
+						   (car attr-alist)
+						   (cdr attr-alist))
+			 node)) node-list))
     (car (remove-if (function null) node-list))))
 
 ;; NOTE copy-tree can be used to copy a nested list
@@ -112,7 +119,68 @@ LIST-OF-REFS."
   (cond
    ((null list-of-refs) '())
    ((null (cdr list-of-refs)) (nth (car list-of-refs) root))
-   (t (fov3-select-tree (nth (car list-of-refs) root) (cdr list-of-refs)))))
+   (t (fov3-get-tree (nth (car list-of-refs) root) (cdr list-of-refs)))))
+
+(defun fov3-node-get-attribute (node attr-name)
+  "Get the NODE's attribute with ATTR-NAME."
+  (let ((node-attrs (xml-node-attributes node)))
+    (assoc attr-name node-attrs)))
+
+(defun fov3-node-set-attribute (node attr-name attr-value)
+  "Set the NODE's attribute."
+  (let ((attr (fov3-node-get-attribute node attr-name)))
+    (setcdr attr attr-value)))
+  
+;; -----------------------------------------------------------------------------
+;; User Code
+
+(defun fov3-user-code-count ()
+  "Get the number of user code entries."
+  (length (fov3-select-nodes fov3-user-code 'Code)))
+
+(defun fov3-get-user-code (id)
+  "Get the user code with ID."
+  (fov3-select-node-with-attr fov3-user-code 'Code `(id . ,id)))
+
+(defun fov3-get-user-code-body (user-code)
+  "Get the user code body from USER-CODE."
+  (nth 2 (car (fov3-select-nodes user-code 'CodeBody))))
+
+(defun fov3-set-user-code-body (body-node new-body)
+  "Set the user code BODY-NODE to have body string NEW-BODY."
+  (let ((old-body (fov3-get-children body-node)))
+    (setcar old-body new-body)))
+
+;; TODO Change the local variable that I need in the save function
+;; to buffer local variables
+(defun fov3-edit-user-code-body (id)
+  "Load the user code body with ID into a buffer."
+  (interactive "p")
+  ;; TODO check how many user code elements there are
+  (let* ((id (number-to-string (or id 1)))
+	 (user-code (fov3-get-user-code id))
+	 (user-code-type (cdr (assoc 'codetype (xml-node-attributes user-code))))
+	 (user-code-body (fov3-get-user-code-body user-code))
+	 (old-buffer-name (buffer-name (current-buffer)))
+	 (new-buffer-name (concat "fov3-user-code-" id))
+	 (new-buffer (generate-new-buffer new-buffer-name)))
+    (set-buffer new-buffer)
+    (insert user-code-body)
+    (switch-to-buffer new-buffer)
+    (if (string= user-code-type "J")
+	(js2-mode)
+      (csharp-mode))
+    (local-set-key (kbd "C-x C-s")
+		   `(lambda ()
+		      (interactive)
+		      (let ((new-code-body (buffer-substring (point-min) (point-max))))
+			(set-buffer ,old-buffer-name)
+			(fov3-set-user-code-body
+			 (car (fov3-select-nodes (quote ,user-code) 'CodeBody))
+			 new-code-body)
+			(set-buffer ,new-buffer-name)
+			(message "Saved."))))
+    (goto-char (point-min))))
 
 ;; -----------------------------------------------------------------------------
 ;; Form Definition Manipulation
@@ -132,13 +200,17 @@ LIST-OF-REFS."
 ;; -----------------------------------------------------------------------------
 ;; Debugging
 
-(defun fov3-debug-data (list &optional buffer-name)
+(defun fov3-debug-data (lst &optional buffer-name)
   "Display Front Office V3 node LIST in a temporary buffer."
   (interactive)
   (let* ((new-buffer-name (or buffer-name "fov3-node"))
-	 (new-buffer (generate-new-buffer new-buffer-name)))
+	 (new-buffer (generate-new-buffer new-buffer-name))
+	 (lst-with-newlines
+	  (if (= 1 (length lst))
+	      (fov3-restore-newlines (car lst))
+	    (fov3-restore-newlines lst))))
     (set-buffer new-buffer)
-    (insert (format "%S" list))
+    (insert (format "%S" lst-with-newlines))
     (switch-to-buffer new-buffer)
     (emacs-lisp-mode)
     (goto-char (point-min))))
@@ -152,6 +224,11 @@ LIST-OF-REFS."
   "Display the Visiblity Rules."
   (interactive)
   (fov3-debug-data fov3-visibility-rules "fov3-visibility-rules"))
+
+(defun fov3-debug-user-code ()
+  "Display the User Code."
+  (interactive)
+  (fov3-debug-data fov3-user-code "fov3-user-code"))
 
 ;; -----------------------------------------------------------------------------
 ;; Init
@@ -180,7 +257,8 @@ LIST-OF-REFS."
   (fov3--init)
   (setq fov3-service-xml (car (fov3-parse-buffer)))
   (setq fov3-form-definition (car (fov3-select-nodes fov3-service-xml 'FormDefinition)))
-  (setq fov3-visibility-rules (car (fov3-select-nodes fov3-service-xml 'VisiblityRules))))
+  (setq fov3-visibility-rules (car (fov3-select-nodes fov3-service-xml 'VisiblityRules)))
+  (setq fov3-user-code (car (fov3-select-nodes fov3-service-xml 'UserCode))))
 
 (provide 'fov3-mode)
 
