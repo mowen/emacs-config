@@ -54,8 +54,19 @@
     (cons (fov3-remove-newlines (car root))
 	  (fov3-remove-newlines (cdr root))))))
 
+(defun fov3-normalize-root (root)
+  "Prepare the root for displaying via fov3-debug-data."
+  (if (not (fov3-node-p root))
+      (if (= 1 (length root))
+	  ;; First element must be a node, so use that
+	  (fov3-restore-newlines (car root))
+	;; if length != 1 and not a node then we must provide a root element
+	(fov3-restore-newlines `(Fov3DebugRoot nil ,@root)))
+    (fov3-restore-newlines root)))
+
 (defun fov3-restore-newlines (root)
   "Restore newlines according to xml.el indentation."
+  (setq root (fov3-normalize-root root))
   (with-temp-buffer
     (xml-debug-print (cons root '()))
     (xml-parse-region (point-min)
@@ -199,16 +210,13 @@ LIST-OF-REFS."
 
 ;; -----------------------------------------------------------------------------
 ;; Debugging
-
+  
 (defun fov3-debug-data (lst &optional buffer-name)
   "Display Front Office V3 node LIST in a temporary buffer."
   (interactive)
   (let* ((new-buffer-name (or buffer-name "fov3-node"))
 	 (new-buffer (generate-new-buffer new-buffer-name))
-	 (lst-with-newlines
-	  (if (= 1 (length lst))
-	      (fov3-restore-newlines (car lst))
-	    (fov3-restore-newlines lst))))
+	 (lst-with-newlines (fov3-restore-newlines lst)))
     (set-buffer new-buffer)
     (insert (format "%S" lst-with-newlines))
     (switch-to-buffer new-buffer)

@@ -100,7 +100,10 @@
             ") "
           ") "
         ") "
-      "))))
+      ")))
+(setq fov3-service-xml (fov3-remove-newlines (car (xml-parse-file "CHSCISNR01.xml"))))
+(setq mo-pest-cont-xml (fov3-remove-newlines (car (xml-parse-file "MOpestCont.xml"))))
+(setq fov3-user-code (fov3-select-nodes mo-pest-cont-xml 'UserCode)))
 
 ;;(fov3-node-p table18) ;; t
 ;;(fov3-node-p row5) ;; t
@@ -111,23 +114,22 @@
 ;;(fov3-node-parent-p row5) ;; t
 ;;(fov3-node-parent-p table18) ;; t
 ;;(fov3-node-parent-p column0) ;; nil
-;;(fov3-node-parent-p table16)
-
-;;(car (cdr (fov3-collect-children row5)))
-
-(setq fov3-service-xml (fov3-remove-newlines (car (xml-parse-file "CHSCISNR01.xml"))))
-(setq mo-pest-cont-xml (fov3-remove-newlines (car (xml-parse-file "MOpestCont.xml"))))
-
-(fov3-debug-data (fov3-collect-children fov3-service-xml))
+;;(fov3-node-parent-p table16) ;; t
 
 (fov3-debug-data fov3-service-xml)
-(fov3-debug-data (fov3-select-nodes table18 'Column)) ;; not ok
-(fov3-debug-data (fov3-select-nodes table16 'Row)) ;; not ok
+(fov3-debug-data (fov3-get-children fov3-service-xml))
+
+(fov3-debug-data (fov3-select-nodes table18 'Column))
+(fov3-debug-data (fov3-select-nodes table16 'Row))
+(fov3-debug-data (fov3-select-nodes fov3-service-xml 'Table))
 (fov3-debug-data (fov3-select-nodes fov3-service-xml 'SelfServe))
 (fov3-debug-data (fov3-select-nodes fov3-service-xml 'VisibilityRules))
+
 (fov3-debug-data (fov3-select-node-with-attr mo-pest-cont-xml 'Row '(id . "0")))
 (fov3-debug-data (fov3-select-node-with-attr mo-pest-cont-xml 'PlainText '(id . "plaintext7")))
-
+(fov3-debug-data (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(id . "table16")))
+(fov3-debug-data (fov3-select-node-with-attr fov3-service-xml 'Table '(name . "tblGeneralEnquiry8")))
+(fov3-debug-data (fov3-select-node-with-attr fov3-service-xml 'Control '(name . "txtChildcareArea")))
 (fov3-debug-data (fov3-select-node-with-attr table16 'Column '(id . "0")))
 
 (fov3-debug-data table16)
@@ -137,13 +139,6 @@
 (fov3-row-count table16)
 (fov3-column-count (car (fov3-select-nodes table16 'Row)))
 
-(fov3-debug-data fov3-service-xml)
-
-(fov3-debug-data (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(id . "table16")))
-(fov3-debug-data (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(name . "tblGeneralEnquiry8")))
-(fov3-debug-data (fov3-select-node-with-attr fov3-service-xml 'Control '(name . "txtChildcareArea"))) ;; not found
-
-(setq fov3-user-code (fov3-select-nodes mo-pest-cont-xml 'UserCode))
 (fov3-debug-data (fov3-set-user-code-body (car (fov3-select-nodes (fov3-get-user-code "2") 'CodeBody)) "Testing"))
 
 (fov3-node-set-attribute (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(id . "testing")) 'id "table16")
