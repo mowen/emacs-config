@@ -144,5 +144,5 @@
 (fov3-node-set-attribute (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(id . "testing")) 'id "table16")
 (fov3-debug-data mo-pest-cont-xml)
 
-(eq (fov3-get-children table16)
-    (fov3-get-children table16))
+(equal (fov3-get-children table16)
+       (fov3-get-children table16))

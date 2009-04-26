@@ -140,7 +140,8 @@ LIST-OF-REFS."
 (defun fov3-node-set-attribute (node attr-name attr-value)
   "Set the NODE's attribute."
   (let ((attr (fov3-node-get-attribute node attr-name)))
-    (setcdr attr attr-value)))
+    (setcdr attr attr-value)
+    (set-buffer-modified-p t)))
   
 ;; -----------------------------------------------------------------------------
 ;; User Code
@@ -160,7 +161,8 @@ LIST-OF-REFS."
 (defun fov3-set-user-code-body (body-node new-body)
   "Set the user code BODY-NODE to have body string NEW-BODY."
   (let ((old-body (fov3-get-children body-node)))
-    (setcar old-body new-body)))
+    (setcar old-body new-body)
+    (set-buffer-modified-p t)))
 
 ;; TODO Change the local variable that I need in the save function
 ;; to buffer local variables
@@ -196,15 +198,15 @@ LIST-OF-REFS."
 ;; -----------------------------------------------------------------------------
 ;; Form Definition Manipulation
 
-(defun fov3-table-count ()
+(defsubst fov3-table-count ()
   "Get the number of tables in the service."
   (length (fov3-select-nodes fov3-form-definition 'Table)))
 
-(defun fov3-row-count (table)
+(defsubst fov3-row-count (table)
   "Get the number of rows in TABLE."
   (length (fov3-select-nodes table 'Row)))
 
-(defun fov3-column-count (row)
+(defsubst fov3-column-count (row)
   "Get the number of columns in ROW."
   (length (fov3-select-nodes row 'Column)))
 
@@ -239,6 +241,21 @@ LIST-OF-REFS."
   (fov3-debug-data fov3-user-code "fov3-user-code"))
 
 ;; -----------------------------------------------------------------------------
+;; Loading and Saving
+
+(defun fov3-parse-buffer ()
+  "Parse the XML in the buffer."
+  (xml-parse-region (point-min) (point-max)))
+
+(defun fov3-before-save ()
+  "Convert the internal data structure back to XML ready for
+saving."
+  (save-excursion
+    (erase-buffer)
+    (xml-debug-print (cons fov3-service-xml '()))
+    (goto-char (point-min))))
+
+;; -----------------------------------------------------------------------------
 ;; Init
 
 (if fov3-mode-map
@@ -247,13 +264,11 @@ LIST-OF-REFS."
   (define-key fov3-mode-map "\C-c\f" 'fov3-debug-form-definition)
   (define-key fov3-mode-map "\C-c\v" 'fov3-debug-visibility-rules))
 
-(defun fov3-parse-buffer ()
-  (xml-parse-region (point-min) (point-max)))
-
 (defun fov3--init () 
   (kill-all-local-variables)
   (setq major-mode 'fov3-mode)
   (setq mode-name "Front Office V3")
+  (add-hook 'before-save-hook (function fov3-before-save) nil t)
   (use-local-map fov3-mode-map)
   (run-hooks fov3-mode-hook))
 
