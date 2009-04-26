@@ -59,10 +59,10 @@
   (if (not (fov3-node-p root))
       (if (= 1 (length root))
 	  ;; First element must be a node, so use that
-	  (fov3-restore-newlines (car root))
+	  (car root)
 	;; if length != 1 and not a node then we must provide a root element
-	(fov3-restore-newlines `(Fov3DebugRoot nil ,@root)))
-    (fov3-restore-newlines root)))
+	`(Fov3DebugRoot nil ,@root))
+    root))
 
 (defun fov3-restore-newlines (root)
   "Restore newlines according to xml.el indentation."
