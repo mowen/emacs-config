@@ -248,8 +248,7 @@ LIST-OF-REFS."
 saving."
   (save-excursion
     (erase-buffer)
-    (xml-debug-print (cons fov3-service-xml '()))
-    (goto-char (point-min))))
+    (xml-debug-print (cons fov3-service-xml '()))))
 
 ;; -----------------------------------------------------------------------------
 ;; Init
@@ -278,7 +277,7 @@ saving."
 \\{fov3-mode-map}"
   (interactive)
   (fov3--init)
-  (setq fov3-service-xml (car (fov3-parse-buffer)))
+  (setq fov3-service-xml (fov3-remove-newlines (car (fov3-parse-buffer))))
   (setq fov3-form-definition (car (fov3-select-nodes fov3-service-xml 'FormDefinition)))
   (setq fov3-visibility-rules (car (fov3-select-nodes fov3-service-xml 'VisiblityRules)))
   (setq fov3-user-code (car (fov3-select-nodes fov3-service-xml 'UserCode))))
