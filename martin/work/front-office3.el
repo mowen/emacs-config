@@ -257,8 +257,12 @@ saving."
 (if fov3-mode-map
     nil
   (setq fov3-mode-map (make-sparse-keymap))
-  (define-key fov3-mode-map "\C-c\f" 'fov3-debug-form-definition)
-  (define-key fov3-mode-map "\C-c\v" 'fov3-debug-visibility-rules))
+  (define-key fov3-mode-map (kbd "C-c f")
+    '(lambda ()
+       (interactive)
+       (fov3-create-tree-widget fov3-form-definition "Front Office V3 - Form Definition")))
+  (define-key fov3-mode-map (kbd "C-c v") 'fov3-debug-form-definition)
+  (define-key fov3-mode-map (kbd "C-c u") 'fov3-edit-user-code-body))
 
 (defun fov3--init () 
   (kill-all-local-variables)
@@ -287,7 +291,7 @@ saving."
 (require 'tree-widget)
 (require 'tree-mode)
 
-(defun xml-attribute-widget (attribute)
+(defun fov3-xml-attribute-widget (attribute)
   "Generate an editable field for attribute."
   (cond
    ((null attribute) nil)
@@ -297,7 +301,7 @@ saving."
 		   (message (widget-value widget)))
 	,(cdr attribute)))))
 
-(defun xml-tree-widget (root)
+(defun fov3-xml-tree-widget (root)
   "Generate a tree widget representing the XML in ROOT."
   (cond
    ((null root) nil)
@@ -312,15 +316,17 @@ saving."
 			   :notify ,(lambda (widget &rest rest)
 				      (message (format "%s"
 						       (widget-get widget :xml-node)))))
-		    ,@(mapcar (lambda (x) (xml-attribute-widget x)) attributes)
-		    ,@(mapcar (lambda (x) (xml-tree-widget x)) children))))))
+		    ,@(mapcar (lambda (x) (fov3-xml-attribute-widget x)) attributes)
+		    ,@(mapcar (lambda (x) (fov3-xml-tree-widget x)) children))))))
 
-(defun fov3-create-tree-widget ()
-  (interactive)
-  (let ((new-buffer (generate-new-buffer "fov3-xml-tree")))
+(defun fov3-create-tree-widget (root buffer-name)
+  "Create a tree widget for the XML in ROOT."
+  (let ((new-buffer (generate-new-buffer buffer-name)))
     (set-buffer new-buffer)
     (widget-apply-action
-     (widget-create (xml-tree-widget (car service-xml))))
+     (widget-create (fov3-xml-tree-widget root)))
+    (use-local-map widget-keymap)
+    (widget-setup)
     (switch-to-buffer new-buffer)
-    (tree-mode)
+    ;;(tree-mode) - this was stopping me from editing text fields
     (goto-char (point-min))))
