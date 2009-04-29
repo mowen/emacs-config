@@ -217,6 +217,92 @@ LIST-OF-REFS."
   "Get the number of columns in ROW."
   (length (fov3-select-nodes row 'Column)))
 
+(defun fov3-move-element-up (lst i)
+  "Move LST element at 1-base index I up one."
+  (if (or (< i 2)
+	  (> i (length lst)))
+      (error "Index out of range.")
+    (let ((element (nth (- i 1) lst))
+	  (prev-element (nth (- i 2) lst)))
+      (setcdr (nthcdr (- i 3) lst)
+	      ;; cons next-element and element to cdr of next-element
+	      ;; (1, 2, 3, 4, 5) becomes (1, 3, 2, 3, 4, 5), where i is 3
+	      (cons element (cons prev-element (nthcdr i lst)))))
+    (if (= i 2)
+	(fov3-remove-element-at lst 1)
+      lst)))
+
+(defun fov3-move-element-down (lst i)
+  "Move LST element at 1-based index I down one."
+  (if (or (zerop i)
+	  (>= i (length lst)))
+      (error "Index out of range.")
+    (let ((element (nth (- i 1) lst))
+	  (next-element (nth i lst)))
+      (setcdr (nthcdr (- i 1) lst)
+	      ;; cons next-element and element to cdr of next-element
+	      ;; (1, 2, 3, 4, 5) becomes (1, 2, 3, 2, 4, 5), where i is 2
+	      (cons next-element (cons element (nthcdr (+ i 1) lst))))
+      ;; Remove the duplicate of the element that has been moved down
+      ;; So (1, 2, 3, 2, 4, 5) becomes (1, 3, 2, 4, 5) where i is 2
+      (fov3-remove-element-at lst i))))
+
+(defun fov3-remove-element-at (lst i)
+  "Remove the element at index I."
+  (if (= i 1)
+      (cdr lst)
+    (setcdr (nthcdr (- i 2) lst) (nthcdr i lst))
+    lst))
+
+(defun fov3-move-row-up (table-node row-num)
+  "Move row number ROW-NUM in TABLE up."
+  (let ((child-offset 2)
+	(rows (xml-node-children table-node)))
+    (fov3-move-element-up table-node (+ row-num child-offset))))
+
+(defun fov3-move-row-down (table-node row-num)
+  "Move row number ROW-NUM in TABLE down."
+  (let ((child-offset 2)
+	(rows (xml-node-children table-node)))
+    (fov3-move-element-down table-node (+ row-num child-offset))))
+
+;; -----------------------------------------------------------------------------
+;; Form Definition Display
+
+(defun fov3-display-plain-text (plain-text)
+  "Convert the PlainText to a string representation."
+  ;; The first child should be the text
+  (car (xml-node-children plain-text)))
+
+(defun fov3-display-control (control)
+  "Convert the control into a string representation."
+  (cdr (fov3-node-get-attribute control 'name)))
+
+(defun fov3-display-column (column)
+  "Convert the column into a string representation."
+  (let ((control (car (fov3-select-nodes column 'Control)))
+	(plain-text (car (fov3-select-nodes column 'PlainText))))
+    (if (null control)
+	(fov3-display-plain-text plain-text)
+      (fov3-display-control control))))
+
+(defun fov3-display-row (row)
+  "Convert the row to a string representation."
+  (let ((columns (xml-node-children row)))
+    (concat "|" (mapconcat (function fov3-display-column) columns  " | ") " | ")))
+
+(defun fov3-display-table (table)
+  "Convert the table to a string representation."
+  (let ((table-name (cdr (fov3-node-get-attribute table 'name)))
+	(rows (xml-node-children table)))
+    (concat "\nTable Name: " table-name "\n|-\n"
+	    (mapconcat (function fov3-display-row) rows "\n"))))
+
+;;(defun fov3-display-form-definition (&optional root)
+;;  "Display the form definition as plain-text.")
+  ;; Use the Orgtbl minor mode for editing with
+  ;; (turn-on-orgtbl))
+
 ;; -----------------------------------------------------------------------------
 ;; Debugging
   

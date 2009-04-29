@@ -132,7 +132,11 @@
 (fov3-debug-data (fov3-select-node-with-attr table16 'Column '(id . "0")))
 
 (fov3-debug-data table16)
+(fov3-move-row-up table16 2)
 (fov3-debug-data (fov3-get-tree table16 '(5 2)))
+
+;; Row id 22 should be top
+(fov3-move-row-up (fov3-select-node-with-attr fov3-service-xml 'Table '(id . "table18")) 2)
 
 (fov3-table-count)
 (fov3-row-count table16)
@@ -143,5 +147,6 @@
 (fov3-node-set-attribute (fov3-select-node-with-attr mo-pest-cont-xml 'Table '(id . "testing")) 'id "table16")
 (fov3-debug-data mo-pest-cont-xml)
 
-(equal (fov3-get-children table16)
-       (fov3-get-children table16))
+(setq highways-data (fov3-remove-newlines (car (xml-parse-file "TECHWMNR01.xml"))))
+(setq header-table (fov3-select-node-with-attr highways-data 'Table '(name . "tblHeaderData")))
+(insert (fov3-display-table header-table))
