@@ -1,5 +1,12 @@
 ;;; front-office3.el ---  Major mode for Northgate Front Office V3 Activity XML files
 
+;; TODO
+;;
+;; * Enable re-ordering of rows and tables. (Could I not just add an offset to
+;;   the children of the node?)
+;;
+;; * Wrap user code bodies with <CDATA[]> after saving.
+
 (defvar fov3-mode-hook nil
   "List of functions to call when entering Front Office mode.")
 
@@ -138,13 +145,17 @@ LIST-OF-REFS."
   (let ((attr (fov3-node-get-attribute node attr-name)))
     (setcdr attr attr-value)
     (set-buffer-modified-p t)))
-  
+
 ;; -----------------------------------------------------------------------------
 ;; User Code
 
-(defun fov3-user-code-count ()
+(defsubst fov3-user-code-count ()
   "Get the number of user code entries."
   (length (fov3-select-nodes fov3-user-code 'Code)))
+
+(defun fov3-add-cdata-wrapper (string)
+  "Add CDATA wrapper to string."
+  (format "<![CDATA[%s]]>" string))
 
 (defun fov3-get-user-code (id)
   "Get the user code with ID."
@@ -188,7 +199,7 @@ LIST-OF-REFS."
 			 (car (fov3-select-nodes (quote ,user-code) 'CodeBody))
 			 new-code-body)
 			(set-buffer ,new-buffer-name)
-			(message "Saved."))))
+			(message "User code saved."))))
     (goto-char (point-min))))
 
 ;; -----------------------------------------------------------------------------
