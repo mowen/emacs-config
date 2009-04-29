@@ -27,10 +27,6 @@
        (> (length node) 2)
        (fov3-node-p (nth 2 node))))
 
-(defun fov3-get-children (node)
-  "Get the children of the NODE."
-  (nthcdr 2 node))
-
 (defun fov3-newline-p (string)
   "Does STRING start with a newline?"
   (if (and (stringp string)
@@ -91,7 +87,7 @@
       ;; (fov3-select-nodes (cdr root) name). Will cause problems if I want to
       ;; preserve nested structure, but that should only happen if a node name
       ;; occurs at more than one level (Style is an example.)
-      (append (fov3-select-nodes (fov3-get-children (car root)) name)
+      (append (fov3-select-nodes (xml-node-children (car root)) name)
 	      (fov3-select-nodes (cdr root) name)))
      (t (fov3-select-nodes (cdr root) name))))
    (t (fov3-select-nodes (cdr root) name))))
@@ -160,7 +156,7 @@ LIST-OF-REFS."
 
 (defun fov3-set-user-code-body (body-node new-body)
   "Set the user code BODY-NODE to have body string NEW-BODY."
-  (let ((old-body (fov3-get-children body-node)))
+  (let ((old-body (xml-node-children body-node)))
     (setcar old-body new-body)
     (set-buffer-modified-p t)))
 

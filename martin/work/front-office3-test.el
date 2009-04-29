@@ -117,7 +117,6 @@
 ;;(fov3-node-parent-p table16) ;; t
 
 (fov3-debug-data fov3-service-xml)
-(fov3-debug-data (fov3-get-children fov3-service-xml))
 
 (fov3-debug-data (fov3-select-nodes table18 'Column))
 (fov3-debug-data (fov3-select-nodes table16 'Row))
