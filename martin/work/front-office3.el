@@ -6,6 +6,9 @@
 ;;   the children of the node?)
 ;;
 ;; * Wrap user code bodies with <CDATA[]> after saving.
+;;
+
+(require 'cl)
 
 (defvar fov3-mode-hook nil
   "List of functions to call when entering Front Office mode.")
@@ -199,7 +202,7 @@ LIST-OF-REFS."
 			 (car (fov3-select-nodes (quote ,user-code) 'CodeBody))
 			 new-code-body)
 			(set-buffer ,new-buffer-name)
-			(message "User code saved."))))
+			(message "User Code saved."))))
     (goto-char (point-min))))
 
 ;; -----------------------------------------------------------------------------
@@ -267,6 +270,52 @@ LIST-OF-REFS."
     (fov3-move-element-down table-node (+ row-num child-offset))))
 
 ;; -----------------------------------------------------------------------------
+;; Form Definition UI
+
+(defun fov3-form-definition-get-table-name ()
+  "Find the table id that the current line belongs to."
+  (save-excursion
+    (beginning-of-line)
+    (while (not (org-at-heading-p))
+      (forward-line -1))
+    (let ((heading (org-get-heading t))) ;; t means no-tags
+      (set-text-properties 0 (length heading) nil heading)
+      heading)))
+
+(defun fov3-form-definition-get-row-num ()
+  "Find the row number of the line that we are on."
+  (let ((line 0))
+    (save-excursion
+      (while (not (org-at-heading-p))
+	(forward-line -1)
+	(setq line (1+ line))))
+    line))
+
+(defun fov3-form-definition-metaup ()
+  "Move a form child up."
+  (cond
+   ((org-at-table-p)
+    (let* ((table-name (fov3-form-definition-get-table-name))
+	   (table-node (fov3-select-node-with-attr fov3-form-definition
+						   'Table
+						   `(name . ,table-name)))
+	   (row-num (fov3-form-definition-get-row-num)))
+      (fov3-move-row-up table-node row-num))))
+  nil)
+
+(defun fov3-form-definition-metadown ()
+  "Move a form child down."
+  (cond
+   ((org-at-table-p)
+    (let* ((table-name (fov3-form-definition-get-table-name))
+	   (table-node (fov3-select-node-with-attr fov3-form-definition
+						   'Table
+						   `(name . ,table-name)))
+	   (row-num (fov3-form-definition-get-row-num)))
+      (fov3-move-row-down table-node row-num))))
+  nil)
+
+;; -----------------------------------------------------------------------------
 ;; Form Definition Display
 
 (defun fov3-display-plain-text (plain-text)
@@ -291,17 +340,46 @@ LIST-OF-REFS."
   (let ((columns (xml-node-children row)))
     (concat "|" (mapconcat (function fov3-display-column) columns  " | ") " | ")))
 
+;; TODO Also display the visibility rule for each table
 (defun fov3-display-table (table)
   "Convert the table to a string representation."
   (let ((table-name (cdr (fov3-node-get-attribute table 'name)))
 	(rows (xml-node-children table)))
-    (concat "\nTable Name: " table-name "\n|-\n"
+    (concat "** " table-name " :TABLE:\n"
 	    (mapconcat (function fov3-display-row) rows "\n"))))
 
-;;(defun fov3-display-form-definition (&optional root)
-;;  "Display the form definition as plain-text.")
-  ;; Use the Orgtbl minor mode for editing with
-  ;; (turn-on-orgtbl))
+(defun fov3-display-page (page)
+  "Convert the page to a string representation."
+  (let ((page-name (cdr (fov3-node-get-attribute page 'name)))
+	(tables (xml-node-children page)))
+    (concat "* " page-name " :PAGE:\n"
+	    (mapconcat (function fov3-display-table) tables "\n"))))
+
+;; Can use org-metaup-hook and friends to move rows and tables when M-up is
+;; used.
+(defun fov3-display-form-definition ()
+  "Display the form definition as an Org mode outline."
+  (interactive)
+  (let* ((old-buffer-name (buffer-name (current-buffer)))
+	 (new-buffer-name "fov3-form-definition")
+	 (new-buffer (generate-new-buffer new-buffer-name))
+	 (pages (fov3-select-nodes fov3-form-definition 'Page)))
+    (set-buffer new-buffer)
+    (insert (mapconcat 'fov3-display-page pages "\n"))
+    (switch-to-buffer new-buffer)
+    (org-mode)
+    (add-hook 'org-metaup-hook 'fov3-form-definition-metaup nil t)
+    (add-hook 'org-metadown-hook 'fov3-form-definition-metadown nil t)
+    (goto-char (point-min))
+    ;; Do org-cycle twice so that we show the Pages and Tables.
+    (loop repeat 2 do (org-cycle))
+    (local-set-key (kbd "C-x C-s") ;; There is a problem with this as it sets
+		   `(lambda ()     ;; the key binding in every org-mode buffer
+		      (interactive)
+		      (set-buffer ,old-buffer-name)
+		      (fov3-before-save)
+		      (set-buffer ,new-buffer-name)
+		      (message "Form Definition saved.")))))
 
 ;; -----------------------------------------------------------------------------
 ;; Debugging
@@ -353,10 +431,7 @@ saving."
 (if fov3-mode-map
     nil
   (setq fov3-mode-map (make-sparse-keymap))
-  (define-key fov3-mode-map (kbd "C-c f")
-    '(lambda ()
-       (interactive)
-       (fov3-create-tree-widget fov3-form-definition "Front Office V3 - Form Definition")))
+  (define-key fov3-mode-map (kbd "C-c f") 'fov3-display-form-definition)
   (define-key fov3-mode-map (kbd "C-c v") 'fov3-debug-form-definition)
   (define-key fov3-mode-map (kbd "C-c u") 'fov3-edit-user-code-body))
 
@@ -364,7 +439,7 @@ saving."
   (kill-all-local-variables)
   (setq major-mode 'fov3-mode)
   (setq mode-name "Front Office V3")
-  (add-hook 'before-save-hook (function fov3-before-save) nil t)
+  (add-hook 'before-save-hook 'fov3-before-save nil t)
   (use-local-map fov3-mode-map)
   (run-hooks fov3-mode-hook))
 
