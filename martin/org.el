@@ -17,22 +17,10 @@
 
 ;; HTML Export settings
 
-(defun mo-css-include (filename)
-  "HTML 'link' tag to include the CSS file FILENAME."
-  (format "<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\" />" filename))
-
-(defun mo-javascript-include (filename)
-  "Script tag to include the given Javascript FILENAME."
-  (format "<script type=\"text/javascript\" language=\"javascript\" src=\"%s\"></script>\n"
-	  filename))
-
 (setq org-export-html-style-include-scripts nil
       org-export-html-style-include-default nil)
 (setq org-export-html-style
-      (concat
-       (mo-javascript-include "jorg/jquery-1.2.6.min.js")
-       (mo-javascript-include "jorg/jorg.js")
-       (mo-css-include "jorg/jorg.css")))
+      (mo-css-include "org-style.css"))
 
 ;; See "bindings.el" for Org's global key mappings
 
