@@ -3,9 +3,9 @@
 
 (load "martin/work/skeletons")
 (load "martin/work/util")
-(load "martin/work/front-office-mode")
-(load "martin/work/front-office-util")
-(load "martin/work/front-office-email-mode")
+(load "martin/work/front-office/front-office-mode")
+(load "martin/work/front-office/front-office-util")
+(load "martin/work/front-office/front-office-email-mode")
 
 (global-hl-line-mode -1) ;; Don't highlight the current line
 
