@@ -17,6 +17,10 @@
 
 ;; HTML Export settings
 
+(defun mo-css-include (filename)
+  "HTML 'link' tag to include the CSS file FILENAME."
+  (format "<link rel=\"stylesheet\" type=\"text/css\" href=\"%s\" />" filename))
+
 (setq org-export-html-style-include-scripts nil
       org-export-html-style-include-default nil)
 (setq org-export-html-style
