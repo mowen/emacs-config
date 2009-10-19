@@ -1,0 +1,19 @@
+h1. Emacs Config
+
+My Emacs config. Directory layout inspired by defunkt's setup, with ideas from
+technomancy.
+
+h2. Required vendor packages
+
+* color-theme
+* js2.el
+* magit.el
+* nxhtml
+* nxml
+* org-mode
+* php-mode.el
+* psvn.el
+* remember
+* ruby
+* textile-minor-mode.el
+* twittering-mode.el
