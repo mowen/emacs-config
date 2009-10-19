@@ -26,7 +26,6 @@
 
 (global-set-key (kbd "M-k")   'mo-copy-line-as-kill)  ; Used to be kill-sentence	
 (global-set-key [M-backspace] 'mo-copy-word-as-kill)  ; Used to be backward-kill-word
-(global-set-key [C-backspace] 'mo-backward-kill-word) ; Used to be backward-kill-word
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys

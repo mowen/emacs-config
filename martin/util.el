@@ -52,27 +52,6 @@
   (forward-word)
   (insert "\""))
 
-(defun mo-backward-kill-word (&optional arg)
-  "Special backward-kill-word function which stops deleting if it
-encounters an uppercase character within the word."
-  (interactive "p")
-  (setq arg (or arg 1))
-  (dotimes (i arg)
-    (let ((case-fold-search nil) ;; Case sensitive search
-	  (kill-region-end (point)))
-      (save-excursion
-	(setq prev-capital (or (search-backward-regexp "[A-Z]+[a-z]+" (point-min) t)
-			       (line-beginning-position))))
-      (save-excursion
-	(setq prev-non-word (or (search-backward-regexp "\\W+\\w+" (point-min) t)
-				(line-beginning-position))))
-      (unless (and (not prev-non-word) (not prev-capital)) ;; can I remove this check now?
-	(if (> prev-non-word prev-capital)
-	    ;; If no capital before the word boundary,
-	    ;; use standard backward-kill-word function
-	    (backward-kill-word 1)
-	  (kill-region prev-capital kill-region-end))))))
-
 (defun mo-copy-line-as-kill (&optional arg)
   "Save the current line in the kill ring, and don't kill it."
   (interactive "p")
