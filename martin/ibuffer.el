@@ -23,6 +23,7 @@
 	 ("FO2 Live" (filename . "^o:/"))
 	 ("FO3 Workbench" (filename . "frontoffice30/organisations/smbc/WorkBench"))
 	 ("FO3 Front Office Web" (filename . "frontoffice30/organisations/smbc/FrontOfficeWeb"))
+	 ("FO3 SeftonV3Utils" (filename . "wwwroot/SeftonV3Utils"))
 	 ("Mayrise - Tech Services" (filename . "wwwroot/SeftonMayriseTechServices"))
 	 ("Mayrise - Refuse" (filename . "wwwroot/SeftonMayriseRefuse"))
 	 ("SeftonEIP" (filename . "wwwroot/SeftonEIP"))

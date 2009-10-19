@@ -49,7 +49,10 @@ name will be in the format '2008_11/12'."
 (mo-define-visit-arch-dir-funs
   ((refuse-live        . "F:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
    (refuse-test        . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
+   (refuse-test-v3     . "J:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
+   (tech-services-live . "F:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
    (tech-services-test . "J:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
+   (tech-services-test-v3 . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
    (eip-live           . "P:/Inetpub/wwwroot/SeftonEIP/arch/")
    (eip-test           . "P:/Inetpub/wwwroot/SeftonEIPTest/arch/")))
 

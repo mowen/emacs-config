@@ -14,3 +14,5 @@
 	     ;; Load Front Office Email Minor Mode if the file is in EmailTemplates.
 	     (if (string-match "App_Data/EmailTemplates" (buffer-file-name))
 		 (fo3-email-mode))))
+
+(add-to-list 'auto-mode-alist '("mail.*\\.txt" . front-office-mode))
