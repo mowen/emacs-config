@@ -42,3 +42,7 @@
 	     (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
 	     (if (eq mo-location 'work)
 		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))))
+
+(load (concat mo-vendor-dir "/sass-mode.el"))
+(require 'sass-mode)
+(add-to-list 'auto-mode-alist '("\\.sass" . sass-mode))

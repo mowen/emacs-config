@@ -6,6 +6,7 @@ technomancy.
 h2. Required vendor packages
 
 * color-theme
+* haml-mode.el
 * js2.el
 * magit.el
 * nxhtml
@@ -15,5 +16,6 @@ h2. Required vendor packages
 * psvn.el
 * remember
 * ruby
+* sass-mode.el
 * textile-minor-mode.el
 * twittering-mode.el
