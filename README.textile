@@ -19,3 +19,4 @@ h2. Required vendor packages
 * sass-mode.el
 * textile-minor-mode.el
 * twittering-mode.el
+* yaml-mode.el

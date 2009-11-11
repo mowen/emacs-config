@@ -43,6 +43,15 @@
 	     (if (eq mo-location 'work)
 		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))))
 
+;; --------------------------------------------
+;; SASS
+
 (load (concat mo-vendor-dir "/sass-mode.el"))
 (require 'sass-mode)
 (add-to-list 'auto-mode-alist '("\\.sass" . sass-mode))
+
+;; --------------------------------------------
+;; YAML
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
