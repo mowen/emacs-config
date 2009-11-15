@@ -5,7 +5,6 @@
 (add-hook 'text-mode-hook 
 	  '(lambda ()
 	     (abbrev-mode)
-	     (turn-on-auto-fill)
 	     (if (and (buffer-file-name)
 		      (string-match "\\.textile$" (buffer-file-name)))
 		 (progn
