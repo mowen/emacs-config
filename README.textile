@@ -20,3 +20,4 @@ h2. Required vendor packages
 * textile-minor-mode.el
 * twittering-mode.el
 * yaml-mode.el
+* zencoding-mode.el

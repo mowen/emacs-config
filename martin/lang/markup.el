@@ -55,3 +55,9 @@
 
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+;; --------------------------------------------
+;; Zen Coding mode
+
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode)
