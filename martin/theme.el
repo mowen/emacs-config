@@ -15,11 +15,12 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (if (eq mo-location 'work)
-	 (color-theme-vim-colors) 
-       ;;(load (concat mo-vendor-dir "/color-theme-twilight"))
-       ;;(color-theme-twilight)
+     (cond
+      ((eq mo-location 'work)
+       (color-theme-vim-colors))
+      ((eq system-type 'darwin)
        (load (concat mo-vendor-dir "/zenburn.el"))
-       (zenburn))))
-
-
+       (zenburn))
+      (t
+       (load (concat mo-vendor-dir "/color-theme-twilight"))
+       (color-theme-twilight)))))
