@@ -47,14 +47,17 @@ name will be in the format '2008_11/12'."
 	       archive-directories-alist)))
 
 (mo-define-visit-arch-dir-funs
-  ((refuse-live        . "F:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
-   (refuse-test        . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
-   (refuse-test-v3     . "J:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
-   (tech-services-live . "F:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
-   (tech-services-test . "J:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
-   (tech-services-test-v3 . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
-   (eip-live           . "P:/Inetpub/wwwroot/SeftonEIP/arch/")
-   (eip-test           . "P:/Inetpub/wwwroot/SeftonEIPTest/arch/")))
+  ((refuse-live-old        . "F:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
+   (refuse-live            . "F:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
+   (refuse-test-old        . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
+   (refuse-test            . "J:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
+   (tech-services-live-old . "F:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
+   (tech-services-live     . "F:/Inetpub/wwwroot/SeftonMayriseTechServicesV3/arch/")
+   (tech-services-test-old . "J:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
+   (tech-services-test     . "J:/Inetpub/wwwroot/SeftonMayriseTechServicesV3/arch/")
+   (eip-live-old           . "P:/Inetpub/wwwroot/SeftonEIP/arch/")
+   (eip-live               . "P:/Inetpub/wwwroot/SeftonEIPV3/arch/")
+   (eip-test               . "P:/Inetpub/wwwroot/SeftonEIPTest/arch/")))
 
 ;; -----------------------------------------------------------------------------
 ;; Execute the region of SQL

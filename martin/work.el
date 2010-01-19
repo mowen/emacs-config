@@ -1,4 +1,4 @@
-(setq mo-work-site-lisp "C:/Program Files/emacs-22.2/site-lisp")
+(setq mo-work-site-lisp "C:/Program Files/emacs-23.1/site-lisp")
 (add-to-list 'load-path mo-work-site-lisp)
 
 (load "martin/work/skeletons")

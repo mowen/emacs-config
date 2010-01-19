@@ -30,3 +30,10 @@
   nil
   ";; -----------------------------------------------------------------------------\n"
   ";; " (skeleton-read "Title: ") "\n")
+
+(define-skeleton org-service-todo-skeleton
+  "Inserts a TODO checklist for a Front Office service."
+  nil
+  "- [ ] FOD1\n"
+  "- [ ] FOT1\n"
+  "- [ ] FOL2\n")
