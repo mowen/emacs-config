@@ -41,7 +41,8 @@
 	     (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
 	     (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
 	     (if (eq mo-location 'work)
-		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))))
+		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))
+	     (linum-mode)))
 
 ;; --------------------------------------------
 ;; SASS
