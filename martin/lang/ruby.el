@@ -16,7 +16,7 @@
 	  '(lambda () 
 	     (inf-ruby-keys)
 	     ;;(ruby-electric-mode t)
-	     (linum-mode)
+	     (linum-mode t)
 	     ;;(pabbrev-mode t)
 	     (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)))
 

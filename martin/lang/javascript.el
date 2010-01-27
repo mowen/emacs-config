@@ -22,5 +22,5 @@
 	     (setq js2-bounce-indent-flag nil) ;; Don't do the stupid thing where it cycles through indentations.
 	     (setq imenu-create-index-function 'imenu-default-create-index-function) ;; Don't use the js2 imenu index function
 	     (setq imenu-generic-expression mo-js-imenu-generic-expression)
-	     (capitalized-words-mode)
-	     (linum-mode)))
+	     (capitalized-words-mode t)
+	     (linum-mode t)))

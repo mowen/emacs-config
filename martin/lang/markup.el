@@ -53,7 +53,7 @@
 	     (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
 	     (if (eq mo-location 'work)
 		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))
-	     (linum-mode)))
+	     (linum-mode t)))
 
 ;; --------------------------------------------
 ;; SASS
