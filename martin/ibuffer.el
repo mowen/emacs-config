@@ -5,15 +5,15 @@
 (setq ibuffer-expert t) ;; Don't ask for confirmation when deleting buffers
 (setq ibuffer-saved-filter-groups
       '(("home"
-	 ("Subversion" (name . "\*svn"))
-	 ("Magit" (mode . magit-mode))
-	 ("Org" (or (mode . org-mode) (name . "OrgMode")))
-	 ("ERC" (mode . erc-mode))
-	 ("emacs-config" (filename . ".emacs.d"))
          ("martinowen.net" (filename . "martinowen.net"))
+	 ("emacs-config" (filename . ".emacs.d"))
+	 ("Org" (or (mode . org-mode) (filename . "OrgMode")))
          ("code" (filename . "code"))
 	 ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)))
+	 ("ERC" (mode . erc-mode))
+	 ("Subversion" (name . "\*svn"))
+	 ("Magit" (name . "\*magit"))
 	 ("Help" (or (name . "\*Help\*")
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))
