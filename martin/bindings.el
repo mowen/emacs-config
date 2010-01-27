@@ -23,10 +23,11 @@
 
 (global-set-key (kbd "C-x g") 'rename-buffer)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)
-(global-set-key (kbd "C-i") 'imenu)
 
 (global-set-key (kbd "M-k")   'mo-copy-line-as-kill)  ; Used to be kill-sentence	
 (global-set-key [M-backspace] 'mo-copy-word-as-kill)  ; Used to be backward-kill-word
+
+(global-set-key "\C-x\C-i" 'ido-imenu)
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys

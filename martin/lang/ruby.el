@@ -4,7 +4,7 @@
 
 (add-to-list 'load-path (concat mo-vendor-dir "/ruby"))
 
-(require 'ruby-electric)
+;;(require 'ruby-electric)
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("\\.\\(rb\\|gemspec\\|rake\\)$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\(Rakefile\\|Sitefile\\)" . ruby-mode))
@@ -15,7 +15,7 @@
 (add-hook 'ruby-mode-hook 
 	  '(lambda () 
 	     (inf-ruby-keys)
-	     (ruby-electric-mode t)
+	     ;;(ruby-electric-mode t)
 	     (linum-mode)
 	     ;;(pabbrev-mode t)
 	     (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)))
