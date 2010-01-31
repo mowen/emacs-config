@@ -3,17 +3,18 @@
 ;; ----------------------------------------
 
 (setq ibuffer-expert t) ;; Don't ask for confirmation when deleting buffers
+(setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-saved-filter-groups
       '(("home"
-         ("martinowen.net" (filename . "martinowen.net"))
+	 ("Subversion" (name . "\*svn"))
+	 ("Magit" (mode . magit-mode))
+	 ("Org" (or (mode . org-mode) (name . "OrgMode")))
+	 ("ERC" (mode . erc-mode))
 	 ("emacs-config" (filename . ".emacs.d"))
-	 ("Org" (or (mode . org-mode) (filename . "OrgMode")))
+         ("martinowen.net" (filename . "martinowen.net"))
          ("code" (filename . "code"))
 	 ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)))
-	 ("ERC" (mode . erc-mode))
-	 ("Subversion" (name . "\*svn"))
-	 ("Magit" (name . "\*magit"))
 	 ("Help" (or (name . "\*Help\*")
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))
@@ -36,4 +37,5 @@
 
 (add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
+	     (ibuffer-auto-mode 1)
 	     (ibuffer-switch-to-saved-filter-groups (symbol-name mo-location))))

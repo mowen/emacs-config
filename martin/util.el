@@ -109,6 +109,11 @@
            (position (cdr (assoc selected-symbol name-and-pos))))
       (goto-char position))))
 
+(defun indent-buffer ()
+  "Re-indent the entire buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
 ;; -----------------------------------------------------------------------------
 ;; html-lite helper utility
 
