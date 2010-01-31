@@ -38,15 +38,11 @@
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
+(setq mo-org-home-dir (if (eq mo-location 'work)
+			  "H:/Emacs/HomeOrg/" ;; I store my home org files separately when I'm in work.
+			org-directory))
 (setq org-remember-templates
-      '(("Todo" ?t "* TODO %?\n  %i\n" "Todo.org")
-	("Journal" ?j "* %U %?\n\n  %i\n  %a" "Journal.org" "Journal")
-	("Note" ?n "* %^{Title}\n  %i\n  %a" "Notes.org" "Notes")
-	("Agenda" ?a "* %^{Event}\n  SCHEDULED: %^t\n  %i" "Agenda.org")
-	("Home Note" ?h "* %^{Title}\n %i\n" "H:/Emacs/HomeOrg/General.org" "To File")))
-
-;; Had a play with Bastien Guerry's Blorg Mode, but had a problem with eshell-search-path
-;;(require 'blorg)
+      `(("ABC" ?a "* %T\n   A. %^{Event}\n   B. %^{Belief}\n   C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")))
 
 ;; ----------------------------------------
 ;; Remember Mode
