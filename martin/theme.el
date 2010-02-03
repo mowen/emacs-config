@@ -18,12 +18,9 @@
      (cond
       ((eq mo-location 'work)
        (color-theme-vim-colors))
-      ((eq system-type 'darwin)
-       (load (concat mo-vendor-dir "/zenburn.el"))
-       (zenburn))
       (t
-       (load (concat mo-vendor-dir "/color-theme-twilight"))
-       (color-theme-twilight)))))
+       (load (concat mo-vendor-dir "/zenburn.el"))
+       (zenburn)))))
 
 ;; ----------------------------------------
 ;; My custom faces
@@ -35,7 +32,9 @@
 (eval-after-load 'diff-mode
   '(progn
      (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
+     (set-face-background 'diff-added "honeydew")
+     (set-face-foreground 'diff-removed "red3")
+     (set-face-background 'diff-removed "misty rose")))
  
 (eval-after-load 'magit
   '(progn

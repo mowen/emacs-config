@@ -11,6 +11,7 @@
 (setq inhibit-startup-screen t)
 (setq transient-mark-mode t)	;; Transient mark = highlight selection.
 (setq make-backup-files nil)	;; Don't leave "blah~" files everywhere.
+(setq windmove-wrap-around t)	;; Wrap around when switching windows with windmove
 (setq-default fill-column 80)	;; Wrap lines in auto-fill mode at 80 chars
 (setq-default truncate-lines t)	;; Seems to work, truncating lines in every buffer.
 (savehist-mode 1)		;; Save Minibuffer history
@@ -36,3 +37,9 @@
 (add-hook 'bookmark-after-jump-hook
 	  '(lambda ()
 	     (rename-buffer bookmark-current-bookmark)))
+
+;; ----------------------------------------
+;; Desktop mode (save state when exiting)
+
+(setq desktop-dirname (expand-file-name "~")) ;; Where to save .emacs.desktop
+(desktop-save-mode 1)
