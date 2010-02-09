@@ -11,6 +11,7 @@
          ("martinowen.net" (filename . "martinowen.net"))
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")))
+	 ("code-lisp" (filename . "code/lisp"))
          ("code" (filename . "code"))
 	 ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)))

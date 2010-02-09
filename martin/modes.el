@@ -5,5 +5,7 @@
 (load "martin/erc")
 (load "martin/lang/markup")
 (load "martin/lang/javascript")
+(load "martin/lang/lisp")
 (load "martin/lang/php")
 (load "martin/lang/ruby")
+(load (concat mo-vendor-dir "/gist"))

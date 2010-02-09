@@ -1,5 +1,6 @@
 *passwords.el
 history
 auto-save-list
+tramp
 vendor/*
 martin/work/front-office/*.xml
