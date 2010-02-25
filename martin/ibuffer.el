@@ -30,6 +30,7 @@
 	 ("Mayrise - Refuse" (filename . "wwwroot/SeftonMayriseRefuse"))
 	 ("SeftonEIP" (filename . "wwwroot/SeftonEIP"))
 	 ("emacs-config" (filename . ".emacs.d"))
+	 ("emacs-23.1" (filename . "Program Files/emacs-23.1"))
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")
 		    (filename . "HomeOrg")))

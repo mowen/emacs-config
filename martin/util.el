@@ -114,6 +114,12 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
+(defun google-region ()
+  "Google the selected region"
+  (interactive)
+  (let ((query (buffer-substring (region-beginning) (region-end))))
+    (browse-url (concat "http://www.google.com/search?ie=utf-8&oe=utf-8&q=" query))))
+
 ;; -----------------------------------------------------------------------------
 ;; html-lite helper utility
 

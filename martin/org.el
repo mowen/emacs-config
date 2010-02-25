@@ -42,7 +42,7 @@
 			  "H:/Emacs/HomeOrg/" ;; I store my home org files separately when I'm in work.
 			org-directory))
 (setq org-remember-templates
-      `(("ABC" ?a "* %T\n   A. %^{Event}\n   B. %^{Belief}\n   C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")))
+      `(("ABC" ?a "* %T\n   - A. %^{Event}\n   - B. %^{Belief}\n   - C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")))
 
 ;; ----------------------------------------
 ;; Remember Mode
