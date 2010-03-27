@@ -15,12 +15,8 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (cond
-      ((eq mo-location 'work)
-       (color-theme-vim-colors))
-      (t
-       (load (concat mo-vendor-dir "/zenburn.el"))
-       (zenburn)))))
+     ;; Temporaily set all themes to Vim as Org Mode isn't right with Zenburn
+     (color-theme-vim-colors)))
 
 ;; ----------------------------------------
 ;; My custom faces
@@ -40,3 +36,10 @@
   '(progn
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
+
+(eval-after-load 'org
+  '(progn
+     (set-face-foreground 'org-level-2 "magenta4")
+     (set-face-foreground 'outline-2 "magenta4")
+     (set-face-foreground 'org-level-6 "red3")
+     (set-face-foreground 'outline-6 "red3")))
