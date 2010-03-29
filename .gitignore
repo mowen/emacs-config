@@ -3,4 +3,5 @@ history
 auto-save-list
 tramp
 vendor/*
+elpa/*
 martin/work/front-office/*.xml

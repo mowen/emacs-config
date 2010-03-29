@@ -14,6 +14,7 @@ h2. Required vendor packages
 * nxhtml
 * nxml
 * org-mode
+* package.el (ELPA)
 * php-mode.el
 * psvn.el
 * remember
@@ -23,3 +24,10 @@ h2. Required vendor packages
 * twittering-mode.el
 * yaml-mode.el
 * zencoding-mode.el
+
+h2. Installed ELPA Packages
+
+* clojure-mode
+* slime
+* slime-repl
+* swank-clojure
