@@ -29,6 +29,9 @@
 
 (global-set-key "\C-x\C-i" 'ido-imenu)
 
+(global-set-key (kbd "C-=") (lambda () (interactive) (font-size-modify '+)))
+(global-set-key (kbd "C--") (lambda () (interactive) (font-size-modify '-)))
+
 ;; -----------------------------------------------------------------------------
 ;; Function keys
 

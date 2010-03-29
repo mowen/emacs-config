@@ -120,6 +120,13 @@
   (let ((query (buffer-substring (region-beginning) (region-end))))
     (browse-url (concat "http://www.google.com/search?ie=utf-8&oe=utf-8&q=" query))))
 
+(defun font-size-modify (operator &optional amount)
+  "Increase the size of the default font."
+  (let ((height (face-attribute 'default :height))
+	(amount (or amount 10)))
+    (set-face-attribute 'default nil :height (funcall operator height amount))
+    (message (format "Face height is now %d." height))))
+
 ;; -----------------------------------------------------------------------------
 ;; html-lite helper utility
 
