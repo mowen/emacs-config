@@ -5,7 +5,6 @@ technomancy.
 
 h2. Required vendor packages
 
-* arc.el
 * color-theme
 * gist.el
 * haml-mode.el
