@@ -1,28 +1,6 @@
 h1. Emacs Config
 
-My Emacs config. Directory layout inspired by defunkt's setup, with ideas from
-technomancy.
-
-h2. Required vendor packages
-
-* color-theme
-* gist.el
-* haml-mode.el
-* js2.el
-* magit.el
-* nxhtml
-* nxml
-* org-mode
-* package.el (ELPA)
-* php-mode.el
-* psvn.el
-* remember
-* ruby
-* sass-mode.el
-* textile-minor-mode.el
-* twittering-mode.el
-* yaml-mode.el
-* zencoding-mode.el
+My Emacs config. Directory layout inspired by defunkt's setup, with ideas from technomancy.
 
 h2. Installed ELPA Packages
 
