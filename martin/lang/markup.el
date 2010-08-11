@@ -68,6 +68,7 @@
 ;; --------------------------------------------
 ;; YAML
 
+(load (concat mo-vendor-dir "/yaml-mode/yaml-mode.el"))
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 

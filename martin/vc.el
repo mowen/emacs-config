@@ -1,4 +1,8 @@
 (require 'psvn)
+
+(load (concat mo-vendor-dir "/magit/magit.el"))
+(load (concat mo-vendor-dir "/magithub/magithub.el"))
+
 (require 'magit)
 
 (defun mo-vc-directory-p (dir vc-dir)

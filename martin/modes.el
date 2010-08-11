@@ -7,4 +7,4 @@
 (load "martin/lang/javascript")
 (load "martin/lang/php")
 (load "martin/lang/ruby")
-(load (concat mo-vendor-dir "/gist"))
+(load (concat mo-vendor-dir "/gist/gist"))
