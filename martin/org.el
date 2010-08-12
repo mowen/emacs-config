@@ -2,9 +2,7 @@
 ;; Org Mode
 ;; ----------------------------------------
 
-(if (eq mo-location 'work) ;; org mode is too large to store in my home dir 
-    (add-to-list 'load-path (concat mo-work-site-lisp "/org-mode/lisp"))
-  (add-to-list 'load-path (concat mo-vendor-dir "/org-mode/lisp")))
+(add-to-list 'load-path (concat mo-vendor-dir "/org-mode/lisp"))
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))

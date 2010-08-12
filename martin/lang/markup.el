@@ -1,9 +1,7 @@
 ;; ----------------------------------------
 ;; NXHTML Mode
 
-(if (eq mo-location 'work)
-    (load (concat mo-work-site-lisp "/nxhtml/autostart.el"))
-  (load (concat mo-vendor-dir "/nxhtml/autostart.el")))
+(load (concat mo-vendor-dir "/nxhtml/autostart.el"))
 
 ;; (load (concat site-lisp "nxml-mode-20041004/rng-auto.el"))
 ;; (add-to-list 'auto-mode-alist 
