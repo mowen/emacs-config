@@ -22,24 +22,34 @@
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))
 	("work"
-	 ("FO3 Working Copy" (filename . "Subversion Working Copies"))
-	 ("FO3 Workbench" (filename . "frontoffice30/organisations/smbc/WorkBench"))
-	 ("FO3 Front Office Web" (filename . "frontoffice30/organisations/smbc/FrontOfficeWeb"))
-	 ("FO3 SeftonV3Utils" (filename . "wwwroot/SeftonV3Utils"))
-	 ("Mayrise - Tech Services" (filename . "wwwroot/SeftonMayriseTechServices"))
-	 ("Mayrise - Refuse" (filename . "wwwroot/SeftonMayriseRefuse"))
-	 ("SeftonEIP" (filename . "wwwroot/SeftonEIP"))
+	 ("QirePay" (filename . "Projects/QirePay"))
+	 ("Qire-Qore" (filename . "Projects/Qire-Qore-Main-Source"))
+	 ("Visual Studio" (or (filename . "Visual Studio 2010")
+			      (filename . "Visual Studio 2008")))
 	 ("emacs-config" (filename . ".emacs.d"))
-	 ("emacs-23.1" (filename . "Program Files/emacs-23.1"))
+	 ("emacs" (filename . "Program Files/emacs-23.2"))
+	 ("desktop" (filename . "Desktop"))
+	 ("Magit" (name . "\*magit"))
+	 ("SVN" (name . "\*svn"))
+	 ("JavaScript" (mode . espresso-mode))
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")
 		    (filename . "HomeOrg")))
-	 ("SVN" (name . "\*svn"))
 	 ("Help" (or (name . "\*Help\*")
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))))
 
+;; Enable ibuffer-filter-by-filename to filter on directory names too.
+(eval-after-load "ibuf-ext"
+  '(define-ibuffer-filter filename
+     "Toggle current view to buffers with file or directory name matching QUALIFIER."
+     (:description "filename"
+		   :reader (read-from-minibuffer "Filter by file/directory name (regexp): "))
+     (ibuffer-awhen (or (buffer-local-value 'buffer-file-name buf)
+			(buffer-local-value 'dired-directory buf))
+		    (string-match qualifier it))))
+
 (add-hook 'ibuffer-mode-hook 
-	  '(lambda ()
-	     (ibuffer-auto-mode 1)
-	     (ibuffer-switch-to-saved-filter-groups (symbol-name mo-location))))
+  	  '(lambda ()
+ 	     (ibuffer-auto-mode 1)
+ 	     (ibuffer-switch-to-saved-filter-groups (symbol-name mo-location))))
