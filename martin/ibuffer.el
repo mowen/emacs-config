@@ -24,6 +24,8 @@
 	("work"
 	 ("QirePay" (filename . "Projects/QirePay"))
 	 ("Qire-Qore" (filename . "Projects/Qire-Qore-Main-Source"))
+	 ("Mongo DB" (or (filename . "mongodb")
+			 (filename . "MongoDB")))
 	 ("Visual Studio" (or (filename . "Visual Studio 2010")
 			      (filename . "Visual Studio 2008")))
 	 ("emacs-config" (filename . ".emacs.d"))
@@ -31,6 +33,7 @@
 	 ("desktop" (filename . "Desktop"))
 	 ("Magit" (name . "\*magit"))
 	 ("SVN" (name . "\*svn"))
+	 ("ERC" (mode . erc-mode))
 	 ("JavaScript" (mode . espresso-mode))
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")
