@@ -19,3 +19,12 @@
 	     (capitalized-words-mode t)
 	     (linum-mode t)))
 
+;; -------------------------------------
+;; node-repl via js-comint and Node
+;; -------------------------------------
+
+(if (string= (symbol-name system-type) "darwin")
+    (progn
+      (load (concat mo-vendor-dir "/js-comint"))
+      (require 'js-comint)
+      (setq inferior-js-program-command "node-repl")))
