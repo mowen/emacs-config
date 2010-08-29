@@ -8,3 +8,9 @@
 (load "martin/lang/php")
 (load "martin/lang/ruby")
 (load (concat mo-vendor-dir "/gist/gist"))
+
+;; yasnippet
+(load (concat mo-vendor-dir "/yasnippet/yasnippet"))
+(setq yas/snippet-dirs (concat mo-vendor-dir "/yasnippet/snippets"))
+(yas/load-directory yas/snippet-dirs)
+(yas/global-mode) ;; Enable yasnippet minor mode in ALL buffers
