@@ -7,6 +7,7 @@
 (load "martin/lang/javascript")
 (load "martin/lang/php")
 (load "martin/lang/ruby")
+(load "martin/lang/clojure")
 (load (concat mo-vendor-dir "/gist/gist"))
 
 ;; yasnippet
