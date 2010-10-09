@@ -16,4 +16,5 @@
        :full-name "Martin Owen"
        :password erc-freenode-password))
 
-;;(setq erc-autojoin-channels-alist '(("freenode.net" "#geekup" "#emacs")))
+;; (setq erc-autojoin-channels-alist
+;;       '(("freenode.net" "#mongodb" "#emacs" "#node.js")))
