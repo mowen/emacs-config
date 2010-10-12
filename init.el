@@ -21,7 +21,7 @@
 (load (concat "martin/" (symbol-name system-type)))
 
 ;; Load ELPA installer
-(when (load "vendor/package.el")
+(when (load "vendor/package.el/package.el")
   (package-initialize))
 
 ; custom place to save customizations
