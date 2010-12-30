@@ -4,7 +4,7 @@
 
 (require 'cl) ;; Common Lisp
 
-(defvar mo-location 'work
+(defvar mo-location (if (string-match "QIRE" (system-name)) 'work 'home)
   "Where am I? At \"work\" or at \"home\"?")
 
 (setq mo-dotfiles-dir (file-name-directory load-file-name))
