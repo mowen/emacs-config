@@ -22,3 +22,6 @@
 [submodule "vendor/package.el"]
 	path = vendor/package.el
 	url = http://github.com/technomancy/package.el.git
+[submodule "vendor/slime"]
+	path = vendor/slime
+	url = git://github.com/emacsmirror/slime.git

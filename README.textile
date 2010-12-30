@@ -5,6 +5,4 @@ My Emacs config. Directory layout inspired by defunkt's setup, with ideas from t
 h2. Installed ELPA Packages
 
 * clojure-mode
-* slime
-* slime-repl
 * swank-clojure
