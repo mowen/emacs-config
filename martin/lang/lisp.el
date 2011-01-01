@@ -9,6 +9,7 @@
 
 (setq inferior-lisp-program "clisp -K full"
       lisp-indent-function 'common-lisp-indent-function ;as opposed to elisp indentation
+      slime-lisp-implementations '((clisp ("clisp" "-K full")))
       slime-compile-symbol-function 'slime-fuzzy-complete-symbol
       slime-to-lisp-filename-function 'mo-slime-cygwin-filename)
 
