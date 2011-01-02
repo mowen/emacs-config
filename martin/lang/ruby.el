@@ -7,7 +7,7 @@
 ;;(require 'ruby-electric)
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("\\.\\(rb\\|gemspec\\|rake\\)$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\(Rakefile\\|Sitefile\\)" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\(Rakefile\\|Sitefile\\|Gemfile\\)" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 
 (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
