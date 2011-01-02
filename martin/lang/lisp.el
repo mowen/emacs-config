@@ -7,9 +7,15 @@
 (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
-(setq inferior-lisp-program "clisp -K full"
+(if (eq system-type 'darwin)
+    (setq mo-clisp-cmd "/opt/local/bin/clisp"
+	  mo-clisp-args "")
+    (setq mo-clisp-cmd "clisp"
+	  mo-clisp-args "-K full"))
+    
+(setq inferior-lisp-program (concat mo-clisp-cmd " " mo-clisp-args)
+      slime-lisp-implementations `((clisp (,mo-clisp-cmd ,mo-clisp-args)))
       lisp-indent-function 'common-lisp-indent-function ;as opposed to elisp indentation
-      slime-lisp-implementations '((clisp ("clisp" "-K full")))
       slime-compile-symbol-function 'slime-fuzzy-complete-symbol
       slime-to-lisp-filename-function 'mo-slime-cygwin-filename)
 
