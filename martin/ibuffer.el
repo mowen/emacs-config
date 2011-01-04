@@ -26,6 +26,7 @@
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))
 	("work"
+	 ("Qore3" (filename . "Qore3"))
 	 ("QirePay" (filename . "Projects/QirePay"))
 	 ("Qire-Qore" (filename . "Projects/Qire-Qore-Main-Source"))
 	 ("Mongo DB" (or (filename . "mongodb")
@@ -39,6 +40,7 @@
 	 ("SVN" (name . "\*svn"))
 	 ("ERC" (mode . erc-mode))
 	 ("JavaScript" (mode . espresso-mode))
+	 ("Code" (filename . "Code"))
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")
 		    (filename . "HomeOrg")))
