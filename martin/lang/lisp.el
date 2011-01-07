@@ -17,7 +17,8 @@
       slime-lisp-implementations `((clisp (,mo-clisp-cmd ,mo-clisp-args)))
       lisp-indent-function 'common-lisp-indent-function ;as opposed to elisp indentation
       slime-compile-symbol-function 'slime-fuzzy-complete-symbol
-      slime-to-lisp-filename-function 'mo-slime-cygwin-filename)
+      slime-to-lisp-filename-function 'mo-slime-cygwin-filename
+      slime-protocol-version 'ignore)
 
 (defun mo-slime-cygwin-filename (filename)
   (if (eq system-type 'windows-nt) ; and lisp is cygwin
