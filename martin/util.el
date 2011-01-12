@@ -120,6 +120,12 @@
   (let ((query (buffer-substring (region-beginning) (region-end))))
     (browse-url (concat "http://www.google.com/search?ie=utf-8&oe=utf-8&q=" query))))
 
+(defun so-region ()
+  "Search Stack Overflow with contents of the selected region"
+  (interactive)
+  (let ((query (buffer-substring (region-beginning) (region-end))))
+    (browse-url (concat "http://stackoverflow.com/search?q=" query))))
+
 (defun font-size-modify (operator &optional amount)
   "Increase the size of the default font."
   (let ((height (face-attribute 'default :height))

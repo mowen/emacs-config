@@ -27,6 +27,7 @@
 		     (name . "\*info\*"))))
 	("work"
 	 ("Qore3" (filename . "Qore3"))
+	 ("Qore3 UI" (filename . "Qore3/src/Qire.Qore.UI"))
 	 ("QirePay" (filename . "Projects/QirePay"))
 	 ("Qire-Qore" (filename . "Projects/Qire-Qore-Main-Source"))
 	 ("Mongo DB" (or (filename . "mongodb")
