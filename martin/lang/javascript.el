@@ -16,6 +16,7 @@
 	  '(lambda ()
 	     (setq imenu-create-index-function 'imenu-default-create-index-function)
 	     (setq imenu-generic-expression mo-js-imenu-generic-expression)
+	     (setq indent-tabs-mode nil)
 	     (capitalized-words-mode t)
 	     (linum-mode t)))
 
