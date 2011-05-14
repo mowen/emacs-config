@@ -8,11 +8,10 @@
         (nil "this\.\\(\\w+\\)\\s-*=\\s-*function\\s-*(" 1) ;; Instance Method
 	(nil "var \\([A-Z]+\\w+\\) = {" 1))) ;; Variable as Class
  
-(autoload #'espresso-mode "espresso" "Start espresso-mode" t)
-(add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
-(add-to-list 'auto-mode-alist '("\\.json$\\|\\.json.get$" . espresso-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.json$\\|\\.json.get$" . js-mode))
 
-(add-hook 'espresso-mode-hook
+(add-hook 'js-mode-hook
 	  '(lambda ()
 	     (setq imenu-create-index-function 'imenu-default-create-index-function)
 	     (setq imenu-generic-expression mo-js-imenu-generic-expression)
