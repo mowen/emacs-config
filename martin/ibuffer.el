@@ -31,6 +31,7 @@
 	 ("Qore3 UI Models" (filename . "Qore3/src/Qire.Qore.UI/qore/models"))
 	 ("Qore3 UI" (filename . "Qore3/src/Qire.Qore.UI"))
 	 ("Qore3" (filename . "Qore3"))
+	 ("Qire Art" (filename . "qireart"))
 	 ("QirePay" (filename . "Projects/QirePay"))
 	 ("Qire-Qore" (filename . "Projects/Qire-Qore-Main-Source"))
 	 ("Mongo DB" (or (filename . "mongodb")

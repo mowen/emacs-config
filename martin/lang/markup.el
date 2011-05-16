@@ -3,6 +3,8 @@
 
 (load (concat mo-vendor-dir "/nxhtml/autostart.el"))
 
+(add-to-list 'auto-mode-alist '("\\.ejs$" . nxhtml-mumamo-mode))
+
 ;; (load (concat site-lisp "nxml-mode-20041004/rng-auto.el"))
 ;; (add-to-list 'auto-mode-alist 
 ;; 	     '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|config\\|vbproj\\)\\'" . nxml-mode))
