@@ -61,7 +61,7 @@
 
 (load (concat mo-vendor-dir "/sass-mode.el"))
 (require 'sass-mode)
-(add-to-list 'auto-mode-alist '("\\.sass" . sass-mode))
+(add-to-list 'auto-mode-alist '("\\.sass\\|\\.scss" . sass-mode))
 
 ;; --------------------------------------------
 ;; YAML
