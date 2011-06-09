@@ -19,6 +19,15 @@
 	     (capitalized-words-mode t)
 	     (linum-mode t)))
 
+;; ----------------------------------------
+;; Coffee Script
+;; ----------------------------------------
+
+(load (concat mo-vendor-dir "/coffee-mode.el"))
+(require 'coffee-mode)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+
 ;; -------------------------------------
 ;; node-repl via js-comint and Node
 ;; -------------------------------------
