@@ -1,7 +1,7 @@
 ;; I don't need any of this fancy GUI nonsense
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+;;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 (blink-cursor-mode nil)		;; No blinking cursor
 (column-number-mode t)		;; Column Numbers in Status Bar
