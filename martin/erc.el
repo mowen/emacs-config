@@ -20,5 +20,10 @@
        :full-name "Martin Owen"
        :password erc-freenode-password))
 
+;; An example of an ERC command:
+;; (defun erc-cmd-SAVE (&rest ignore)
+;;   "Save your soul!"
+;;   (erc-send-message "i'm using the ONE TRUE EDITOR!!!"))
+
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "##javascript" "#emacs" "#node.js")))
