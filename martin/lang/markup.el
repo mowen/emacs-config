@@ -58,11 +58,17 @@
 	    (linum-mode t)))
 
 ;; --------------------------------------------
-;; SASS
+;; SASS/SCSS
 
 (load (concat mo-vendor-dir "/sass-mode.el"))
 (require 'sass-mode)
-(add-to-list 'auto-mode-alist '("\\.sass\\|\\.scss" . sass-mode))
+(add-to-list 'auto-mode-alist '("\\.sass" . sass-mode))
+
+(load (concat mo-vendor-dir "/scss-mode.el"))
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss" . scss-mode))
+(setq scss-compile-at-save nil)
+
 
 ;; --------------------------------------------
 ;; YAML
