@@ -25,5 +25,5 @@
 ;;   "Save your soul!"
 ;;   (erc-send-message "i'm using the ONE TRUE EDITOR!!!"))
 
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "##javascript" "#emacs" "#node.js")))
+;; (setq erc-autojoin-channels-alist
+;;       '(("freenode.net" "##javascript" "#emacs" "#node.js")))
