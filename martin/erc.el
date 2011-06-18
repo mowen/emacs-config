@@ -4,6 +4,10 @@
 
 (require 'erc)
 
+(require 'erc-highlight-nicknames)
+(add-to-list 'erc-modules 'highlight-nicknames)
+(erc-update-modules)
+
 (setq erc-interpret-mirc-color t) 	;; Interpret mIRC-style color commands
 (setq erc-kill-buffer-on-part t)	;; Kill the buffer when leaving
 
@@ -16,5 +20,5 @@
        :full-name "Martin Owen"
        :password erc-freenode-password))
 
-;; (setq erc-autojoin-channels-alist
-;;       '(("freenode.net" "#mongodb" "#emacs" "#node.js")))
+(setq erc-autojoin-channels-alist
+      '(("freenode.net" "##javascript" "#emacs" "#node.js")))
