@@ -48,15 +48,16 @@
 
 ;; (add-to-list 'auto-mode-alist 
 ;; 	     '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|config\\|vbproj\\)\\'" . nxml-mode))
+
 (add-hook 'nxml-mode-hook 
  	  '(lambda () 
- 	     (setq nxml-slash-auto-complete-flag t)
-	     (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
-	     (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
-	     (setq imenu-generic-expression mo-nxml-imenu-generic-expression)
-	     (if (eq mo-location 'work)
-		 (define-key nxml-mode-map (kbd "C-c C-r") 'fo-remove-xml-attribute-region))
-	     (linum-mode t)))
+	    (setq nxml-slash-auto-complete-flag t)
+	    (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
+	    (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
+	    (setq imenu-generic-expression mo-nxml-imenu-generic-expression)
+	    (nxml-bind-meta-tab-to-complete-flag t)
+	    (nxml-slash-auto-complete-flag t)
+	    (linum-mode t)))
 
 ;; --------------------------------------------
 ;; SASS

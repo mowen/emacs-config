@@ -6,4 +6,8 @@
  '(ido-auto-merge-work-directories-length -1)
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere nil)
- '(ido-mode (quote both) nil (ido)))
+ '(ido-mode (quote both) nil (ido))
+ '(rng-schema-locating-files
+   `("schemas.xml"
+     ,(concat mo-vendor-dir "/nxml-mode-20041004/schema/schemas.xml")
+     ,(concat mo-vendor-dir "/nxml-mode-20041004/schema/html5/html5-schemas.xml"))))
