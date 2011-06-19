@@ -69,6 +69,15 @@
 (add-to-list 'auto-mode-alist '("\\.scss" . scss-mode))
 (setq scss-compile-at-save nil)
 
+;; -------------------------------------------
+;; HAML
+
+(load (concat mo-vendor-dir "/haml-mode.el"))
+(require 'haml-mode)
+(add-to-list 'auto-mode-alist '("\\.haml" . haml-mode))
+(add-hook 'haml-mode-hook
+	  '(lambda ()
+	    (setq indent-tabs-mode nil)))
 
 ;; --------------------------------------------
 ;; YAML

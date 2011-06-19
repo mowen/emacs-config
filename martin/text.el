@@ -5,7 +5,7 @@
 (add-hook 'text-mode-hook 
 	  '(lambda ()
 	    (abbrev-mode)
-	    (visual-line-mode)
+	    (turn-on-visual-line-mode)
 	    (if (and (buffer-file-name)
 		     (string-match "\\.textile$" (buffer-file-name)))
 		(progn

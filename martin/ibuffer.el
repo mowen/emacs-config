@@ -4,27 +4,44 @@
 
 (setq ibuffer-expert t) ;; Don't ask for confirmation when deleting buffers
 (setq ibuffer-show-empty-filter-groups nil)
+
+;; Priority goes from top to bottom
 (setq ibuffer-saved-filter-groups
       '(("home"
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")))
-         ("martinowen.net" (filename . "martinowen.net"))
+
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")))
+
 	 ("code-lisp" (filename . "code/lisp"))
+
 	 ("code-ruby" (filename . "code/ruby"))
-	 ("code-javascript" (filename . "code/javascript"))
-	 ("code-mongodb" (filename . "code/mongodb"))
+
+         ("martinowen.net" (filename . "martinowen.net"))
+	 ("nanoc3-blog" (filename . "code/websites/nanoc3_blog"))
 	 ("code-websites" (filename . "code/websites"))
+
+	 ("code-winklevii" (filename . "code/javascript/winklevii"))
+	 ("code-javascript" (filename . "code/javascript"))
+
+	 ("code-mongodb" (filename . "code/mongodb"))
+
          ("code" (filename . "code"))
+
 	 ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)))
+
 	 ("Subversion" (name . "\*svn"))
+
 	 ("Magit" (name . "\*magit"))
+
 	 ("ERC" (mode . erc-mode))
+
 	 ("Help" (or (name . "\*Help\*")
 		     (name . "\*Apropos\*")
 		     (name . "\*info\*"))))
+
 	("work"
 	 ("Qore3 UI Views" (filename . "Qore3/src/Qire.Qore.UI/qore/views"))
 	 ("Qore3 UI Controllers" (filename . "Qore3/src/Qire.Qore.UI/qore/controllers"))
@@ -42,7 +59,7 @@
 	 ("Visual Studio" (or (filename . "Visual Studio 2010")
 			      (filename . "Visual Studio 2008")))
 	 ("emacs-config" (filename . ".emacs.d"))
-	 ("emacs" (filename . "Program Files/emacs-23.2"))
+	 ("emacs" (filename . "Program Files/emacs-23.3"))
 	 ("desktop" (filename . "Desktop"))
 	 ("Magit" (name . "\*magit"))
 	 ("SVN" (name . "\*svn"))
