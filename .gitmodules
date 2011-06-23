@@ -25,3 +25,6 @@
 [submodule "vendor/slime"]
 	path = vendor/slime
 	url = git://github.com/technomancy/slime.git
+[submodule "vendor/auto-complete"]
+	path = vendor/auto-complete
+	url = https://github.com/m2ym/auto-complete.git

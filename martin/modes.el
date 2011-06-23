@@ -16,3 +16,10 @@
 (setq yas/snippet-dirs (concat mo-vendor-dir "/yasnippet/snippets"))
 (yas/load-directory yas/snippet-dirs)
 (yas/global-mode) ;; Enable yasnippet minor mode in ALL buffers
+
+;; auto-complete
+(add-to-list 'load-path (concat mo-vendor-dir "/auto-complete"))
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (concat mo-vendor-dir "/auto-complete/dict"))
+(ac-config-default)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
