@@ -1,5 +1,6 @@
 *passwords.el
 history
 auto-save-list
+ac-comphist.dat
 tramp
 elpa/*

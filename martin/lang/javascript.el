@@ -20,10 +20,17 @@
 	     (linum-mode t)))
 
 ;; ----------------------------------------
+;; jquery-doc.el
+
+(add-to-list 'load-path (concat mo-vendor-dir "/jquery-doc"))
+(require 'jquery-doc)
+(add-hook 'js-mode-hook 'jquery-doc-setup) ;; adds ac-source-jquery to the ac-sources list
+
+;; ----------------------------------------
 ;; Coffee Script
 ;; ----------------------------------------
 
-(load (concat mo-vendor-dir "/coffee-mode.el"))
+(load (concat mo-vendor-dir "/coffee-mode"))
 (require 'coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
