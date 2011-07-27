@@ -22,7 +22,9 @@
 
 ;; Load ELPA installer
 (when (load "vendor/package.el/package.el")
-  (package-initialize))
+  (package-initialize)
+  (add-to-list 'package-archives
+	       '("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ; custom place to save customizations
 (setq custom-file "martin/custom.el")

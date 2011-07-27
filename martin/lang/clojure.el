@@ -9,6 +9,9 @@
     (set-process-filter (get-buffer-process "*lein-swank*")
                         (lambda (process output)
                           (when (string-match "Connection opened on" output)
-                            (slime-connect "localhost" slime-port)
+			    (slime-connect "localhost" slime-port)
                             (set-process-filter process nil))))
     (message "Starting swank server...")))
+
+(setq slime-net-coding-system 'utf-8-unix)
+(setq slime-use-autodoc-mode nil)
