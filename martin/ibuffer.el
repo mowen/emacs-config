@@ -14,6 +14,8 @@
 	 ("Org" (or (mode . org-mode)
 		    (filename . "OrgMode")))
 
+	 ("code-clojure" (filename . "code/lisp/clojure"))
+
 	 ("code-lisp" (filename . "code/lisp"))
 
 	 ("code-ruby" (filename . "code/ruby"))
@@ -31,6 +33,9 @@
 
 	 ("Web Dev" (or (mode . html-mode)
 			(mode . css-mode)))
+
+	 ("Slime" (or (name . "\*slime-")
+		      (name . "\*swank")))
 
 	 ("Subversion" (name . "\*svn"))
 
