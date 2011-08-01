@@ -1,9 +1,6 @@
-(add-to-list 'load-path (concat mo-vendor-dir "/slime"))
+;; (slime-setup '(slime-fancy))
 
-(require 'slime)
-
-(slime-setup '(slime-fancy))
-
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 

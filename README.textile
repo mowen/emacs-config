@@ -2,7 +2,11 @@ h1. Emacs Config
 
 My Emacs config. Directory layout inspired by defunkt's setup, with ideas from technomancy.
 
-h2. Installed ELPA Packages
+h2. Expected ELPA Packages
 
-* clojure-mode
-* swank-clojure
+* clojure-mode-1.10.0
+* clojure-test-mode-1.5.6
+* durendal-0.2
+* paredit-22
+* slime-20100404.1
+* slime-repl-20100404
