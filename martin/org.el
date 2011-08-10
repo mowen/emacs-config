@@ -37,10 +37,12 @@
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
 (setq mo-org-home-dir (if (eq mo-location 'work)
-			  "H:/Emacs/HomeOrg/" ;; I store my home org files separately when I'm in work.
+			  "u:/Documents/HomeOrg/" ;; I store my home org files separately when I'm in work.
 			org-directory))
+
 (setq org-remember-templates
-      `(("ABC" ?a "* %T\n   - A. %^{Event}\n   - B. %^{Belief}\n   - C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")))
+      `(("ABC" ?a "* %T\n   - A. %^{Event}\n   - B. %^{Belief}\n   - C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")
+	("Pomodoro Activity" ?p "* %?\n  :PROPERTIES:\n  :Pomodoros: 0\n  :END:\n" ,(concat org-directory "Pomodoro.org") "Activity Inventory")))
 
 ;; ----------------------------------------
 ;; Remember Mode
