@@ -40,7 +40,7 @@
 ;; ----------------------------------------
 
 (load (concat mo-vendor-dir "/moz"))
-(add-hook 'javascript-mode-hook '(lambda () (moz-minor-mode 1)))
+(add-hook 'js-mode-hook '(lambda () (moz-minor-mode 1)))
 
 (defun mo-load-script-in-moz-repl (script-url)
   "Load a script in a MozRepl session."
@@ -68,6 +68,6 @@
 (mo-define-script-loading-defuns
     ((underscore . "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.1.7/underscore-min.js")
      (jquery . "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js")
-     (json2 "http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js")
-     (sizzle "http://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js")
-     (prototype "https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js")))
+     (json2 . "http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js")
+     (sizzle . "http://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js")
+     (prototype . "https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js")))
