@@ -66,8 +66,12 @@
 	       script-urls-alist)))
 
 (mo-define-script-loading-defuns
-    ((underscore . "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.1.7/underscore-min.js")
-     (jquery . "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js")
+    ((jquery . "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js")
      (json2 . "http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js")
+     (ocanvas . "http://cdnjs.cloudflare.com/ajax/libs/ocanvas/1.0/ocanvas.min.js")
+     (processing . "http://cdnjs.cloudflare.com/ajax/libs/processing.js/1.2.1/processing-api.min.js")
+     (prototype . "https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js")
      (sizzle . "http://cdnjs.cloudflare.com/ajax/libs/sizzle/1.4.4/sizzle.min.js")
-     (prototype . "https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js")))
+     (underscore . "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.1.7/underscore-min.js")
+     (underscore-string . "http://cdnjs.cloudflare.com/ajax/libs/underscore.string/1.1.4/underscore.string.min.js")
+     (waypoints . "http://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1/waypoints.min.js")))
