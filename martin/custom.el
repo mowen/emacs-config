@@ -7,6 +7,8 @@
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere nil)
  '(ido-mode (quote both) nil (ido))
+ '(coffee-js-mode (quote js-mode))
+ '(coffee-tab-width 2)
  '(rng-schema-locating-files
    `("schemas.xml"
      ,(concat mo-vendor-dir "/nxml-mode-20041004/schema/schemas.xml")
