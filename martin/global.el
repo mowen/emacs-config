@@ -9,16 +9,17 @@
 ;; There is also a shift region thing that I should think about trying
 
 (setq inhibit-startup-screen t)
-(setq transient-mark-mode t)	;; Transient mark = highlight selection.
-(setq make-backup-files nil)	;; Don't leave "blah~" files everywhere.
-(setq windmove-wrap-around t)	;; Wrap around when switching windows with windmove
-(setq-default fill-column 80)	;; Wrap lines in auto-fill mode at 80 chars
-(setq-default truncate-lines t)	;; Seems to work, truncating lines in every buffer.
-(savehist-mode 1)		;; Save Minibuffer history
-(show-paren-mode t)		;; Show matching parentheses.
-(global-hl-line-mode 1)         ;; Highlight the current line
-(global-auto-revert-mode 1)     ;; Auto-revert buffers if their files have changed
-(fset 'yes-or-no-p 'y-or-n-p)	;; Accept "y" and "n" for confirmations.
+(setq transient-mark-mode t)	   ;; Transient mark = highlight selection.
+(setq make-backup-files nil)	   ;; Don't leave "blah~" files everywhere.
+(setq windmove-wrap-around t)	   ;; Wrap around when switching windows with windmove
+(setq-default fill-column 80)	   ;; Wrap lines in auto-fill mode at 80 chars
+(setq-default truncate-lines t)	   ;; Seems to work, truncating lines in every buffer.
+(setq tab-always-indent 'complete) ;; If the line is already indented, then trigger completion
+(savehist-mode 1)		   ;; Save Minibuffer history
+(show-paren-mode t)		   ;; Show matching parentheses.
+(global-hl-line-mode 1)            ;; Highlight the current line
+(global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
+(fset 'yes-or-no-p 'y-or-n-p)	   ;; Accept "y" and "n" for confirmations.
 (put 'upcase-region 'disabled nil)   ;; Don't disable Upper Case Region command
 (put 'downcase-region 'disabled nil) ;; Or Down Case Region
 
@@ -27,6 +28,9 @@
 
 (defalias 'rps 'replace-string)
 (defalias 'qr 'query-replace)
+(defalias 'cr 'comment-region)
+(defalias 'ur 'uncomment-region)
+(defalias 'ir 'indent-region)
 
 ;; ----------------------------------------
 ;; Bookmarks

@@ -9,7 +9,11 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat mo-vendor-dir "/auto-complete/dict"))
 (ac-config-default)
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+(define-key ac-mode-map (kbd "C-TAB") 'auto-complete)
+
+;; ace-jump-mode
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (load "martin/text")
 (load "martin/dired")
