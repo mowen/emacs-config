@@ -14,7 +14,6 @@
 (setq windmove-wrap-around t)	   ;; Wrap around when switching windows with windmove
 (setq-default fill-column 80)	   ;; Wrap lines in auto-fill mode at 80 chars
 (setq-default truncate-lines t)	   ;; Seems to work, truncating lines in every buffer.
-(setq tab-always-indent 'complete) ;; If the line is already indented, then trigger completion
 (savehist-mode 1)		   ;; Save Minibuffer history
 (show-paren-mode t)		   ;; Show matching parentheses.
 (global-hl-line-mode 1)            ;; Highlight the current line
