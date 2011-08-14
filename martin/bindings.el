@@ -22,6 +22,7 @@
 (global-set-key (kbd "C-c C-m") 'execute-extended-command)
 
 (global-set-key [C-tab] 'other-window)
+(global-set-key (kbd "C-z") 'undo) ;; Fix the stupidest default keybinding in history
 
 (global-set-key (kbd "C-x g") 'rename-buffer)
 (global-set-key (kbd "C-x C-g") 'keyboard-quit)

@@ -9,6 +9,7 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat mo-vendor-dir "/auto-complete/dict"))
 (ac-config-default)
+;; TODO - find a better key for auto-complete
 (define-key ac-mode-map (kbd "C-TAB") 'auto-complete)
 
 ;; ace-jump-mode
@@ -20,6 +21,7 @@
 (load "martin/ibuffer")
 (load "martin/org")
 (load "martin/erc")
+(load "martin/eproject")
 (load "martin/lang/markup")
 (load "martin/lang/javascript")
 (load "martin/lang/php")
