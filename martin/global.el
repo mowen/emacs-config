@@ -46,3 +46,9 @@
 
 (setq desktop-dirname (expand-file-name "~")) ;; Where to save .emacs.desktop
 (desktop-save-mode 1)
+
+;; ----------------------------------------
+;; Undo Tree Mode
+
+(require 'undo-tree)
+(global-undo-tree-mode 1)
