@@ -10,3 +10,4 @@ h2. Expected ELPA Packages
 * paredit-22
 * slime-20100404.1
 * slime-repl-20100404
+* magit
