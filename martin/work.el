@@ -5,7 +5,7 @@
 
 (define-project-type qore-ui (generic)
   (look-for "Qire.Qore.UI")
-  :relevant-files ("\.js$" "\.ejs$" "\.html$")
+  :relevant-files ("\.js$" "\.ejs$" "\.html$" "\.css$" "\.json$")
   :irrelevant-files ("jquery/" "steal/" "funcunit/")
   :project-name (lambda (root) "Qire.Qore.UI"))
   
