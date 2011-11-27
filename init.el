@@ -20,11 +20,11 @@
 ;; Load OS specific file
 (load (concat "martin/" (symbol-name system-type)))
 
-;; Load ELPA installer
-(when (load "vendor/package.el/package.el")
-  (package-initialize)
-  (add-to-list 'package-archives
-	       '("marmalade" . "http://marmalade-repo.org/packages/")))
+;; package.el
+(require 'package)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ; custom place to save customizations
 (setq custom-file "martin/custom.el")
