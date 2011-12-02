@@ -1,8 +1,27 @@
-;; Martin Owen's Emacs Configuration
-;; The "mo-" prefix stands for Martin Owen
-;; Originally inspired by http://github.com/defunkt/emacs/tree/master
+;; package.el
+(require 'package)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-(require 'cl) ;; Common Lisp
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar mo-packages '(starter-kit
+                      starter-kit-eshell
+                      starter-kit-js
+                      starter-kit-lisp
+                      starter-kit-ruby
+                      clojure-mode
+		      clojure-test-mode
+		      magit
+		      yaml-mode
+		      undo-tree
+		      marmalade))
+
+(dolist (p mo-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
 (defvar mo-location (if (string-match "QIRE" (system-name)) 'work 'home)
   "Where am I? At \"work\" or at \"home\"?")
@@ -14,29 +33,19 @@
 (add-to-list 'load-path mo-vendor-dir)
 
 ;; Load passwords.el file if it exists.
-(if (file-exists-p (concat mo-dotfiles-dir "martin/passwords.el"))
-    (load "martin/passwords"))
+(if (file-exists-p (concat mo-dotfiles-dir "mo/passwords.el"))
+    (load "mo/passwords"))
 
-;; Load OS specific file
-(load (concat "martin/" (symbol-name system-type)))
+(load (concat "mo/" (symbol-name system-type)))
 
-;; package.el
-(require 'package)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-; custom place to save customizations
-(setq custom-file "martin/custom.el")
+;; custom place to save customizations
+(setq custom-file "mo/custom.el")
 (load custom-file)
 
-(load "martin/util") 	 ;; Utility functions
-(load "martin/global")   ;; Global Variables
-(load "martin/bindings") ;; Key bindings
-(load "martin/theme")    ;; Color Theme
-(load "martin/vc")	 ;; Version Control
-(load "martin/modes")	 ;; Major Modes
-(load "martin/skeletons")
+(load "mo/util") 	 ;; Utility functions
+(load "mo/global")   ;; Global Variables
+(load "mo/bindings") ;; Key bindings
+(load "mo/theme")    ;; Color Theme
+(load "mo/vc")	 ;; Version Control
+(load "mo/modes")	 ;; Major Modes
 
-;; Load location specific file
-(load (concat "martin/" (symbol-name mo-location)))

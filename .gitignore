@@ -5,3 +5,6 @@ ac-comphist.dat
 tramp
 url
 elpa/*
+backups
+places
+.smex-items
