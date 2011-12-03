@@ -69,25 +69,21 @@
 (add-to-list 'auto-mode-alist '("\\.scss" . scss-mode))
 (setq scss-compile-at-save nil)
 
-;; -------------------------------------------
-;; HAML
-
-(load (concat mo-vendor-dir "/haml-mode.el"))
-(require 'haml-mode)
-(add-to-list 'auto-mode-alist '("\\.haml" . haml-mode))
-(add-hook 'haml-mode-hook
-	  '(lambda ()
-	    (setq indent-tabs-mode nil)))
-
-;; --------------------------------------------
-;; YAML
-
-(load (concat mo-vendor-dir "/yaml-mode/yaml-mode.el"))
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-
 ;; --------------------------------------------
 ;; Zen Coding mode
 
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+;; ----------------------------------------
+;; YAML Mode
+;; ----------------------------------------
+
+(autoload 'yaml-mode "yaml-mode" "\
+Major mode for editing Yaml files.
+
+\\{yaml-mode-map}
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))

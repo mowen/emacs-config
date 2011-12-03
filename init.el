@@ -7,17 +7,19 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar mo-packages '(starter-kit
+(defvar mo-packages '(clojure-mode
+                      clojure-test-mode
+		      magit
+		      marmalade
+		      undo-tree
+		      yaml-mode
+                      haml-mode
+                      org
+                      starter-kit
                       starter-kit-eshell
                       starter-kit-js
                       starter-kit-lisp
-                      starter-kit-ruby
-                      clojure-mode
-		      clojure-test-mode
-		      magit
-		      yaml-mode
-		      undo-tree
-		      marmalade))
+                      starter-kit-ruby))
 
 (dolist (p mo-packages)
   (when (not (package-installed-p p))

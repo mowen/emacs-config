@@ -1,9 +1,6 @@
 [submodule "vendor/gist"]
 	path = vendor/gist
 	url = http://github.com/defunkt/gist.el.git
-[submodule "vendor/yaml-mode"]
-	path = vendor/yaml-mode
-	url = http://github.com/yoshiki/yaml-mode.git
 [submodule "vendor/magithub"]
 	path = vendor/magithub
 	url = http://github.com/nex3/magithub.git
