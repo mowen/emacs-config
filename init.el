@@ -11,7 +11,9 @@
                       clojure-mode
                       clojure-test-mode
                       durendal
+                      gist
 		      magit
+                      magithub
 		      marmalade
 		      undo-tree
 		      yaml-mode
@@ -52,9 +54,4 @@
 (load "mo/global")   ;; Global Variables
 (load "mo/bindings") ;; Key bindings
 (load "mo/theme")    ;; Color Theme
-(load "mo/vc")       ;; Version Control
 (load "mo/modes")    ;; Major Modes
-
-(eval-after-load 'yasnippet-bundle
-  '(progn
-    (yas/load-directory "~/.emacs.d/snippets")))

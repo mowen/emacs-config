@@ -1,9 +1,3 @@
-[submodule "vendor/gist"]
-	path = vendor/gist
-	url = http://github.com/defunkt/gist.el.git
-[submodule "vendor/magithub"]
-	path = vendor/magithub
-	url = http://github.com/nex3/magithub.git
 [submodule "vendor/nxhtml"]
 	path = vendor/nxhtml
 	url = http://github.com/emacsmirror/nxhtml.git

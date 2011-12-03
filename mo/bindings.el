@@ -18,8 +18,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)	;; Use iBuffer for Buffer List
 
 ;; Alternative keys for Alt-X
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
-(global-set-key (kbd "C-c C-m") 'execute-extended-command)
+(global-set-key (kbd "C-x C-m") 'smex)
+(global-set-key (kbd "C-c C-m") 'smex)
 
 (global-set-key [C-tab] 'other-window)
 (global-set-key (kbd "C-z") 'undo) ;; Fix the stupidest default keybinding in history
