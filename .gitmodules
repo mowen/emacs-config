@@ -7,9 +7,6 @@
 [submodule "vendor/nxhtml"]
 	path = vendor/nxhtml
 	url = http://github.com/emacsmirror/nxhtml.git
-[submodule "vendor/yasnippet"]
-	path = vendor/yasnippet
-	url = http://github.com/emacsmirror/yasnippet.git
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = http://github.com/m2ym/auto-complete.git

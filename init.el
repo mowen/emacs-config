@@ -7,8 +7,10 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar mo-packages '(clojure-mode
+(defvar mo-packages '(ace-jump-mode
+                      clojure-mode
                       clojure-test-mode
+                      durendal
 		      magit
 		      marmalade
 		      undo-tree
@@ -16,10 +18,12 @@
                       haml-mode
                       org
                       starter-kit
+                      starter-kit-bindings
                       starter-kit-eshell
                       starter-kit-js
                       starter-kit-lisp
-                      starter-kit-ruby))
+                      starter-kit-ruby
+                      yasnippet-bundle))
 
 (dolist (p mo-packages)
   (when (not (package-installed-p p))
@@ -44,10 +48,13 @@
 (setq custom-file "mo/custom.el")
 (load custom-file)
 
-(load "mo/util") 	 ;; Utility functions
+(load "mo/util")     ;; Utility functions
 (load "mo/global")   ;; Global Variables
 (load "mo/bindings") ;; Key bindings
 (load "mo/theme")    ;; Color Theme
-(load "mo/vc")	 ;; Version Control
-(load "mo/modes")	 ;; Major Modes
+(load "mo/vc")       ;; Version Control
+(load "mo/modes")    ;; Major Modes
 
+(eval-after-load 'yasnippet-bundle
+  '(progn
+    (yas/load-directory "~/.emacs.d/snippets")))
