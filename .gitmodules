@@ -1,6 +1,3 @@
-[submodule "vendor/org-mode"]
-	path = vendor/org-mode
-	url = git://repo.or.cz/org-mode.git
 [submodule "vendor/gist"]
 	path = vendor/gist
 	url = http://github.com/defunkt/gist.el.git
