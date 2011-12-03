@@ -11,6 +11,7 @@
                       clojure-mode
                       clojure-test-mode
                       durendal
+                      erc-hl-nicks
                       gist
 		      magit
                       magithub
