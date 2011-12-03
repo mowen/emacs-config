@@ -1,1 +1,0 @@
-(require 'twittering-mode)
