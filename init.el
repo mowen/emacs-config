@@ -20,6 +20,11 @@
 		      yaml-mode
                       haml-mode
                       org
+                      ruby-mode
+                      ruby-electric
+                      ruby-block
+                      slime
+                      slime-repl
                       starter-kit
                       starter-kit-bindings
                       starter-kit-eshell
