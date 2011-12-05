@@ -12,7 +12,8 @@
 			     (filename . "emacs-config")))
 
 	 ("Org" (or (mode . org-mode)
-		    (filename . "OrgMode")))
+		    (filename . "OrgMode")
+                    (filename . "org-files")))
 
 	 ("code-clojure" (filename . "code/lisp/clojure"))
 

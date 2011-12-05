@@ -1,5 +1,6 @@
 *passwords.el
 history
+bookmarks
 auto-save-list
 ac-comphist.dat
 tramp
