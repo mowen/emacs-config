@@ -7,6 +7,3 @@
 [submodule "vendor/jquery-doc"]
 	path = vendor/jquery-doc
 	url = git://github.com/ananthakumaran/jquery-doc.el.git
-[submodule "vendor/eproject"]
-	path = vendor/eproject
-	url = git://github.com/jrockway/eproject.git

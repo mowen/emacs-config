@@ -2,9 +2,6 @@
 ;; Org Mode
 ;; ----------------------------------------
 
-;; (require 'org-install)
-;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
 (eval-after-load 'org
   '(progn
      ;; org-directory is set in the platform-specific files (darwin, windows-nt)
