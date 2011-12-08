@@ -23,7 +23,6 @@
 (load "mo/erc")
 (load "mo/lang/markup")
 (load "mo/lang/javascript")
-(load "mo/lang/php")
 (load "mo/lang/ruby")
 (load "mo/lang/clojure")
 (load "mo/lang/lisp")
