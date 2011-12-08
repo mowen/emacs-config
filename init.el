@@ -33,6 +33,7 @@
                       starter-kit-ruby
                       undo-tree
                       yaml-mode
+                      yari
                       yasnippet-bundle))
 
 (dolist (p mo-packages)

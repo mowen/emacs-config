@@ -12,4 +12,5 @@
             (ruby-block-mode t)
             (setq ruby-block-highlight-toggle t)
             (ruby-electric-mode t)
+            (local-set-key [f1] 'yari)
             (esk-prog-mode-hook)))
