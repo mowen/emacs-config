@@ -10,15 +10,15 @@
 (defvar mo-packages '(ace-jump-mode
                       clojure-mode
                       clojure-test-mode
+                      coffee-mode
                       durendal
                       erc-hl-nicks
                       gist
+                      haml-mode
 		      magit
                       magithub
+                      markdown-mode
 		      marmalade
-		      undo-tree
-		      yaml-mode
-                      haml-mode
                       org
                       ruby-mode
                       ruby-electric
@@ -31,6 +31,8 @@
                       starter-kit-js
                       starter-kit-lisp
                       starter-kit-ruby
+                      undo-tree
+                      yaml-mode
                       yasnippet-bundle))
 
 (dolist (p mo-packages)

@@ -52,3 +52,10 @@
 
 (require 'undo-tree)
 (global-undo-tree-mode 1)
+
+;; ----------------------------------------
+;; Ace Jump Mode
+
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+

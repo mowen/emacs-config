@@ -10,9 +10,6 @@
   '(progn
     (yas/load-directory "~/.emacs.d/snippets")))
 
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
 (add-hook 'prog-mode-hook
           '(lambda ()
             (linum-mode t)
