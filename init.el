@@ -20,6 +20,7 @@
                       markdown-mode
 		      marmalade
                       org
+                      perspective
                       ruby-mode
                       ruby-electric
                       ruby-block

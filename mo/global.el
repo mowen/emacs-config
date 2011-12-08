@@ -59,3 +59,8 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
+;; ----------------------------------------
+;; Perspectives
+
+(require 'perspective)
+(persp-mode 1)

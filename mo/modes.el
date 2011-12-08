@@ -1,4 +1,6 @@
+;; ----------------------------------------
 ;; auto-complete
+
 (add-to-list 'load-path (concat mo-vendor-dir "/auto-complete"))
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat mo-vendor-dir "/auto-complete/dict"))
@@ -6,15 +8,24 @@
 ;; TODO - find a better key for auto-complete
 (define-key ac-mode-map (kbd "C-TAB") 'auto-complete)
 
+;; ----------------------------------------
+;; yasnippet
+
 (eval-after-load 'yasnippet-bundle
   '(progn
     (yas/load-directory "~/.emacs.d/snippets")))
+
+;; ----------------------------------------
+;; prog-mode default settings
 
 (add-hook 'prog-mode-hook
           '(lambda ()
             (linum-mode t)
             (capitalized-words-mode t)
             (flyspell-prog-mode)))
+
+;; ----------------------------------------
+;; Other mode settings
 
 (load "mo/text")
 (load "mo/dired")
