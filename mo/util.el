@@ -75,6 +75,14 @@
   (save-buffer)
   (kill-buffer nil)) ; nil argument means current-buffer
 
+(defun mo-indent-defun ()
+  "Indent the current function."
+  (interactive)
+  (save-excursion
+    (mark-defun)
+    (indent-region (region-beginning)
+                   (region-end))))
+
 ;; -----------------------------------------------------------------------------
 ;; ido-menu - Taken from emacs-starter-kit
 

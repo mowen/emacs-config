@@ -24,6 +24,7 @@
                       ruby-mode
                       ruby-electric
                       ruby-block
+                      scss-mode
                       slime
                       slime-repl
                       starter-kit

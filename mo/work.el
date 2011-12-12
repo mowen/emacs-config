@@ -2,9 +2,6 @@
 
 (global-hl-line-mode -1) ;; Don't highlight the current line
 
-(define-project-type qore-ui (generic)
-  (look-for "Qire.Qore.UI")
-  :relevant-files ("\.js$" "\.ejs$" "\.html$" "\.css$" "\.json$")
-  :irrelevant-files ("jquery/" "steal/" "funcunit/")
-  :project-name (lambda (root) "Qire.Qore.UI"))
-  
+;; Don't load Flyspell in work, as I haven't got around to installing aspell 
+(remove-hook 'text-mode-hook 'turn-on-auto-fill)
+(remove-hook 'text-mode-hook 'turn-on-flyspell)

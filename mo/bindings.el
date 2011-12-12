@@ -3,9 +3,7 @@
 
 ;; Undefined keys (at least in Emacs-Lisp mode)
 ;; C-x t
-;; C-x g
-;; C-x x
-;; C-,
+;; C-x SPC
 ;; C-'
 ;; C-.
 ;; C-#
@@ -30,17 +28,8 @@
 (global-set-key (kbd "M-k")   'mo-copy-line-as-kill)  ; Used to be kill-sentence	
 (global-set-key [M-backspace] 'mo-copy-word-as-kill)  ; Used to be backward-kill-word
 
-(global-set-key "\C-x\C-i" 'ido-imenu)
+(global-set-key (kbd "C-x C-i") 'ido-imenu)
 
-(global-set-key (kbd "C-,") 'indent-buffer)
-(global-set-key (kbd "C-.")
-		(lambda ()
-		  (interactive)
-		  (save-excursion
-		    (mark-defun)
-		    (indent-region (region-beginning)
-				   (region-end)))))
-		
 ;; -----------------------------------------------------------------------------
 ;; Function keys
 
