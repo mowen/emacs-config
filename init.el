@@ -56,6 +56,7 @@
     (load "mo/passwords"))
 
 (load (concat "mo/" (symbol-name system-type)))
+(load (concat "mo/" (symbol-name mo-location)))
 
 ;; custom place to save customizations
 (setq custom-file "mo/custom.el")

@@ -22,9 +22,10 @@
           '(lambda ()
             (linum-mode t)
             (capitalized-words-mode t)
-            (flyspell-prog-mode)
             (local-set-key (kbd "C-'") 'indent-buffer)
             (local-set-key (kbd "C-.") 'mo-indent-defun)))
+
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; ----------------------------------------
 ;; Other mode settings
