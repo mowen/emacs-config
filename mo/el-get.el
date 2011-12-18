@@ -21,20 +21,32 @@
                       (ac-config-default)))
         (:name ac-dabbrev
          :type emacswiki
-         :description "Emacs auto-complete plugin for Dynamic Abbreviations")
+         :description "Emacs auto-complete plugin for Dynamic Abbreviations"
+         :post-init (lambda ()
+                      (require 'ac-dabbrev)
+                      (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
         (:name ac-slime
          :website "https://github.com/purcell/ac-slime"
          :description "Emacs auto-complete plugin for Slime symbols"
          :type git
-         :url "https://github.com/purcell/ac-slime.git")
+         :url "https://github.com/purcell/ac-slime.git"
+         :post-init (lambda ()
+                      (require 'ac-slime)
+                      (add-hook 'slime-mode-hook 'set-up-slime-ac)))
         (:name auto-complete-emacs-lisp
          :description "Auto-complete sources for emacs lisp"
          :type http
-         :url "http://www.cx4a.org/pub/auto-complete-emacs-lisp.el")
-        (:name auto-complete-ruby
-         :description "Auto-complete sources for Ruby"
-         :type http
-         :url "http://www.cx4a.org/pub/auto-complete-ruby.el")
+         :url "http://www.cx4a.org/pub/auto-complete-emacs-lisp.el"
+         :post-init (lambda ()
+                      (require 'auto-complete-emacs-lisp)
+                      (ac-emacs-lisp-init)))
+        ;; TODO: Install rcodetools so that I can use this
+        ;; (:name auto-complete-ruby
+        ;;  :description "Auto-complete sources for Ruby"
+        ;;  :type http
+        ;;  :url "http://www.cx4a.org/pub/auto-complete-ruby.el"
+        ;;  :post-init (lambda ()
+        ;;               (require 'auto-complete-ruby)))
         (:name perspective
          :description "Perspectives for Emacs."
          :type git
@@ -47,7 +59,7 @@
       (append
        '(auto-complete
          auto-complete-emacs-lisp
-         auto-complete-ruby
+         ;; auto-complete-ruby
          ac-dabbrev
          ac-slime
          perspective)
