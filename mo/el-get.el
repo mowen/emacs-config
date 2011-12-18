@@ -53,7 +53,15 @@
          :url "https://github.com/deactivated/perspective-el.git"
          :post-init (lambda ()
                       (require 'perspective)
-                      (persp-mode 1)))))
+                      (persp-mode 1)))
+        (:name nxhtml
+         :type emacsmirror
+         :description "An addon for Emacs mainly for web development."
+         :build
+         (list (concat el-get-emacs " -batch -q -no-site-file -L . -l nxhtmlmaint.el -f nxhtmlmaint-start-byte-compilation"))
+         :load "autostart.el"
+         :post-init (lambda ()
+                      (add-to-list 'auto-mode-alist '("\\.ejs$" . nxhtml-mumamo-mode))))))
 
 (setq mo-el-get-packages
       (append

@@ -1,11 +1,4 @@
 ;; ----------------------------------------
-;; NXHTML Mode
-
-(load (concat mo-vendor-dir "/nxhtml/autostart.el"))
-
-(add-to-list 'auto-mode-alist '("\\.ejs$" . nxhtml-mumamo-mode))
-
-;; ----------------------------------------
 ;; XML Mode
 ;; ----------------------------------------
 
