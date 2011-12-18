@@ -16,15 +16,19 @@
          :load-path "."
          :post-init (lambda ()
                       (require 'auto-complete)
-                      (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
+                      (add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "el-get/auto-complete/dict"))
                       (require 'auto-complete-config)
-                      (ac-config-default)))
+                      (ac-config-default)
+                      (ac-flyspell-workaround)
+                      (ac-linum-workaround)
+                      (setq-default global-auto-complete-mode t)
+                      (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
+                      (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
         (:name ac-dabbrev
          :type emacswiki
          :description "Emacs auto-complete plugin for Dynamic Abbreviations"
          :post-init (lambda ()
-                      (require 'ac-dabbrev)
-                      (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
+                      (require 'ac-dabbrev)))
         (:name ac-slime
          :website "https://github.com/purcell/ac-slime"
          :description "Emacs auto-complete plugin for Slime symbols"
@@ -70,6 +74,7 @@
          ;; auto-complete-ruby
          ac-dabbrev
          ac-slime
+         nxhtml
          perspective)
        (mapcar 'el-get-source-name el-get-sources)))
 

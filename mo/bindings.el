@@ -28,6 +28,7 @@
 (global-set-key [M-backspace] 'mo-copy-word-as-kill)  ; Used to be backward-kill-word
 
 (global-set-key (kbd "C-x t") 'mo-create-temp-buffer)
+(global-set-key (kbd "C-x c") 'comment-or-uncomment-region)
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys
