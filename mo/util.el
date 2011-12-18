@@ -83,40 +83,6 @@
     (indent-region (region-beginning)
                    (region-end))))
 
-;; -----------------------------------------------------------------------------
-;; ido-menu - Taken from emacs-starter-kit
-
-(defun ido-imenu ()
-  "Update the imenu index and then use ido to select a symbol to navigate to."
-  (interactive)
-  (imenu--make-index-alist)
-  (let ((name-and-pos '())
-        (symbol-names '()))
-    (flet ((addsymbols (symbol-list)
-                       (when (listp symbol-list)
-                         (dolist (symbol symbol-list)
-                           (let ((name nil) (position nil))
-                             (cond
-                              ((and (listp symbol) (imenu--subalist-p symbol))
-                               (addsymbols symbol))
-                              
-                              ((listp symbol)
-                               (setq name (car symbol))
-                               (setq position (cdr symbol)))
-                              
-                              ((stringp symbol)
-                               (setq name symbol)
-                               (setq position (get-text-property 1 'org-imenu-marker symbol))))
-                             
-                             (unless (or (null position) (null name))
-                               (add-to-list 'symbol-names name)
-                               (add-to-list 'name-and-pos (cons name position))))))))
-      (addsymbols imenu--index-alist))
-    (let* ((default-symbol (if (member (current-word) symbol-names) (current-word)))
-	   (selected-symbol (ido-completing-read "Symbol? " symbol-names nil nil nil nil default-symbol))
-           (position (cdr (assoc selected-symbol name-and-pos))))
-      (goto-char position))))
-
 (defun indent-buffer ()
   "Re-indent the entire buffer."
   (interactive)
@@ -140,6 +106,14 @@
 	(amount (or amount 10)))
     (set-face-attribute 'default nil :height (funcall operator height amount))
     (message (format "Face height is now %d." height))))
+
+(defun mo-create-temp-buffer ()
+  "Create a temp buffer."
+  (interactive)
+  (let ((temp-buffer (get-buffer-create "temp")))
+    (switch-to-buffer temp-buffer)
+    (rename-uniquely)
+    (text-mode)))
 
 ;; -----------------------------------------------------------------------------
 ;; html-lite helper utility
