@@ -29,6 +29,11 @@
 
 (global-set-key (kbd "C-x t") 'mo-create-temp-buffer)
 (global-set-key (kbd "C-x c") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-x p") '(lambda (&optional arg)
+                                (interactive "p")
+                                (cond ((= 1 arg) (el-get-list-packages))
+                                      ((= 2 arg) (package-list-packages))
+                                      (t (package-list-packages-no-fetch)))))
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys
