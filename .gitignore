@@ -5,6 +5,7 @@ auto-save-list
 ac-comphist.dat
 eshell
 tramp
+el-get
 url
 elpa/*
 backups

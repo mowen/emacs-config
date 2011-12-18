@@ -11,9 +11,12 @@
 (setq inhibit-startup-screen t)
 (setq transient-mark-mode t)	   ;; Transient mark = highlight selection.
 (setq make-backup-files nil)	   ;; Don't leave "blah~" files everywhere.
-(setq windmove-wrap-around t)	   ;; Wrap around when switching windows with windmove
+(setq windmove-wrap-around t)	   ;; Wrap around when switching windows with
+;; windmove
+(setq delete-by-moving-to-trash t) ;; Use the system's trash can when deleting
 (setq-default fill-column 80)	   ;; Wrap lines in auto-fill mode at 80 chars
-(setq-default truncate-lines t)	   ;; Seems to work, truncating lines in every buffer.
+(setq-default truncate-lines t)	   ;; Seems to work, truncating lines in every
+;; buffer.
 (savehist-mode 1)		   ;; Save Minibuffer history
 (show-paren-mode t)		   ;; Show matching parentheses.
 (global-hl-line-mode 1)            ;; Highlight the current line
@@ -59,8 +62,3 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-;; ----------------------------------------
-;; Perspectives
-
-(require 'perspective)
-(persp-mode 1)

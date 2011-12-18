@@ -1,14 +1,4 @@
 ;; ----------------------------------------
-;; auto-complete
-
-(add-to-list 'load-path (concat mo-vendor-dir "/auto-complete"))
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat mo-vendor-dir "/auto-complete/dict"))
-(ac-config-default)
-;; TODO - find a better key for auto-complete
-(define-key ac-mode-map (kbd "C-TAB") 'auto-complete)
-
-;; ----------------------------------------
 ;; yasnippet
 
 (eval-after-load 'yasnippet-bundle
