@@ -8,23 +8,7 @@
      (eval-print-last-sexp))))
 
 (setq el-get-sources
-      '((:name auto-complete
-         :website "http://cx4a.org/software/auto-complete/"
-         :description "The most intelligent auto-completion extension."
-         :type git
-         :url "http://github.com/m2ym/auto-complete.git"
-         :load-path "."
-         :post-init (lambda ()
-                      (require 'auto-complete)
-                      (add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "el-get/auto-complete/dict"))
-                      (require 'auto-complete-config)
-                      (ac-config-default)
-                      (ac-flyspell-workaround)
-                      (ac-linum-workaround)
-                      (setq-default global-auto-complete-mode t)
-                      (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
-                      (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
-        (:name ac-dabbrev
+      '((:name ac-dabbrev
          :type emacswiki
          :description "Emacs auto-complete plugin for Dynamic Abbreviations"
          :post-init (lambda ()
@@ -69,8 +53,7 @@
 
 (setq mo-el-get-packages
       (append
-       '(auto-complete
-         auto-complete-emacs-lisp
+       '(auto-complete-emacs-lisp
          ;; auto-complete-ruby
          ac-dabbrev
          ac-slime

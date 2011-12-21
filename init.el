@@ -66,9 +66,9 @@
 (setq custom-file "mo/custom.el")
 (load custom-file)
 
-(load "mo/el-get")   ;; Load el-get packages
 (load "mo/util")     ;; Utility functions
 (load "mo/global")   ;; Global Variables
 (load "mo/bindings") ;; Key bindings
 (load "mo/theme")    ;; Color Theme
 (load "mo/modes")    ;; Major Modes
+(load "mo/el-get")   ;; Load el-get packages (depends on auto-complete)

@@ -42,7 +42,7 @@
 ;; name is probably easier to remember
 (add-hook 'bookmark-after-jump-hook
 	  '(lambda ()
-	     (rename-buffer bookmark-current-bookmark)))
+            (rename-buffer bookmark-current-bookmark)))
 
 ;; ----------------------------------------
 ;; Desktop mode (save state when exiting)
@@ -62,3 +62,25 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
+;; ----------------------------------------
+;; Midnight Mode
+
+(require 'midnight)
+(midnight-delay-set 'midnight-delay 0) ;; Run midnight hook 0 seconds after midnight
+(add-hook 'midnight-hook '(lambda ()
+                           (clean-buffer-list)))
+
+;; ----------------------------------------
+;; Auto Complete
+
+(add-to-list 'load-path (concat mo-vendor-dir "/auto-complete"))
+(load "auto-complete")
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "el-get/auto-complete/dict"))
+(require 'auto-complete-config)
+(ac-config-default)
+(ac-flyspell-workaround)
+(ac-linum-workaround)
+(setq-default global-auto-complete-mode t)
+(setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
+(setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))
