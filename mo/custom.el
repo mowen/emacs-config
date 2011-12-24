@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(coffee-js-mode (quote js-mode))
  '(coffee-tab-width 2)
- '(erc-hide-list (quote ("JOIN" "PART")))
+ '(erc-hide-list (quote ("JOIN" "PART" "QUIT")))
  '(ido-auto-merge-work-directories-length -1)
  '(ido-create-new-buffer (quote always))
  '(ido-everywhere nil)
