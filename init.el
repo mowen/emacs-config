@@ -63,7 +63,7 @@
 (load (concat "mo/" (symbol-name mo-location)))
 
 ;; custom place to save customizations
-(setq custom-file "mo/custom.el")
+(setq custom-file (concat mo-dotfiles-dir "mo/custom.el"))
 (load custom-file)
 
 (load "mo/util")     ;; Utility functions
