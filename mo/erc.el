@@ -17,6 +17,14 @@
        :full-name "Martin Owen"
        :password erc-freenode-password))
 
+(defun mo-erc-connect-to-quakenet ()
+  "Connect to Quakenet IRC"
+  (interactive)
+  (erc :server "uk.quakenet.org"
+       :port 6667
+       :nick "martyziff"
+       :full-name "Martin Owen"))
+
 ;; An example of an ERC command:
 ;; (defun erc-cmd-SAVE (&rest ignore)
 ;;   "Save your soul!"
