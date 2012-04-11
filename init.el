@@ -1,4 +1,4 @@
-(defvar mo-location (if (string-match "QIRE" (system-name)) 'work 'home)
+(defvar mo-location (if (string-match "TERIYAKI" (system-name)) 'work 'home)
   "Where am I? At \"work\" or at \"home\"?")
 
 (setq mo-dotfiles-dir (file-name-directory load-file-name))
