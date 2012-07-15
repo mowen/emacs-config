@@ -1,4 +1,4 @@
-(load-theme 'tango)
+(load-theme 'deeper-blue)
 
 ;; ----------------------------------------
 ;; My custom faces

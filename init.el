@@ -19,6 +19,9 @@
   (package-refresh-contents))
 
 (defvar mo-packages '(ace-jump-mode
+                      alpha
+                      all
+                      bookmark+
                       clojure-mode
                       clojure-test-mode
                       coffee-mode
@@ -26,6 +29,7 @@
                       erc-hl-nicks
                       gist
                       haml-mode
+                      ioccur
 		      magit
                       magithub
                       markdown-mode

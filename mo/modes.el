@@ -10,7 +10,7 @@
 
 (add-hook 'prog-mode-hook
           '(lambda ()
-            (linum-mode t)
+            ;;(linum-mode t)
             (capitalized-words-mode t)
             (local-set-key (kbd "C-'") 'indent-buffer)
             (local-set-key (kbd "C-.") 'mo-indent-defun)))
