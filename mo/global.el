@@ -90,3 +90,14 @@
 
 (require 'alpha)
 (transparency-set-value 85)
+
+;; ----------------------------------------
+;; Linkd (links in text files)
+
+(load (concat mo-vendor-dir "/linkd"))
+(require 'linkd)
+
+;; ----------------------------------------
+;; Bookmark+
+
+(require 'bookmark+)
