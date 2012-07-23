@@ -86,12 +86,6 @@
 (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))
 
 ;; ----------------------------------------
-;; Alpha (transparency)
-
-(require 'alpha)
-(transparency-set-value 85)
-
-;; ----------------------------------------
 ;; Linkd (links in text files)
 
 (load (concat mo-vendor-dir "/linkd"))

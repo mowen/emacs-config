@@ -18,3 +18,13 @@
   '(progn
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
+
+;; ----------------------------------------
+;; Alpha (transparency)
+
+(require 'alpha)
+
+(if (string-equal system-type "darwin")
+    (transparency-set-value 85)
+    (transparency-set-value 95))
+
