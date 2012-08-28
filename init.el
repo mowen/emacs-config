@@ -75,4 +75,3 @@
 (load "mo/bindings") ;; Key bindings
 (load "mo/theme")    ;; Color Theme
 (load "mo/modes")    ;; Major Modes
-(load "mo/el-get")   ;; Load el-get packages (depends on auto-complete)

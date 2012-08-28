@@ -21,3 +21,6 @@
 (setq initial-frame-alist
       `((left . 0) (top . 0)
         (width . 180) (height . 53)))
+
+;; Only load el-get on OS X, as I haven't installed Cygwin on Windows yet.
+(load "mo/el-get")   ;; Load el-get packages (depends on auto-complete)
