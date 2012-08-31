@@ -73,17 +73,22 @@
 ;; ----------------------------------------
 ;; Auto Complete
 
-(add-to-list 'load-path (concat mo-vendor-dir "/auto-complete"))
-(load "auto-complete")
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "el-get/auto-complete/dict"))
-(require 'auto-complete-config)
-(ac-config-default)
-(ac-flyspell-workaround)
-(ac-linum-workaround)
-(setq-default global-auto-complete-mode t)
-(setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
-(setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))
+(eval-after-load 'auto-complete
+  '(progn
+    ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))  
+    (require 'auto-complete-config)
+
+    (ac-config-default)
+    (ac-flyspell-workaround)
+    (ac-linum-workaround)
+
+    (setq-default global-auto-complete-mode t)
+    (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
+
+    (load (concat mo-vendor-dir "/ac-dabbrev"))
+    (require 'ac-dabbrev)
+    (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)

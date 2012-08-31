@@ -19,8 +19,10 @@
   (package-refresh-contents))
 
 (defvar mo-packages '(ace-jump-mode
+                      ac-slime
                       alpha
                       all
+                      auto-complete
                       bookmark+
                       clojure-mode
                       clojure-test-mode
