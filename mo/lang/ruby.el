@@ -14,3 +14,6 @@
             (ruby-electric-mode t)
             (local-set-key [f1] 'yari)
             (esk-prog-mode-hook)))
+
+(add-to-list 'auto-mode-alist 
+ 	     '("Guardfile" . ruby-mode))
