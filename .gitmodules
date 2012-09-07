@@ -4,3 +4,6 @@
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = https://github.com/m2ym/auto-complete.git
+[submodule "vendor/org-pomodoro"]
+	path = vendor/org-pomodoro
+	url = git@github.com:mowen/org-pomodoro.git

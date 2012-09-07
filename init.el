@@ -36,6 +36,7 @@
                       magithub
                       markdown-mode
 		      marmalade
+                      notify
                       org
                       ruby-mode
                       ruby-electric
