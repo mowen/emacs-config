@@ -53,7 +53,8 @@
                       undo-tree
                       yaml-mode
                       yari
-                      yasnippet-bundle))
+                      yasnippet-bundle
+                      znc))
 
 (dolist (p mo-packages)
   (when (not (package-installed-p p))

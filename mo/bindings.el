@@ -39,7 +39,7 @@
 ;; Function keys
 
 (global-set-key [f5] 'eshell)
-(global-set-key [f7] 'mo-erc-connect-to-freenode)
+(global-set-key [f7] 'znc-all)
 
 ;; -----------------------------------------------------------------------------
 ;; Org Mode Keys

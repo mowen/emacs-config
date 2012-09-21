@@ -3,6 +3,7 @@
 ;; ----------------------------------------
 
 (require 'erc)
+(require 'znc)
 
 (setq erc-interpret-mirc-color t) 	;; Interpret mIRC-style color commands
 (setq erc-kill-buffer-on-part t)	;; Kill the buffer when leaving
@@ -32,3 +33,4 @@
 
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net" "##javascript" "#emacs" "#node.js")))
+
