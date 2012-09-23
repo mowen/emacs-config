@@ -12,6 +12,9 @@
 		  (interactive)
 		  (insert "#")))
 
+;; Use the command key for meta
+(setq ns-command-modifier 'meta)
+
 (set-frame-font "Menlo-12")
 
 ;; Use the menu-bar-mode on OS X, as it doesn't use any space
