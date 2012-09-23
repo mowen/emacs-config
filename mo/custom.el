@@ -14,7 +14,7 @@
  '(ido-mode (quote both) nil (ido))
  '(rng-schema-locating-files (\` ("schemas.xml" (\, (concat mo-vendor-dir "/nxml-mode-20041004/schema/schemas.xml")) (\, (concat mo-vendor-dir "/nxml-mode-20041004/schema/html5/html5-schemas.xml")))))
  '(safe-local-variable-values (quote ((Coding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
- '(znc-servers (quote (("ec2-107-20-32-36.compute-1.amazonaws.com" 1025 nil ((sweetback-znc "martyziff" "yell0")))))))
+ `(znc-servers (quote (("ec2-107-20-32-36.compute-1.amazonaws.com" 1025 nil ((sweetback-znc "mowen" ,znc-sweetback-password)))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

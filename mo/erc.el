@@ -14,7 +14,7 @@
   (interactive)
   (erc :server "irc.freenode.net"
        :port 6667
-       :nick "mowen"
+       :nick "martyziff"
        :full-name "Martin Owen"
        :password erc-freenode-password))
 
