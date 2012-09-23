@@ -9,6 +9,10 @@
 (setq erc-kill-buffer-on-part t)	;; Kill the buffer when leaving
 (setq erc-kill-server-buffer-on-quit t) ;; Kill buffers for server messages after quitting the server
 
+(setq erc-hide-list '("JOIN" "PART" "QUIT")
+      erc-pals '("magnars" "technomancy")
+      erc-pal-highlight-type 'all)
+
 (defun mo-erc-connect-to-freenode ()
   "Connect to Freenode with ERC."
   (interactive)
