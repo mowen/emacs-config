@@ -45,8 +45,8 @@
 
 (add-hook 'erc-mode-hook
           '(lambda ()
-            (local-set-key (kbd "M-p") 'mo-erc-backward-line)
-            (local-set-key (kbd "M-n") 'mo-erc-forward-line)))
+            (local-set-key [M-up] 'mo-erc-backward-line)
+            (local-set-key [M-down] 'mo-erc-forward-line)))
 
 ;; An example of an ERC command:
 ;; (defun erc-cmd-SAVE (&rest ignore)
