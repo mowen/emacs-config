@@ -30,6 +30,24 @@
        :nick "martyziff"
        :full-name "Martin Owen"))
 
+(defun mo-erc-backward-line ()
+  "Move backward to previous comment."
+  (interactive)
+  (re-search-backward "<.*>")
+  (beginning-of-line))
+
+(defun mo-erc-forward-line ()
+  "Move forward to next comment."
+  (interactive)
+  (forward-char) ;; move forward a character, or we'll match the name at point
+  (re-search-forward "<.*>")
+  (beginning-of-line))
+
+(add-hook 'erc-mode-hook
+          '(lambda ()
+            (local-set-key (kbd "M-p") 'mo-erc-backward-line)
+            (local-set-key (kbd "M-n") 'mo-erc-forward-line)))
+
 ;; An example of an ERC command:
 ;; (defun erc-cmd-SAVE (&rest ignore)
 ;;   "Save your soul!"
