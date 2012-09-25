@@ -19,7 +19,6 @@
 ;; buffer.
 (savehist-mode 1)		   ;; Save Minibuffer history
 (show-paren-mode t)		   ;; Show matching parentheses.
-(global-hl-line-mode 1)            ;; Highlight the current line
 (global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
 (fset 'yes-or-no-p 'y-or-n-p)	   ;; Accept "y" and "n" for confirmations.
 (put 'upcase-region 'disabled nil)   ;; Don't disable Upper Case Region command
@@ -33,16 +32,6 @@
 (defalias 'cr 'comment-region)
 (defalias 'ur 'uncomment-region)
 (defalias 'ir 'indent-region)
-
-;; ----------------------------------------
-;; Bookmarks
-
-;; When opening a bookmark, name the buffer after the bookmark
-;; TODO: maybe use uniquify to generate the buffer name? bookmark
-;; name is probably easier to remember
-(add-hook 'bookmark-after-jump-hook
-	  '(lambda ()
-            (rename-buffer bookmark-current-bookmark)))
 
 ;; ----------------------------------------
 ;; Desktop mode (save state when exiting)
