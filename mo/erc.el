@@ -10,8 +10,10 @@
 (setq erc-kill-server-buffer-on-quit t) ;; Kill buffers for server messages after quitting the server
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT")
-      erc-pals '("magnars" "technomancy")
+      erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen")
       erc-pal-highlight-type 'all)
+
+(defconst mo-erc-nick-regexp "^<.*>")
 
 (defun mo-erc-connect-to-freenode ()
   "Connect to Freenode with ERC."
@@ -33,21 +35,21 @@
 (defun mo-erc-backward-line ()
   "Move backward to previous comment."
   (interactive)
-  (re-search-backward "^<.*>")
+  (re-search-backward mo-erc-nick-regexp)
   (beginning-of-line))
 
 (defun mo-erc-forward-line ()
   "Move forward to next comment."
   (interactive)
   (forward-char) ;; move forward a character, or we'll match the name at point
-  (re-search-forward "^<.*>")
+  (re-search-forward mo-erc-nick-regexp)
   (beginning-of-line))
 
 (defun mo-erc-backward-pal ()
   "Move backward to the next comment by a pal."
   (interactive)
   (let ((current-line (line-number-at-pos (point))))
-    (mo-erc-backward-pal)
+    (mo-erc-backward-line)
     (while (and (not (mo-erc-comment-is-by-pal-p))
                 (not (= current-line (line-number-at-pos (point)))))
       (mo-erc-backward-line))))
@@ -73,8 +75,8 @@
           '(lambda ()
             (local-set-key [M-up] 'mo-erc-backward-line)
             (local-set-key [M-down] 'mo-erc-forward-line)
-            (local-set-key (kbd "C-x <up>") 'mo-erc-backward-pal)
-            (local-set-key (kbd "C-x <down>") 'mo-erc-forward-pal)))
+            (local-set-key [C-up] 'mo-erc-backward-pal)
+            (local-set-key [C-down] 'mo-erc-forward-pal)))
 
 ;; An example of an ERC command:
 ;; (defun erc-cmd-SAVE (&rest ignore)
