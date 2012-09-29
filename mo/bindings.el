@@ -31,9 +31,9 @@
 (global-set-key (kbd "C-x c") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-x p") '(lambda (&optional arg)
                                 (interactive "p")
-                                (cond ((= 1 arg) (el-get-list-packages))
-                                      ((= 2 arg) (package-list-packages))
-                                      (t (package-list-packages-no-fetch)))))
+                                (cond ((= 1 arg) (package-list-packages))
+                                      ((= 2 arg) (el-get-list-packages))
+                                      (t (package-list-packages)))))
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys

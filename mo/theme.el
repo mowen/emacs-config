@@ -19,6 +19,11 @@
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")))
 
+(eval-after-load 'erc-match
+  '(progn
+    (set-face-foreground 'erc-pal-face "black")
+    (set-face-background 'erc-pal-face "yellow1")))
+
 ;; ----------------------------------------
 ;; Alpha (transparency)
 

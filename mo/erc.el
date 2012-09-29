@@ -10,8 +10,8 @@
 (setq erc-kill-server-buffer-on-quit t) ;; Kill buffers for server messages after quitting the server
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT")
-      erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen")
-      erc-pal-highlight-type 'all)
+      erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen" "ddfreyne")
+      erc-pal-highlight-type 'nick)
 
 (defconst mo-erc-nick-regexp "^<.*>")
 
@@ -68,6 +68,7 @@
   (save-excursion
     (mo-erc-forward-line) ;; go backwards and forwards to ensure 
     (mo-erc-backward-line)  ;; we are at the start of the name
+    (forward-char) ;; move forward one char so that we are at the start of the name
     (let ((current-face (get-text-property (point) 'face)))
       (equal 'erc-pal-face current-face))))
 
