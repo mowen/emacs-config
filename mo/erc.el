@@ -33,20 +33,48 @@
 (defun mo-erc-backward-line ()
   "Move backward to previous comment."
   (interactive)
-  (re-search-backward "<.*>")
+  (re-search-backward "^<.*>")
   (beginning-of-line))
 
 (defun mo-erc-forward-line ()
   "Move forward to next comment."
   (interactive)
   (forward-char) ;; move forward a character, or we'll match the name at point
-  (re-search-forward "<.*>")
+  (re-search-forward "^<.*>")
   (beginning-of-line))
+
+(defun mo-erc-backward-pal ()
+  "Move backward to the next comment by a pal."
+  (interactive)
+  (let ((current-line (line-number-at-pos (point))))
+    (mo-erc-backward-pal)
+    (while (and (not (mo-erc-comment-is-by-pal-p))
+                (not (= current-line (line-number-at-pos (point)))))
+      (mo-erc-backward-line))))
+
+(defun mo-erc-forward-pal ()
+  "Move forward to the next comment by a pal."
+  (interactive)
+  (let ((current-line (line-number-at-pos (point))))
+    (mo-erc-forward-line)
+    (while (and (not (mo-erc-comment-is-by-pal-p))
+                (not (= current-line (line-number-at-pos (point)))))
+      (mo-erc-forward-line))))
+
+(defun mo-erc-comment-is-by-pal-p ()
+  "Is the comment under point made by a pal?"
+  (save-excursion
+    (mo-erc-forward-line) ;; go backwards and forwards to ensure 
+    (mo-erc-backward-line)  ;; we are at the start of the name
+    (let ((current-face (get-text-property (point) 'face)))
+      (equal 'erc-pal-face current-face))))
 
 (add-hook 'erc-mode-hook
           '(lambda ()
             (local-set-key [M-up] 'mo-erc-backward-line)
-            (local-set-key [M-down] 'mo-erc-forward-line)))
+            (local-set-key [M-down] 'mo-erc-forward-line)
+            (local-set-key (kbd "C-x <up>") 'mo-erc-backward-pal)
+            (local-set-key (kbd "C-x <down>") 'mo-erc-forward-pal)))
 
 ;; An example of an ERC command:
 ;; (defun erc-cmd-SAVE (&rest ignore)
