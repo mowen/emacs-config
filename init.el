@@ -30,6 +30,7 @@
                       coffee-mode
                       durendal
                       erc-hl-nicks
+                      exec-path-from-shell
                       gist
                       haml-mode
                       ioccur

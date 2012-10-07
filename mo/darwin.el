@@ -1,8 +1,7 @@
-(push "/usr/local/bin" exec-path)
-
-;; We need to set PATH correctly, as it isn't picked up by Emacs on OS X
-;; This solution still isn't quite right.
-(setenv "PATH" (shell-command-to-string "source $HOME/.bash_profile && printf $PATH"))
+;; This sets $MANPATH, $PATH and exec-path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize)
+  (mapc 'exec-path-from-shell-copy-env '("MY_RUBY_HOME" "RUBYOPT" "RUBY_VERSION" "GEM_HOME" "GEM_PATH" "NODE_PATH" "PYTHONPATH")))
 
 (setq org-directory (expand-file-name "~/Documents/org-files/"))
 
