@@ -6,7 +6,7 @@
 (require 'znc)
 
 (setq erc-interpret-mirc-color t) 	;; Interpret mIRC-style color commands
-(setq erc-kill-buffer-on-part t)	;; Kill the buffer when leaving
+(setq erc-kill-buffer-on-part nil)	;; Kill the buffer when leaving (set to nil as doesn't work so well with ZNC
 (setq erc-kill-server-buffer-on-quit t) ;; Kill buffers for server messages after quitting the server
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT")
