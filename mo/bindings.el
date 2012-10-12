@@ -56,3 +56,11 @@
 (global-set-key [M-right] 'windmove-right) ; move to right window
 (global-set-key [M-up]    'windmove-up)    ; move to upper window
 (global-set-key [M-down]  'windmove-down)  ; move to downer window
+
+;; ----------------------------------------
+;; Buffer Move
+
+;;(global-set-key (kbd "<C-S-up>") 'buf-move-up)
+;;(global-set-key (kbd "<C-S-down>") 'buf-move-down)
+(global-set-key (kbd "<C-S-left>") 'buf-move-left)
+(global-set-key (kbd "<C-S-right>") 'buf-move-right)

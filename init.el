@@ -25,6 +25,7 @@
                       all
                       auto-complete
                       bookmark+
+                      buffer-move
                       clojure-mode
                       clojure-test-mode
                       coffee-mode

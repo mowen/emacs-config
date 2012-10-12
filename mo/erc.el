@@ -11,7 +11,8 @@
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT")
       erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen" "ddfreyne")
-      erc-pal-highlight-type 'nick)
+      erc-pal-highlight-type 'nick
+      znc-servers `(("ec2-107-20-32-36.compute-1.amazonaws.com" 1025 nil ((sweetback-znc "mowen" ,znc-sweetback-password)))))
 
 (defconst mo-erc-nick-regexp "^<.*>")
 
