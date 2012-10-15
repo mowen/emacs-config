@@ -10,7 +10,7 @@
 (setq erc-kill-server-buffer-on-quit t) ;; Kill buffers for server messages after quitting the server
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT")
-      erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen" "ddfreyne")
+      erc-pals '("magnars" "technomancy" "nicferrier" "chouser" "dnolen" "ddfreyne" "rhickey")
       erc-pal-highlight-type 'nick
       znc-servers `(("ec2-107-20-32-36.compute-1.amazonaws.com" 1025 nil ((sweetback-znc "mowen" ,znc-sweetback-password)))))
 
