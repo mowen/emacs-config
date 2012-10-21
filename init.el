@@ -47,6 +47,7 @@
                       scss-mode
                       slime
                       slime-repl
+                      sr-speedbar
                       starter-kit
                       starter-kit-bindings
                       starter-kit-eshell

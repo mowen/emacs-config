@@ -35,6 +35,8 @@
                                       ((= 2 arg) (el-get-list-packages))
                                       (t (package-list-packages)))))
 
+(global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
+
 ;; -----------------------------------------------------------------------------
 ;; Function keys
 
