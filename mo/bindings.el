@@ -17,6 +17,7 @@
 ;; Alternative keys for Alt-X
 (global-set-key (kbd "C-x C-m") 'smex)
 (global-set-key (kbd "C-c C-m") 'smex)
+(global-set-key (kbd "C-x C-n") 'smex-major-mode-commands)
 
 (global-set-key [C-tab] 'other-window)
 (global-set-key (kbd "C-z") 'undo) ;; Fix the stupidest default keybinding in history
@@ -35,7 +36,8 @@
                                       ((= 2 arg) (el-get-list-packages))
                                       (t (package-list-packages)))))
 
-(global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
+(global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
+(global-set-key (kbd "C-c C-s") 'sr-speedbar-close)
 
 ;; -----------------------------------------------------------------------------
 ;; Function keys

@@ -33,3 +33,13 @@
     (transparency-set-value 85)
     (transparency-set-value 95))
 
+(unless (boundp 'mo-default-font)
+    (setq mo-default-font (face-font 'default)))
+(unless (boundp 'mo-variable-pitch-font)
+  (setq mo-variable-pitch-font (face-font 'variable-pitch)))
+(unless (boundp 'mo-fixed-pitch-font)
+  (setq mo-fixed-pitch-font (face-font 'fixed-pitch)))
+
+(set-face-font 'default mo-default-font)
+(set-face-font 'variable-pitch mo-variable-pitch-font)
+(set-face-font 'fixed-pitch mo-fixed-pitch-font)

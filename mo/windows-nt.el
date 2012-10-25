@@ -4,7 +4,9 @@
     (setq org-directory "U:/Documents/OrgMode/")
     (setq org-directory (expand-file-name "~/OrgMode/")))
 
-(set-default-font "-outline-Consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
+(setq mo-default-font "Consolas-11")
+(setq mo-variable-pitch-font "Segoe UI-11")
+(setq mo-fixed-pitch-font "Consolas-11")
 
 (custom-set-variables
     '(ispell-dictionary "british")

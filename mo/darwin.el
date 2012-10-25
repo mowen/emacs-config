@@ -14,7 +14,11 @@
 ;; Use the command key for meta
 (setq ns-command-modifier 'meta)
 
-(set-frame-font "Menlo-12")
+(setq delete-by-moving-to-trash t)
+
+(setq mo-default-font "Menlo-12")
+(setq mo-variable-pitch-font "Lucida Sans-12")
+(setq mo-fixed-pitch-font "Menlo-12")
 
 ;; Use the menu-bar-mode on OS X, as it doesn't use any space
 (if (fboundp 'menu-bar-mode) (menu-bar-mode 1))

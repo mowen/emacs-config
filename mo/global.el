@@ -101,9 +101,9 @@
       speedbar-use-images nil
       speedbar-indentation-width 2
       speedbar-update-flag t
-      sr-speedbar-width 40
-      sr-speedbar-width-x 40
-      sr-speedbar-auto-refresh nil
+      sr-speedbar-width 30
+      sr-speedbar-width-x 30
+      sr-speedbar-auto-refresh t
       sr-speedbar-skip-other-window-p t
       sr-speedbar-right-side nil)
 
@@ -116,3 +116,14 @@
 
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
+
+(defun mo-toggle-sr-speedbar ()
+  "Toggle sr-speedbar buffer, creating it if necessary."
+  (interactive)
+  (cond ((sr-speedbar-window-p)
+         (message "Other window")
+         (other-window 1))
+        ((sr-speedbar-exist-p)
+         (message "Select window")
+         (sr-speedbar-select-window)) 
+        (t (sr-speedbar-open))))
