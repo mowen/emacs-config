@@ -110,6 +110,7 @@
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
           '(lambda ()
+             (define-key speedbar-mode-map (kbd "^") 'speedbar-up-directory) 
              (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
              (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
              (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
@@ -117,13 +118,17 @@
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
+;; (defadvice speedbar-edit-line
+;;     (after mo-speedbar-edit-line-and-other-window)
+;;   "Move to other window after selecting line"
+;;   (message "Using my Other Window")
+;;   (other-window 1))
+
+;; (ad-activate 'speedbar-edit-line)
+
 (defun mo-toggle-sr-speedbar ()
   "Toggle sr-speedbar buffer, creating it if necessary."
   (interactive)
-  (cond ((sr-speedbar-window-p)
-         (message "Other window")
-         (other-window 1))
-        ((sr-speedbar-exist-p)
-         (message "Select window")
-         (sr-speedbar-select-window)) 
+  (cond ((sr-speedbar-window-p) (other-window 1))
+        ((sr-speedbar-exist-p) (sr-speedbar-select-window))
         (t (sr-speedbar-open))))
