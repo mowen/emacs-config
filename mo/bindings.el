@@ -36,9 +36,6 @@
                                       ((= 2 arg) (el-get-list-packages))
                                       (t (package-list-packages)))))
 
-(global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
-(global-set-key (kbd "C-c C-s") 'sr-speedbar-close)
-
 ;; -----------------------------------------------------------------------------
 ;; Function keys
 

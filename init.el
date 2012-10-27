@@ -32,6 +32,7 @@
                       durendal
                       erc-hl-nicks
                       exec-path-from-shell
+                      expand-region
                       gist
                       haml-mode
                       ioccur

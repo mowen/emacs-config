@@ -132,3 +132,12 @@
   (cond ((sr-speedbar-window-p) (other-window 1))
         ((sr-speedbar-exist-p) (sr-speedbar-select-window))
         (t (sr-speedbar-open))))
+
+(global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
+(global-set-key (kbd "C-c C-s") 'sr-speedbar-close)
+
+;; ----------------------------------------
+;; Expand Region
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
