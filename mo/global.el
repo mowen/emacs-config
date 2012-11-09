@@ -118,13 +118,13 @@
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
-;; (defadvice speedbar-edit-line
-;;     (after mo-speedbar-edit-line-and-other-window)
-;;   "Move to other window after selecting line"
-;;   (message "Using my Other Window")
-;;   (other-window 1))
+(defadvice speedbar-edit-line
+    (after mo-speedbar-edit-line-and-other-window)
+  "Move to other window after selecting line"
+  ;; There's got to be a better way to do this, surely?
+  (other-window 1))
 
-;; (ad-activate 'speedbar-edit-line)
+(ad-activate 'speedbar-edit-line)
 
 (defun mo-toggle-sr-speedbar ()
   "Toggle sr-speedbar buffer, creating it if necessary."
