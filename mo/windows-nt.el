@@ -8,6 +8,6 @@
 (setq mo-variable-pitch-font "Segoe UI-10")
 (setq mo-fixed-pitch-font "Consolas-10")
 
-(custom-set-variables
-    '(ispell-dictionary "british")
-    '(ispell-program-name "C:\\Program Files (x86)\\aspell\\bin\\aspell.exe"))
+(setq ispell-dictionary "british"
+      ispell-program-name "C:\\Program Files (x86)\\aspell\\bin\\aspell.exe")
+

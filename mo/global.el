@@ -110,31 +110,33 @@
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
           '(lambda ()
-             (define-key speedbar-mode-map (kbd "^") 'speedbar-up-directory) 
-             (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
-             (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
-             (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
+            (define-key speedbar-mode-map (kbd "^") 'speedbar-up-directory) 
+            (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
+            (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
+            (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
 
-;; Highlight the current line
-(add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
+(eval-after-load 'sr-speedbar
+  '(progn
+    ;; Highlight the current line
+    (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
-(defadvice speedbar-edit-line
-    (after mo-speedbar-edit-line-and-other-window)
-  "Move to other window after selecting line"
-  ;; There's got to be a better way to do this, surely?
-  (other-window 1))
+    (defadvice speedbar-edit-line
+     (after mo-speedbar-edit-line-and-other-window)
+     "Move to other window after selecting line"
+     ;; There's got to be a better way to do this, surely?
+     (other-window 1))
 
-(ad-activate 'speedbar-edit-line)
+    (ad-activate 'speedbar-edit-line)
 
-(defun mo-toggle-sr-speedbar ()
-  "Toggle sr-speedbar buffer, creating it if necessary."
-  (interactive)
-  (cond ((sr-speedbar-window-p) (other-window 1))
-        ((sr-speedbar-exist-p) (sr-speedbar-select-window))
-        (t (sr-speedbar-open))))
+    (defun mo-toggle-sr-speedbar ()
+      "Toggle sr-speedbar buffer, creating it if necessary."
+      (interactive)
+      (cond ((sr-speedbar-window-p) (other-window 1))
+            ((sr-speedbar-exist-p) (sr-speedbar-select-window))
+            (t (sr-speedbar-open))))
 
-(global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
-(global-set-key (kbd "C-c C-s") 'sr-speedbar-close)
+    (global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
+    (global-set-key (kbd "C-c C-s") 'sr-speedbar-close)))
 
 ;; ----------------------------------------
 ;; Expand Region
