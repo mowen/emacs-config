@@ -10,12 +10,14 @@
 
 (add-hook 'prog-mode-hook
           '(lambda ()
-            ;;(linum-mode t)
+            (hl-line-mode -1)
             (capitalized-words-mode t)
-            (local-set-key (kbd "C-'") 'indent-buffer)
-            (local-set-key (kbd "C-.") 'mo-indent-defun)))
+            (flyspell-prog-mode) ;; Only highlight typos in strings and comments
+            ;;(linum-mode t)
+            ;;(local-set-key (kbd "C-.") 'esk-cleanup-buffer)
+            (local-set-key (kbd "C-'") 'esk-cleanup-buffer)))
 
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 ;; ----------------------------------------
 ;; Other mode settings
