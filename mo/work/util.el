@@ -20,46 +20,6 @@
 	       `(minutes . ,(truncate (* minutes (/ 10.0 6.0))))))
 
 ;; -----------------------------------------------------------------------------
-;; Functions for visiting today's Mayrise and Flare archive directories
-
-(defun mo--visit-todays-arch-dir (base-dir)
-  "Visit today's archive directory in BASE-DIR. The directory
-name will be in the format '2008_11/12'."
-  (let* ((cached-current-time (current-time))
-	 (year (format-time-string "%Y" cached-current-time))
-	 (month (format-time-string "%m" cached-current-time))
-	 (day (format-time-string "%d" cached-current-time))
-	 (arch-dir (concat base-dir year "_" month "/" day)))
-    (if (file-exists-p arch-dir)
-	(find-file arch-dir)
-      (message "Archive directory '%s' does not exist, or is inaccessible."
-	       arch-dir))))
-
-(defmacro mo-define-visit-arch-dir-funs (archive-directories-alist)
-  "Define each of the mo-visit-arch-dir functions."
-  (declare (indent defun)) ;; indent the macros like defuns
-  `(progn  ;; The "(progn ,@(mapcar..." is from html-lite.el. I'm not
-     ,@(mapcar (lambda (directory)  ;; exactly sure how it works
-		 (list 'defun (intern (format "mo-visit-%s" (car directory))) '()
-		       (concat "Visit today's " (symbol-name (car directory)) " arch directory.")
-		       (list 'interactive)
-		       (list 'mo--visit-todays-arch-dir (cdr directory))))
-	       archive-directories-alist)))
-
-(mo-define-visit-arch-dir-funs
-  ((refuse-live-old        . "F:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
-   (refuse-live            . "F:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
-   (refuse-test-old        . "J:/Inetpub/wwwroot/SeftonMayriseRefuse/arch/")
-   (refuse-test            . "J:/Inetpub/wwwroot/SeftonMayriseRefuseV3/arch/")
-   (tech-services-live-old . "F:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
-   (tech-services-live     . "F:/Inetpub/wwwroot/SeftonMayriseTechServicesV3/arch/")
-   (tech-services-test-old . "J:/Inetpub/wwwroot/SeftonMayriseTechServices/arch/")
-   (tech-services-test     . "J:/Inetpub/wwwroot/SeftonMayriseTechServicesV3/arch/")
-   (eip-live-old           . "P:/Inetpub/wwwroot/SeftonEIP/arch/")
-   (eip-live               . "P:/Inetpub/wwwroot/SeftonEIPV3/arch/")
-   (eip-test               . "P:/Inetpub/wwwroot/SeftonEIPTest/arch/")))
-
-;; -----------------------------------------------------------------------------
 ;; Execute the region of SQL
 ;;
 ;; Investigate SQLi (executed by sql-ms), as that may do this for me.
