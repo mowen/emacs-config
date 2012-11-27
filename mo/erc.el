@@ -21,9 +21,9 @@
   (interactive)
   (erc :server "irc.freenode.net"
        :port 6667
-       :nick "martyziff"
+       :nick "mowen"
        :full-name "Martin Owen"
-       :password erc-freenode-password))
+       :password erc-freenode-mowen-password))
 
 (defun mo-erc-connect-to-quakenet ()
   "Connect to Quakenet IRC"
