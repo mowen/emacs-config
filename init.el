@@ -56,6 +56,7 @@
                       starter-kit-lisp
                       starter-kit-ruby
                       undo-tree
+                      web-mode
                       yaml-mode
                       yari
                       yasnippet-bundle
