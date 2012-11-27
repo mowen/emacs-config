@@ -42,6 +42,7 @@
 		      marmalade
                       notify
                       org
+                      rinari
                       ruby-mode
                       ruby-electric
                       ruby-block
