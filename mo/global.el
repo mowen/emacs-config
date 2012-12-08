@@ -3,24 +3,24 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 ;;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(blink-cursor-mode nil)		;; No blinking cursor
-(column-number-mode t)		;; Column Numbers in Status Bar
-;;(cua-mode t) 			;; Standard keys for Cut, Copy, Paste, and Undo
+(blink-cursor-mode nil)         ;; No blinking cursor
+(column-number-mode t)          ;; Column Numbers in Status Bar
+;;(cua-mode t)                  ;; Standard keys for Cut, Copy, Paste, and Undo
 ;; There is also a shift region thing that I should think about trying
 
 (setq inhibit-startup-screen t)
-(setq transient-mark-mode t)	   ;; Transient mark = highlight selection.
-(setq make-backup-files nil)	   ;; Don't leave "blah~" files everywhere.
-(setq windmove-wrap-around t)	   ;; Wrap around when switching windows with
+(setq transient-mark-mode t)       ;; Transient mark = highlight selection.
+(setq make-backup-files nil)       ;; Don't leave "blah~" files everywhere.
+(setq windmove-wrap-around t)      ;; Wrap around when switching windows with
 ;; windmove
 (setq delete-by-moving-to-trash t) ;; Use the system's trash can when deleting
-(setq-default fill-column 80)	   ;; Wrap lines in auto-fill mode at 80 chars
-(setq-default truncate-lines t)	   ;; Seems to work, truncating lines in every
+(setq-default fill-column 80)      ;; Wrap lines in auto-fill mode at 80 chars
+(setq-default truncate-lines t)    ;; Seems to work, truncating lines in every
 ;; buffer.
-(savehist-mode 1)		   ;; Save Minibuffer history
-(show-paren-mode t)		   ;; Show matching parentheses.
+(savehist-mode 1)                  ;; Save Minibuffer history
+(show-paren-mode t)                ;; Show matching parentheses.
 (global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
-(fset 'yes-or-no-p 'y-or-n-p)	   ;; Accept "y" and "n" for confirmations.
+(fset 'yes-or-no-p 'y-or-n-p)      ;; Accept "y" and "n" for confirmations.
 (put 'upcase-region 'disabled nil)   ;; Don't disable Upper Case Region command
 (put 'downcase-region 'disabled nil) ;; Or Down Case Region
 
@@ -65,7 +65,7 @@
 (require 'auto-complete)
 (eval-after-load 'auto-complete
   '(progn
-    ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))  
+    ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))
     (require 'auto-complete-config)
 
     (ac-config-default)
@@ -110,7 +110,7 @@
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
           '(lambda ()
-            (define-key speedbar-mode-map (kbd "^") 'speedbar-up-directory) 
+            (define-key speedbar-mode-map (kbd "^") 'speedbar-up-directory)
             (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
             (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
             (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
@@ -143,3 +143,17 @@
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;;
+
+(require 'bm)
+
+(eval-after-load 'bm
+  '(progn
+    (autoload 'bm-toggle   "bm" "Toggle bookmark in current buffer." t)
+    (autoload 'bm-next     "bm" "Goto bookmark."                     t)
+    (autoload 'bm-previous "bm" "Goto previous bookmark."            t)
+
+    (global-set-key (kbd "<C-f2>") 'bm-toggle)
+    (global-set-key (kbd "<f2>")   'bm-next)
+    (global-set-key (kbd "<S-f2>") 'bm-previous)))

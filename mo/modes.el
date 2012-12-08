@@ -11,12 +11,12 @@
 (add-hook 'prog-mode-hook
           '(lambda ()
             (hl-line-mode -1)
+            (auto-fill-mode -1)
             (capitalized-words-mode t)
             (flyspell-prog-mode) ;; Only highlight typos in strings and comments
-            ;;(linum-mode t)
-            ;;(local-set-key (kbd "C-.") 'esk-cleanup-buffer)
             (local-set-key (kbd "C-'") 'esk-cleanup-buffer)))
 
+(remove-hook 'prog-mode-hook 'esk-local-comment-auto-fill)
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 ;; ----------------------------------------

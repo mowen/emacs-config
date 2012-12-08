@@ -25,6 +25,7 @@
                       all
                       auto-complete
                       bookmark+
+                      bm
                       buffer-move
                       clojure-mode
                       clojure-test-mode
