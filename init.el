@@ -42,6 +42,7 @@
                       markdown-mode
 		      marmalade
                       notify
+                      nrepl
                       org
                       rinari
                       ruby-mode
