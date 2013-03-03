@@ -2,6 +2,12 @@
 ;; Ruby Mode
 ;; ----------------------------------------
 
+(eval-after-load 'starter-kit-ruby-autoloads
+  '(progn
+    ;; Obsolete hook created by ESK
+    (mo-log "remove inf-ruby-keys hook")
+    (remove-hook 'ruby-mode-hook 'inf-ruby-keys)))
+
 (eval-after-load 'ruby-mode
   '(progn
     (require 'ruby-block)
@@ -17,4 +23,6 @@
 
     (add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings)
 
-    (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))))  
+    (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
+
+    (mo-log "ruby-mode customisations loaded")))  

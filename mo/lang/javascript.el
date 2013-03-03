@@ -4,17 +4,18 @@
     (require 'jquery-doc)
     (require 'moz)
     (add-hook 'js-mode-hook
-	  '(lambda ()
-	    (setq imenu-create-index-function 'imenu-default-create-index-function)
-	    (setq imenu-generic-expression
-             '((nil "function\\s-+\\(\\w+\\)\\s-*(" 1) ;; Named Function
-               (nil "^\\s-*\\(_?\\w+\\):\\s-*function\\s-*(" 1) ;; Hash Method
-               (nil "this\.\\(\\w+\\)\\s-*=\\s-*function\\s-*(" 1) ;; Instance Method
-               (nil "var \\([A-Z]+\\w+\\) = {" 1))) ;; Variable as Class)
-	    (setq indent-tabs-mode nil)
-            (jquery-doc-setup) ;; adds ac-source-jquery to the ac-sources list
-            (moz-minor-mode 1) ;; MozRepl
-            (esk-prog-mode-hook)))))
+     '(lambda ()
+       (setq imenu-create-index-function 'imenu-default-create-index-function)
+       (setq imenu-generic-expression
+        '((nil "function\\s-+\\(\\w+\\)\\s-*(" 1) ;; Named Function
+          (nil "^\\s-*\\(_?\\w+\\):\\s-*function\\s-*(" 1) ;; Hash Method
+          (nil "this\.\\(\\w+\\)\\s-*=\\s-*function\\s-*(" 1) ;; Instance Method
+          (nil "var \\([A-Z]+\\w+\\) = {" 1))) ;; Variable as Class)
+       (setq indent-tabs-mode nil)
+       (jquery-doc-setup) ;; adds ac-source-jquery to the ac-sources list
+       (moz-minor-mode 1) ;; MozRepl
+       (esk-prog-mode-hook)))
+    (mo-log "js-mode customisatons loaded")))
 
 ;; ----------------------------------------
 ;; Coffee Script
@@ -53,22 +54,22 @@
 (defun mo-script-tag-insert-for-library (library)
   (let ((script-url (mo-get-script-url library)))
     (concat "var script = document.createElement('script'); "
-	    "script.type = 'text/javascript'; "
-	    "script.src='" script-url "'; "
-	    "head.appendChild(script);" )))
+            "script.type = 'text/javascript'; "
+            "script.src='" script-url "'; "
+            "head.appendChild(script);" )))
 
 (defun mo-moz-repl-enter-content ()
   "Enter the main content in the MozRepl. Necessary for working with the DOM."
   (comint-send-string (inferior-moz-process)
-		      (concat moz-repl-name ".enter(content); ")))
-    
+                      (concat moz-repl-name ".enter(content); ")))
+
 (defun mo-moz-repl-load-scripts-list (libraries)
   (let ((script-tag-inserts (mapconcat 'mo-script-tag-insert-for-library libraries "")))
     (mo-moz-repl-enter-content) ;; This needs to run first or document isn't set
     (comint-send-string (inferior-moz-process)
-			(concat
-			 "var head = document.getElementsByTagName('head').item(0); "
-			 script-tag-inserts))))
+                        (concat
+                         "var head = document.getElementsByTagName('head').item(0); "
+                         script-tag-inserts))))
 
 (defun mo-moz-repl-load-scripts (lib-string)
   "Load the given scripts in a MozRepl session."
@@ -81,8 +82,8 @@
   "Open the given URL with MozRepl, and optionally load some JavaScript libraries."
   (mo-moz-repl-enter-content)
   (comint-send-string (inferior-moz-process)
-		      (concat "document.location.href = '" url "'; "
-			      "undefined;\n"))
+                      (concat "document.location.href = '" url "'; "
+                              "undefined;\n"))
   (sleep-for 0 500) ;; 500ms
   (insert "\n")
   (mo-moz-repl-enter-content) ;; Set context again as it has reloaded
@@ -90,5 +91,3 @@
       (mo-moz-repl-load-scripts-list load-libraries)))
 
 ;; (mo-moz-repl-open-url "http://martinowen.net" '(jquery underscore))
-
-

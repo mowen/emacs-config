@@ -1,4 +1,5 @@
-(load-theme 'deeper-blue)
+(eval-after-load 'color-theme-sanityinc-tomorrow
+  (color-theme-sanityinc-tomorrow-night))
 
 ;; ----------------------------------------
 ;; My custom faces

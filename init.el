@@ -7,6 +7,8 @@
 (add-to-list 'load-path mo-dotfiles-dir)
 (add-to-list 'load-path mo-vendor-dir)
 
+(load "mo/logger")
+
 ;; ----------------------------------------
 ;; Packages
 
@@ -30,6 +32,8 @@
                       clojure-mode
                       clojure-test-mode
                       coffee-mode
+                      color-theme
+                      color-theme-sanityinc-tomorrow
                       durendal
                       erc-hl-nicks
                       exec-path-from-shell
@@ -37,7 +41,7 @@
                       gist
                       haml-mode
                       ioccur
-		      magit
+ 		      magit
                       magithub
                       markdown-mode
 		      marmalade
@@ -48,6 +52,7 @@
                       ruby-mode
                       ruby-electric
                       ruby-block
+                      s ;; string manipulation lib
                       scss-mode
                       slime
                       slime-repl
@@ -74,12 +79,14 @@
 
 ;; Load passwords.el file if it exists.
 (if (file-exists-p (concat mo-dotfiles-dir "mo/passwords.el"))
-    (load "mo/passwords"))
+    (progn
+      (mo-log "loading mo/passwords.el")
+      (load "mo/passwords")))
 
 (load (concat "mo/" (symbol-name system-type)))
 (load (concat "mo/" (symbol-name mo-location)))
 
-;; custom place to save customizations
+;; custom place to save customisations
 (setq custom-file (concat mo-dotfiles-dir "mo/custom.el"))
 (load custom-file)
 

@@ -8,4 +8,6 @@
     (add-to-list 'same-window-buffer-names "*nrepl*")
     (add-hook 'nrepl-interaction-mode 'paredit-mode)
     ;;(add-hook 'nrepl-mode-hook 'clojure-mode-font-lock-setup)
-    (add-hook 'nrepl-mode-hook 'subword-mode)))
+    (add-hook 'nrepl-mode-hook 'subword-mode)
+
+    (mo-log "loaded nrepl customisations")))
