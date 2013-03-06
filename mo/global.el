@@ -142,9 +142,25 @@
 ;; Expand Region
 
 (require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
 
-;;
+(eval-after-load 'expand-region
+  '(progn
+    (global-set-key (kbd "C-=") 'er/expand-region)))
+
+;; ----------------------------------------
+;; Multiple Cursors
+
+(require 'multiple-cursors)
+
+(eval-after-load 'multiple-cursors
+  '(progn
+    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+
+;; ----------------------------------------
+;; Visible Bookmarks
 
 (require 'bm)
 
@@ -162,3 +178,4 @@
 ;; yasnippets
 
 (setq yas/root-directory (concat mo-dotfiles-dir "snippets"))
+

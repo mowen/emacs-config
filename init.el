@@ -34,6 +34,7 @@
                       coffee-mode
                       color-theme
                       color-theme-sanityinc-tomorrow
+                      dash
                       durendal
                       erc-hl-nicks
                       exec-path-from-shell
@@ -45,6 +46,7 @@
                       magithub
                       markdown-mode
 		      marmalade
+                      multiple-cursors
                       notify
                       nrepl
                       org
