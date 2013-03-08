@@ -34,6 +34,7 @@
                       coffee-mode
                       color-theme
                       color-theme-sanityinc-tomorrow
+                      csharp-mode
                       dash
                       durendal
                       erc-hl-nicks
