@@ -23,6 +23,7 @@
 
 (defvar mo-packages '(ace-jump-mode
                       ac-slime
+                      alert
                       alpha
                       all
                       auto-complete
@@ -38,10 +39,12 @@
                       dash
                       durendal
                       erc-hl-nicks
+                      el-mock
                       exec-path-from-shell
                       expand-region
                       gist
                       haml-mode
+                      ht
                       ioccur
  		      magit
                       magithub
