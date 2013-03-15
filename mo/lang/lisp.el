@@ -30,6 +30,7 @@ include the filename in order to be selected."
   (let* ((filename (car (nreverse (s-split "/" (buffer-file-name)))))
          (filename-no-ext (car (s-split "\\." filename))))
     (mo-log (format "Running ERT for %s" filename-no-ext) 'debug)
+    (eval-buffer)
     (ert filename-no-ext)))
 
 (add-hook 'emacs-lisp-mode-hook
