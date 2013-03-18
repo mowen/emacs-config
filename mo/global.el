@@ -21,8 +21,11 @@
 (show-paren-mode t)                ;; Show matching parentheses.
 (global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
 (fset 'yes-or-no-p 'y-or-n-p)      ;; Accept "y" and "n" for confirmations.
-(put 'upcase-region 'disabled nil)   ;; Don't disable Upper Case Region command
-(put 'downcase-region 'disabled nil) ;; Or Down Case Region
+
+;; Enable some things that are turned off by default
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 (setq max-lisp-eval-depth 40000)
 (setq max-specpdl-size 100000)
