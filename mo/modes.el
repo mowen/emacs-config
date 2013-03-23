@@ -1,11 +1,4 @@
 ;; ----------------------------------------
-;; yasnippet
-
-(eval-after-load 'yasnippet-bundle
-  '(progn
-    (yas/load-directory "~/.emacs.d/snippets")))
-
-;; ----------------------------------------
 ;; prog-mode default settings
 
 (add-hook 'prog-mode-hook

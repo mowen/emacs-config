@@ -3,7 +3,10 @@
 ;; ----------------------------------------
 
 (require 'erc)
-(require 'znc)
+;; I've had problems with the ZNC package, so stopped using it The old
+;; require is still here to remind me that it's pretty cool when it
+;; works.
+;; (require 'znc)
 
 (setq erc-interpret-mirc-color t) 	;; Interpret mIRC-style color commands
 (setq erc-kill-buffer-on-part nil)	;; Kill the buffer when leaving (set to nil as doesn't work so well with ZNC

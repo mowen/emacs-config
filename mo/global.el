@@ -180,5 +180,7 @@
 ;; ----------------------------------------
 ;; yasnippets
 
-(setq yas/root-directory (concat mo-dotfiles-dir "snippets"))
+(eval-after-load 'yasnippet-bundle
+  '(progn
+    (yas/load-directory "~/.emacs.d/snippets")))
 

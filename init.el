@@ -55,9 +55,10 @@
                       nrepl
                       org
                       rinari
-                      ruby-mode
-                      ruby-electric
                       ruby-block
+                      ruby-end
+                      ruby-mode                    
+                      ruby-test-mode
                       s ;; string manipulation lib
                       scss-mode
                       slime
@@ -73,8 +74,7 @@
                       web-mode
                       yaml-mode
                       yari
-                      yasnippet-bundle
-                      znc))
+                      yasnippet-bundle))
 
 (dolist (p mo-packages)
   (when (not (package-installed-p p))
