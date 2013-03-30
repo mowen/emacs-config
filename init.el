@@ -56,7 +56,7 @@
                       org
                       rinari
                       ruby-block
-                      ruby-end
+                      ruby-electric
                       ruby-mode                    
                       ruby-test-mode
                       s ;; string manipulation lib
@@ -69,7 +69,6 @@
                       starter-kit-eshell
                       starter-kit-js
                       starter-kit-lisp
-                      starter-kit-ruby
                       undo-tree
                       web-mode
                       yaml-mode

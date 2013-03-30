@@ -2,23 +2,16 @@
 ;; Ruby Mode
 ;; ----------------------------------------
 
-(eval-after-load 'starter-kit-ruby-autoloads
-  '(progn
-    ;; Obsolete hook created by ESK
-    (mo-log "remove inf-ruby-keys hook")
-    (remove-hook 'ruby-mode-hook 'inf-ruby-keys)))
-
 (eval-after-load 'ruby-mode
   '(progn
+    (require 'ruby-electric)
     (require 'ruby-block)
-    (require 'ruby-end)
     (require 'inf-ruby)
 
     (add-hook 'ruby-mode-hook
      '(lambda ()
        (local-set-key [f1] 'yari)
        (ruby-block-mode t)
-       (ruby-end-mode t)
        (setq ruby-block-highlight-toggle t)
        (esk-prog-mode-hook)))
 

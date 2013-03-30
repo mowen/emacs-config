@@ -132,3 +132,11 @@
 
 ;;(mo-html-string-from-tree (html-div :id "martin"
 ;;	 			    (html-p "This is a paragraph")))
+
+(defun mo-compile-homepage ()
+  (interactive)
+  (if (eq system-type 'darwin)
+      (compile "cd ~/code/websites/martinowen.net; nanoc co" )
+      (message "Not on OS X, so not attempting to compile with nanoc.")))
+
+(global-set-key (kbd "C-c h") 'mo-compile-homepage)
