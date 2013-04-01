@@ -60,6 +60,10 @@
          (tag (format "%s %s" time-string (upcase log-level-string))))
     (mo-log/log mo-logger log-level tag message)))
 
+(defun mo-log-buffer (&optional level)
+  "Log the contents of the entire buffer."
+  (mo-log (buffer-substring (point-min) (point-max)) level))
+
 (mo-init-logger 'debug)
 
 ;; Logging Tests

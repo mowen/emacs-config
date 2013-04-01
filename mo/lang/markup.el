@@ -41,6 +41,11 @@
 (require 'scss-mode)
 (setq scss-compile-at-save nil)
 
+(add-hook 'scss-mode-hook
+          '(lambda ()
+            (esk-paredit-nonlisp)
+            (esk-prog-mode-hook)))
+
 ;; --------------------------------------------
 ;; Zen Coding mode
 
