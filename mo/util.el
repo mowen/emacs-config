@@ -135,8 +135,11 @@
 
 (defun mo-compile-homepage ()
   (interactive)
-  (if (eq system-type 'darwin)
-      (compile "cd ~/code/websites/martinowen.net; nanoc co" )
-      (message "Not on OS X, so not attempting to compile with nanoc.")))
+  (let ((homepage-command-format (if (eq system-type 'darwin)
+                                     "cd %s; nanoc co"
+                                     "cd %s && nanoc co")))
+      (if (boundp 'mo-homepage-dir)
+          (compile (format homepage-command-format mo-homepage-dir))
+          (message "You need to set the 'mo-homepage-dir' variable."))))
 
 (global-set-key (kbd "C-c h") 'mo-compile-homepage)

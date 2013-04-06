@@ -16,9 +16,11 @@
 
 (setq delete-by-moving-to-trash t)
 
-(setq mo-default-font "Menlo-12")
-(setq mo-variable-pitch-font "Lucida Sans-12")
-(setq mo-fixed-pitch-font "Menlo-12")
+(setq mo-default-font "Menlo-12"
+      mo-variable-pitch-font "Lucida Sans-12"
+      mo-fixed-pitch-font "Menlo-12")
+
+(setq mo-homepage-dir "~/code/websites/martinowen.net")
 
 ;; Use the menu-bar-mode on OS X, as it doesn't use any space
 (if (fboundp 'menu-bar-mode) (menu-bar-mode 1))
