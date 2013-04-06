@@ -114,32 +114,3 @@
     (switch-to-buffer temp-buffer)
     (rename-uniquely)
     (text-mode)))
-
-;; -----------------------------------------------------------------------------
-;; html-lite helper utility
-
-(defun mo-html-string-from-tree (html-tree)
-  "Generate a string of HTML from a html-lite tree."
-  (let ((html-string ""))
-    (cond
-     ((null (car html-tree)) '())
-     ((listp (car html-tree))
-      (concat (html-string-from-tree (car html-tree))
-	      (html-string-from-tree (cdr html-tree))))
-     (t
-      (concat (car html-tree)
-	      (html-string-from-tree (cdr html-tree)))))))
-
-;;(mo-html-string-from-tree (html-div :id "martin"
-;;	 			    (html-p "This is a paragraph")))
-
-(defun mo-compile-homepage ()
-  (interactive)
-  (let ((homepage-command-format (if (eq system-type 'darwin)
-                                     "cd %s; nanoc co"
-                                     "cd %s && nanoc co")))
-      (if (boundp 'mo-homepage-dir)
-          (compile (format homepage-command-format mo-homepage-dir))
-          (message "You need to set the 'mo-homepage-dir' variable."))))
-
-(global-set-key (kbd "C-c h") 'mo-compile-homepage)

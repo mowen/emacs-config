@@ -46,10 +46,10 @@
                       haml-mode
                       ht
                       ioccur
- 		      magit
+                      magit
                       magithub
                       markdown-mode
-		      marmalade
+                      marmalade
                       multiple-cursors
                       notify
                       nrepl
@@ -57,7 +57,7 @@
                       rinari
                       ruby-block
                       ruby-electric
-                      ruby-mode                    
+                      ruby-mode
                       ruby-test-mode
                       s ;; string manipulation lib
                       scss-mode
@@ -95,8 +95,11 @@
 (setq custom-file (concat mo-dotfiles-dir "mo/custom.el"))
 (load custom-file)
 
-(load "mo/util")     ;; Utility functions
-(load "mo/global")   ;; Global Variables
-(load "mo/bindings") ;; Key bindings
-(load "mo/theme")    ;; Color Theme
-(load "mo/modes")    ;; Major Modes
+(mapc (lambda (file)
+        (load (format "mo/%s" (symbol-name file))))
+      '(bindings
+        hp
+        global
+        modes
+        theme
+        util))
