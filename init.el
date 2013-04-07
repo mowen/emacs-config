@@ -37,6 +37,8 @@
                       color-theme-sanityinc-tomorrow
                       csharp-mode
                       dash
+                      diminish
+                      dired-details
                       durendal
                       erc-hl-nicks
                       el-mock
@@ -45,6 +47,7 @@
                       gist
                       haml-mode
                       ht
+                      js2-mode
                       ioccur
                       magit
                       magithub

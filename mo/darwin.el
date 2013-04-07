@@ -13,6 +13,9 @@
 
 ;; Use the command key for meta
 (setq ns-command-modifier 'meta)
+;; (setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'super)
+;; (setq ns-function-modifier 'hyper)
 
 (setq delete-by-moving-to-trash t)
 

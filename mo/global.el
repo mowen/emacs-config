@@ -1,7 +1,7 @@
 ;; I don't need any of this fancy GUI nonsense
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 (blink-cursor-mode nil)         ;; No blinking cursor
 (column-number-mode t)          ;; Column Numbers in Status Bar
@@ -11,12 +11,11 @@
 (setq inhibit-startup-screen t)
 (setq transient-mark-mode t)       ;; Transient mark = highlight selection.
 (setq make-backup-files nil)       ;; Don't leave "blah~" files everywhere.
-(setq windmove-wrap-around t)      ;; Wrap around when switching windows with
-;; windmove
+(setq windmove-wrap-around t)      ;; Wrap around when switching windows with windmove
 (setq delete-by-moving-to-trash t) ;; Use the system's trash can when deleting
+(setq indent-tabs-mode nil)        ;; Indentation can't insert tabs
 (setq-default fill-column 80)      ;; Wrap lines in auto-fill mode at 80 chars
-(setq-default truncate-lines t)    ;; Seems to work, truncating lines in every
-;; buffer.
+(setq-default truncate-lines t)    ;; Seems to work, truncating lines in every buffer.
 (savehist-mode 1)                  ;; Save Minibuffer history
 (show-paren-mode t)                ;; Show matching parentheses.
 (global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
@@ -26,6 +25,7 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
 
 (setq max-lisp-eval-depth 40000)
 (setq max-specpdl-size 100000)
@@ -59,8 +59,7 @@
 
 (require 'midnight)
 (midnight-delay-set 'midnight-delay 0) ;; Run midnight hook 0 seconds after midnight
-(add-hook 'midnight-hook '(lambda ()
-                           (clean-buffer-list)))
+(add-hook 'midnight-hook 'clean-buffer-list)
 
 ;; ----------------------------------------
 ;; Auto Complete
@@ -184,3 +183,12 @@
   '(progn
     (yas/load-directory "~/.emacs.d/snippets")))
 
+;; ----------------------------------------
+;; Diminish (diminish modeline clutter)
+
+(require 'diminish)
+
+(eval-after-load 'diminish
+  '(progn
+     (diminish 'undo-tree-mode)
+     (diminish 'yas/minor-mode)))

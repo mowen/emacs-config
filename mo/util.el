@@ -83,6 +83,19 @@
     (indent-region (region-beginning)
                    (region-end))))
 
+(defun mo-create-temp-buffer ()
+  "Create a temp buffer."
+  (interactive)
+  (let ((temp-buffer (get-buffer-create "temp")))
+    (switch-to-buffer temp-buffer)
+    (rename-uniquely)
+    (text-mode)))
+
+(defun mo-list-packages (&optional arg)
+  (interactive "p")
+  (cond ((= 1 arg) (package-list-packages-no-fetch))
+        (t (package-list-packages))))
+
 (defun indent-buffer ()
   "Re-indent the entire buffer."
   (interactive)
@@ -107,10 +120,28 @@
     (set-face-attribute 'default nil :height (funcall operator height amount))
     (message (format "Face height is now %d." height))))
 
-(defun mo-create-temp-buffer ()
-  "Create a temp buffer."
+(defun toggle-window-split ()
+  "Toggles between horizontal and vertical layout of two windows."
   (interactive)
-  (let ((temp-buffer (get-buffer-create "temp")))
-    (switch-to-buffer temp-buffer)
-    (rename-uniquely)
-    (text-mode)))
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (<= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (<= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (if (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  'split-window-horizontally
+                'split-window-vertically)))
+        (delete-other-windows)
+        (let ((first-win (selected-window)))
+          (funcall splitter)
+          (if this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)
+          (if this-win-2nd (other-window 1))))))

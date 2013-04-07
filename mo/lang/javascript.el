@@ -1,21 +1,24 @@
-(eval-after-load 'js
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+(eval-after-load 'js2-mode
   '(progn
     (add-to-list 'load-path (concat mo-vendor-dir "/jquery-doc"))
     (require 'jquery-doc)
     (require 'moz)
-    (add-hook 'js-mode-hook
+    (add-hook 'js2-mode-hook
      '(lambda ()
-       (setq imenu-create-index-function 'imenu-default-create-index-function)
-       (setq imenu-generic-expression
-        '((nil "function\\s-+\\(\\w+\\)\\s-*(" 1) ;; Named Function
-          (nil "^\\s-*\\(_?\\w+\\):\\s-*function\\s-*(" 1) ;; Hash Method
-          (nil "this\.\\(\\w+\\)\\s-*=\\s-*function\\s-*(" 1) ;; Instance Method
-          (nil "var \\([A-Z]+\\w+\\) = {" 1))) ;; Variable as Class)
-       (setq indent-tabs-mode nil)
        (jquery-doc-setup) ;; adds ac-source-jquery to the ac-sources list
        (moz-minor-mode 1) ;; MozRepl
+       (define-key js2-mode-map "{" 'paredit-open-curly)
+       (define-key js2-mode-map "}" 'paredit-close-curly-and-newline)
+       (font-lock-add-keywords
+           'js2-mode `(("\\(function *\\)("
+                       (0 (progn (compose-region (match-beginning 1)
+                                                 (match-end 1) "\u0192")
+                                 nil)))))
+       (esk-paredit-nonlisp)
        (esk-prog-mode-hook)))
-    (mo-log "js-mode customisatons loaded")))
+    (mo-log "js2-mode customisatons loaded")))
 
 ;; ----------------------------------------
 ;; Coffee Script
@@ -27,9 +30,7 @@
   '(progn
     (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
     (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
-    (add-hook 'coffee-mode-hook
-     '(lambda ()
-       (esk-prog-mode-hook)))))
+    (add-hook 'coffee-mode-hook 'esk-prog-mode-hook)))
 
 ;; ----------------------------------------
 ;; Integrate with MozRepl
