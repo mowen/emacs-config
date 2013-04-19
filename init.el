@@ -7,7 +7,10 @@
 (add-to-list 'load-path mo-dotfiles-dir)
 (add-to-list 'load-path mo-vendor-dir)
 
-(load "mo/logger")
+(defun mo-load (file-symbol)
+  (load (format "mo/%s" (symbol-name file-symbol))))
+
+(mo-load 'logger)
 
 ;; ----------------------------------------
 ;; Packages
@@ -90,20 +93,13 @@
 (if (file-exists-p (concat mo-dotfiles-dir "mo/passwords.el"))
     (progn
       (mo-log "loading mo/passwords.el")
-      (load "mo/passwords")))
+      (mo-load 'passwords)))
 
-(load (concat "mo/" (symbol-name system-type)))
-(load (concat "mo/" (symbol-name mo-location)))
+(mo-load system-type)
+(mo-load mo-location)
 
 ;; custom place to save customisations
 (setq custom-file (concat mo-dotfiles-dir "mo/custom.el"))
 (load custom-file)
 
-(mapc (lambda (file)
-        (load (format "mo/%s" (symbol-name file))))
-      '(bindings
-        hp
-        global
-        modes
-        theme
-        util))
+(mapc 'mo-load '(bindings hp global modes theme util))
