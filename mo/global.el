@@ -192,3 +192,18 @@
   '(progn
      (diminish 'undo-tree-mode)
      (diminish 'yas/minor-mode)))
+
+;; ----------------------------------------
+;; Emacs Starter Kit
+
+(eval-after-load 'starter-kit-misc
+  '(progn
+    (remove-hook 'text-mode-hook 'turn-on-auto-fill)
+    (remove-hook 'text-mode-hook 'turn-on-flyspell)))
+
+;; ----------------------------------------
+;; ANSI Color for shell
+
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'eshell-preoutput-filter-functions 'ansi-color-filter-apply)

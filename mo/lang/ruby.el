@@ -22,7 +22,22 @@
   (interactive)
   (if (string-match-p "/test/" (buffer-file-name))
       (ruby--jump-to-lib)
-    (ruby--jump-to-test)))
+      (ruby--jump-to-test)))
+
+(defun mo-ruby-mode-hook ()
+  (local-set-key [f1] 'yari)
+  (ruby-block-mode t)
+  (setq ruby-block-highlight-toggle t)
+
+  ;; Fix silly indentation
+  (setq ruby-deep-indent-paren nil)
+  (setq ruby-deep-indent-paren-style nil)
+  (setq ruby-deep-arglist nil)
+
+  (setq tab-width 2)
+  (set-variable (make-variable-buffer-local 'whitespace-tab-width) 2)
+  (esk-paredit-nonlisp)
+  (esk-prog-mode-hook))
 
 (eval-after-load 'ruby-mode
   '(progn
@@ -30,20 +45,11 @@
     (require 'ruby-block)
     (require 'inf-ruby)
 
-    (add-hook 'ruby-mode-hook
-     '(lambda ()
-       (local-set-key [f1] 'yari)
-       (ruby-block-mode t)
-       (setq ruby-block-highlight-toggle t)
-       ;; Fix silly indentation
-       (setq ruby-deep-indent-paren nil)
-       (setq ruby-deep-indent-paren-style nil)
-       (setq tab-width 2)
-       (set-variable (make-variable-buffer-local 'whitespace-tab-width) 2)
-       (esk-paredit-nonlisp)
-       (esk-prog-mode-hook)))
+    (add-hook 'ruby-mode-hook 'mo-ruby-mode-hook)
 
-    (add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings)
+    ;; This is a workaround for emacs-starter-kit-ruby, as it calls a non-existent function inf-ruby-keys
+    (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+    ;;(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings)
 
     (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
     (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))

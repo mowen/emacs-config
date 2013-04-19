@@ -72,6 +72,7 @@
                       starter-kit-eshell
                       starter-kit-js
                       starter-kit-lisp
+                      starter-kit-ruby
                       undo-tree
                       web-mode
                       yaml-mode
