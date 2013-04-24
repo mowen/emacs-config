@@ -7,7 +7,6 @@
      ;; org-directory is set in the platform-specific files (darwin, windows-nt)
      (setq org-default-notes-file (concat org-directory "Notes.org"))
      (setq org-archive-location (concat org-directory "Archive.org"))
-     (org-remember-insinuate)
 
      (setq org-hide-leading-stars t
            org-startup-folded t
@@ -37,17 +36,6 @@
                                "u:/Documents/HomeOrg/" ;; I store my home org files separately when I'm in work.
                              org-directory))
 
-     (setq org-remember-templates
-           `(("ABC" ?a "* %T\n   - A. %^{Event}\n   - B. %^{Belief}\n   - C. %^{Consequence}\n" ,(concat mo-org-home-dir "General.org") "ABC")
-             ("Pomodoro Activity" ?p "* %?\n  :PROPERTIES:\n  :Pomodoros: 0\n  :END:\n" ,(concat org-directory "Pomodoro.org") "Activity Inventory")))
-
     (add-to-list 'load-path (concat mo-vendor-dir "/org-pomodoro"))
-    (require 'org-pomodoro)
-    
-     ;; ----------------------------------------
-     ;; Remember Mode
-     ;; ----------------------------------------
-
-     (add-to-list 'load-path (concat mo-vendor-dir "/remember-2.0"))
-     (autoload 'remember "remember" nil t)))
+    (require 'org-pomodoro)))
 
