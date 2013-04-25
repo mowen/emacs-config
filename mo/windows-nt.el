@@ -10,8 +10,6 @@
 
 (setq mo-homepage-dir "C:\\Users\\Martin\\Code\\martinowen.net")
 
-(setq browse-url-browser-function 'browse-default-windows-browser)
-
 (setq ispell-dictionary "british"
       ispell-program-name "C:\\Program Files (x86)\\aspell\\bin\\aspell.exe")
 

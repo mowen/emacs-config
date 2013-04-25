@@ -17,8 +17,6 @@
 ;; (setq mac-option-modifier 'super)
 ;; (setq ns-function-modifier 'hyper)
 
-(setq browse-url-browser-function 'browse-default-macosx-browser)
-
 (setq delete-by-moving-to-trash t)
 
 (setq mo-default-font "Menlo-12"
