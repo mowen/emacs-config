@@ -15,13 +15,6 @@
 ;; ----------------------------------------
 ;; Other mode settings
 
-(load "mo/text")
-(load "mo/dired")
-(load "mo/ibuffer")
-(load "mo/org")
-(load "mo/erc")
-(load "mo/lang/markup")
-(load "mo/lang/javascript")
-(load "mo/lang/ruby")
-(load "mo/lang/clojure")
-(load "mo/lang/lisp")
+(mapc 'mo-load '(text dired ibuffer org erc
+                 lang/markup lang/javascript lang/ruby
+                 lang/coffeescript lang/clojure lang/lisp))
