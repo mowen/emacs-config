@@ -38,6 +38,11 @@
 (defalias 'ir 'indent-region)
 
 ;; ----------------------------------------
+;; Flyspell Mode
+
+(flyspell-mode-off)
+
+;; ----------------------------------------
 ;; Desktop mode (save state when exiting)
 
 (setq desktop-dirname (expand-file-name "~")) ;; Where to save .emacs.desktop
