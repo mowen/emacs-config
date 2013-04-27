@@ -51,6 +51,7 @@
                       haml-mode
                       ht
                       js2-mode
+                      ido-vertical
                       ioccur
                       magit
                       magithub

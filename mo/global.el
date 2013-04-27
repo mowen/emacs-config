@@ -207,3 +207,9 @@
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-hook 'eshell-preoutput-filter-functions 'ansi-color-filter-apply)
+
+;; ----------------------------------------
+;; ido-vertical
+
+(require 'ido-vertical-mode)
+(turn-on-ido-vertical)
