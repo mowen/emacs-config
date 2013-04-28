@@ -18,6 +18,7 @@
 (setq-default truncate-lines t)    ;; Seems to work, truncating lines in every buffer.
 (savehist-mode 1)                  ;; Save Minibuffer history
 (show-paren-mode t)                ;; Show matching parentheses.
+(delete-selection-mode +1)         ;; Overwrite if typing while text is selected
 (global-auto-revert-mode 1)        ;; Auto-revert buffers if their files have changed
 (fset 'yes-or-no-p 'y-or-n-p)      ;; Accept "y" and "n" for confirmations.
 
