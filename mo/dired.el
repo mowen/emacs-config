@@ -4,6 +4,7 @@
 ;; Auto refresh dired, but be quiet about it
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
+(setq dired-use-ls-dired nil)
 
 ;; ----------------------------------------
 ;; Use dired-details
