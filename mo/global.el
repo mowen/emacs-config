@@ -214,3 +214,8 @@
 
 (require 'ido-vertical-mode)
 (turn-on-ido-vertical)
+
+;; ----------------------------------------
+;; Spelling
+
+(setq ispell-personal-dictionary (concat mo-dotfiles-dir ".aspell.en.pws"))

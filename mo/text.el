@@ -7,6 +7,7 @@
   (abbrev-mode)
   (turn-on-visual-line-mode)
   (auto-complete-mode t)
+  (turn-on-flyspell)
   (if (and (buffer-file-name)
            (string-match "\\.textile$" (buffer-file-name)))
       (progn

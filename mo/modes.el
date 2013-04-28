@@ -5,6 +5,7 @@
   (hl-line-mode -1)
   (auto-fill-mode -1)
   (capitalized-words-mode t)
+  (turn-off-flyspell)
   (local-set-key (kbd "C-'") 'esk-cleanup-buffer))
 
 (add-hook 'prog-mode-hook 'mo-prog-mode-hook)

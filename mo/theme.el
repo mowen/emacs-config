@@ -29,10 +29,7 @@
 ;; Alpha (transparency)
 
 (require 'alpha)
-
-(if (string-equal system-type "darwin")
-    (transparency-set-value 85)
-    (transparency-set-value 95))
+(transparency-set-value 95)
 
 (unless (boundp 'mo-default-font)
     (setq mo-default-font (face-font 'default)))
