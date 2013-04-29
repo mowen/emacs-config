@@ -77,10 +77,7 @@
 
     (setq-default global-auto-complete-mode t)
     (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
-
-    (load (concat mo-vendor-dir "/ac-dabbrev"))
-    (require 'ac-dabbrev)
-    (setq-default ac-sources (append ac-sources '(ac-source-dabbrev)))))
+))
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)

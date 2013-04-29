@@ -25,6 +25,7 @@
   (package-refresh-contents))
 
 (defvar mo-packages '(ace-jump-mode
+                      ac-dabbrev
                       ac-slime
                       alert
                       alpha
