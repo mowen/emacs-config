@@ -69,6 +69,7 @@
                       ruby-test-mode
                       s ;; string manipulation lib
                       scss-mode
+                      skewer-mode
                       slime
                       slime-repl
                       sr-speedbar
