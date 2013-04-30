@@ -13,7 +13,9 @@
 (setq make-backup-files nil)       ;; Don't leave "blah~" files everywhere.
 (setq windmove-wrap-around t)      ;; Wrap around when switching windows with windmove
 (setq delete-by-moving-to-trash t) ;; Use the system's trash can when deleting
-(setq indent-tabs-mode nil)        ;; Indentation can't insert tabs
+(setq-default indent-tabs-mode nil) ;; Indentation can't insert tabs
+(setq-default tab-width 2)
+(setq indent-line-function 'insert-tab)
 (setq-default fill-column 80)      ;; Wrap lines in auto-fill mode at 80 chars
 (setq-default truncate-lines t)    ;; Seems to work, truncating lines in every buffer.
 (savehist-mode 1)                  ;; Save Minibuffer history
