@@ -223,3 +223,10 @@
 ;; Spelling
 
 (setq ispell-personal-dictionary (concat mo-dotfiles-dir ".aspell.en.pws"))
+
+;; ----------------------------------------
+;; elscreen
+
+(require 'elscreen)
+(elscreen-start)
+

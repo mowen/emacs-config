@@ -46,6 +46,7 @@
                       durendal
                       erc-hl-nicks
                       el-mock
+                      elscreen
                       exec-path-from-shell
                       expand-region
                       gist
