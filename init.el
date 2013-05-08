@@ -82,6 +82,7 @@
                       starter-kit-ruby
                       undo-tree
                       web-mode
+                      workgroups
                       yaml-mode
                       yari
                       yasnippet-bundle))

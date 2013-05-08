@@ -225,8 +225,38 @@
 (setq ispell-personal-dictionary (concat mo-dotfiles-dir ".aspell.en.pws"))
 
 ;; ----------------------------------------
-;; elscreen
+;; Workgroups
 
-(require 'elscreen)
-(elscreen-start)
+;; Somebody recommended save-visited-files mode, saying it is better desktop.el
+;; Install the package and load like so:
+;;
+;; (require 'save-visited-files)
+;; (turn-on-save-visited-files-mode)
 
+(setq wg-prefix-key (kbd "C-z")
+      wg-no-confirm t
+      wg-file (concat mo-dotfiles-dir ".workgroups")
+      wg-use-faces nil
+      wg-switch-on-load nil
+      wg-morph-on nil)
+
+(defun wg-load-default ()
+  "Run `wg-load' on `wg-file'."
+  (interactive)
+  (wg-load wg-file))
+
+(defun wg-save-default ()
+  "Run `wg-save' on `wg-file'."
+  (interactive)
+  (when wg-list
+    (with-temp-message ""
+      (wg-save wg-file))))
+
+(require 'workgroups)
+(eval-after-load 'workgroups
+  '(progn
+     ;;(define-key wg-map (kbd "C-l") 'wg-load-default)
+     ;;(define-key wg-map (kbd "C-s") 'wg-save-default)
+     (workgroups-mode 1)
+     (add-hook 'auto-save-hook 'wg-save-default)
+     (add-hook 'kill-emacs-hook 'wg-save-default)))

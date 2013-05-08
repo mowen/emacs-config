@@ -1,4 +1,4 @@
-personal_ws-1.1 en 38
+personal_ws-1.1 en 41
 SchedulerUI
 Pre
 TODOs
@@ -16,6 +16,7 @@ STW
 SSD
 SSRS
 API
+Online
 Todo
 EiaResultErrorMessage
 CSV
@@ -23,6 +24,7 @@ Qivox
 PagerDuty
 datetimeoffset
 EiaResultErrorNum
+HSBC
 Qore
 JS
 IMSI
@@ -34,6 +36,7 @@ UI
 EIA
 crontab
 Shawbrook
+workgroups
 Spital
 Aigburth
 IVM
