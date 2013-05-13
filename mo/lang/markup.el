@@ -22,18 +22,17 @@
   (goto-char end)
   (exchange-point-and-mark))
 
-(setq mo-nxml-imenu-generic-expression '((nil "<\\(\\w+\\)>" 1))) ;; index elements for imenu
+(add-to-list 'auto-mode-alist 
+	     '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|config\\|vbproj\\|ccxml.txt\\|vxml.txt\\)\\'" . nxml-mode))
 
-;; (add-to-list 'auto-mode-alist 
-;; 	     '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|config\\|vbproj\\)\\'" . nxml-mode))
+(defun mo-nxml-mode-hook ()
+  (setq nxml-slash-auto-complete-flag t)
+  (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
+  (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
+  (setq imenu-generic-expression '((nil "<\\(\\w+\\)>" 1))) ;; index elements for imenu
+  (esk-prog-mode-hook))
 
-(add-hook 'nxml-mode-hook 
- 	  '(lambda () 
-	    (setq nxml-slash-auto-complete-flag t)
-	    (define-key nxml-mode-map (kbd "M-h") 'mo-nxml-mark-node)
-	    (define-key nxml-mode-map (kbd "C-c i") 'mo-nxml-indent-buffer)
-	    (setq imenu-generic-expression mo-nxml-imenu-generic-expression)
-	    (linum-mode t)))
+(add-hook 'nxml-mode-hook 'mo-nxml-mode-hook)
 
 ;; --------------------------------------------
 ;; SASS/SCSS
