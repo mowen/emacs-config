@@ -84,7 +84,7 @@
 
     (setq-default global-auto-complete-mode t)
     (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
-))
+    ))
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)
@@ -195,8 +195,8 @@
 
 (eval-after-load 'diminish
   '(progn
-     (diminish 'undo-tree-mode)
-     (diminish 'yas/minor-mode)))
+    (diminish 'undo-tree-mode)
+    (diminish 'yas/minor-mode)))
 
 ;; ----------------------------------------
 ;; Emacs Starter Kit
@@ -237,13 +237,14 @@
       wg-no-confirm t
       wg-file (concat mo-dotfiles-dir ".workgroups")
       wg-use-faces nil
-      wg-switch-on-load nil
+      wg-switch-on-load t
       wg-morph-on nil)
 
 (defun wg-load-default ()
   "Run `wg-load' on `wg-file'."
   (interactive)
-  (wg-load wg-file))
+  (if (file-exists-p wg-file)
+      (wg-load wg-file)))
 
 (defun wg-save-default ()
   "Run `wg-save' on `wg-file'."
@@ -255,8 +256,10 @@
 (require 'workgroups)
 (eval-after-load 'workgroups
   '(progn
-     ;;(define-key wg-map (kbd "C-l") 'wg-load-default)
-     ;;(define-key wg-map (kbd "C-s") 'wg-save-default)
-     (workgroups-mode 1)
-     (add-hook 'auto-save-hook 'wg-save-default)
-     (add-hook 'kill-emacs-hook 'wg-save-default)))
+    ;; Useful mappings to revert back to the default workgroups
+    ;;(define-key wg-map (kbd "C-l") 'wg-load-default)
+    ;;(define-key wg-map (kbd "C-s") 'wg-save-default)
+    (workgroups-mode 1)
+    (add-hook 'emacs-startup-hook 'wg-load-default)
+    (add-hook 'auto-save-hook 'wg-save-default)
+    (add-hook 'kill-emacs-hook 'wg-save-default)))
