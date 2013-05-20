@@ -32,6 +32,7 @@
                       all
                       auto-complete
                       bookmark+
+                      browse-kill-ring
                       bm
                       buffer-move
                       clojure-mode

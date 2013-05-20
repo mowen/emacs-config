@@ -263,3 +263,11 @@
     (add-hook 'emacs-startup-hook 'wg-load-default)
     (add-hook 'auto-save-hook 'wg-save-default)
     (add-hook 'kill-emacs-hook 'wg-save-default)))
+
+;; ----------------------------------------
+;; Browse Kill Ring
+
+(require 'browse-kill-ring)
+(eval-after-load 'browse-kill-ring
+  '(progn
+    (browse-kill-ring-default-keybindings)))
