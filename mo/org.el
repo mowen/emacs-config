@@ -30,6 +30,17 @@
        (let (org-log-done org-log-states)   ; turn off logging
          (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
+    ;; active Babel languages
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (clojure . t)
+       (ruby . t)
+       (css . t)
+       (js . t)
+       (emacs-lisp . t)
+       ))
+
      (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
      (setq mo-org-home-dir (if (eq mo-location 'work)

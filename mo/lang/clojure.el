@@ -13,6 +13,8 @@
     (add-hook 'nrepl-mode-hook 'subword-mode)
     (add-hook 'nrepl-mode-hook 'clojure-mode-font-lock-setup)
 
+    ;;(add-hook 'kill-emacs-hook '(lambda () (if (fboundp 'nrepl-quit) (nrepl-quit))))
+
     (require 'ac-nrepl)
     (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
     (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
