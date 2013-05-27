@@ -73,19 +73,18 @@
 ;; Auto Complete
 
 (require 'auto-complete)
-(eval-after-load 'auto-complete
-  '(progn
-    ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))
-    (require 'auto-complete-config)
+(after 'auto-complete
+       ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))
+       (require 'auto-complete-config)
 
-    (ac-config-default)
-    (ac-flyspell-workaround)
-    (ac-linum-workaround)
+       (ac-config-default)
+       (ac-flyspell-workaround)
+       (ac-linum-workaround)
 
-    (setq-default global-auto-complete-mode t)
-    (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
+       (setq-default global-auto-complete-mode t)
+       (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
 
-    (add-to-list 'ac-modes 'nrepl-mode)))
+       (add-to-list 'ac-modes 'nrepl-mode))
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)
@@ -123,28 +122,27 @@
             (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
             (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
 
-(eval-after-load 'sr-speedbar
-  '(progn
-    ;; Highlight the current line
-    (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
+(after 'sr-speedbar
+       ;; Highlight the current line
+       (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
-    (defadvice speedbar-edit-line
-     (after mo-speedbar-edit-line-and-other-window)
-     "Move to other window after selecting line"
-     ;; There's got to be a better way to do this, surely?
-     (other-window 1))
+       (defadvice speedbar-edit-line
+           (after mo-speedbar-edit-line-and-other-window)
+         "Move to other window after selecting line"
+         ;; There's got to be a better way to do this, surely?
+         (other-window 1))
 
-    (ad-activate 'speedbar-edit-line)
+       (ad-activate 'speedbar-edit-line)
 
-    (defun mo-toggle-sr-speedbar ()
-      "Toggle sr-speedbar buffer, creating it if necessary."
-      (interactive)
-      (cond ((sr-speedbar-window-p) (other-window 1))
-            ((sr-speedbar-exist-p) (sr-speedbar-select-window))
-            (t (sr-speedbar-open))))
+       (defun mo-toggle-sr-speedbar ()
+         "Toggle sr-speedbar buffer, creating it if necessary."
+         (interactive)
+         (cond ((sr-speedbar-window-p) (other-window 1))
+               ((sr-speedbar-exist-p) (sr-speedbar-select-window))
+               (t (sr-speedbar-open))))
 
-    (global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
-    (global-set-key (kbd "C-c C-s") 'sr-speedbar-close)))
+       (global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
+       (global-set-key (kbd "C-c C-s") 'sr-speedbar-close))
 
 ;; ----------------------------------------
 ;; Expand Region
@@ -258,12 +256,13 @@
 (eval-after-load 'workgroups
   '(progn
     ;; Useful mappings to revert back to the default workgroups
-    ;;(define-key wg-map (kbd "C-l") 'wg-load-default)
-    ;;(define-key wg-map (kbd "C-s") 'wg-save-default)
+    ;;(define-key wg-map (kbd "l") 'wg-load-default)
+    ;;(define-key wg-map (kbd "s") 'wg-save-default)
     (workgroups-mode 1)
-    (add-hook 'emacs-startup-hook 'wg-load-default)
-    (add-hook 'auto-save-hook 'wg-save-default)
-    (add-hook 'kill-emacs-hook 'wg-save-default)))
+    ;;(add-hook 'emacs-startup-hook 'wg-load-default)
+    ;;(add-hook 'auto-save-hook 'wg-save-default)
+    ;;(add-hook 'kill-emacs-hook 'wg-save-default)
+    ))
 
 ;; ----------------------------------------
 ;; Browse Kill Ring

@@ -108,4 +108,4 @@
 (setq custom-file (concat mo-dotfiles-dir "mo/custom.el"))
 (load custom-file)
 
-(mapc 'mo-load '(bindings hp global modes theme util))
+(mapc 'mo-load '(util bindings hp global modes theme))
