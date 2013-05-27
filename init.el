@@ -45,7 +45,6 @@
                       dash
                       diminish
                       dired-details
-                      durendal
                       erc-hl-nicks
                       el-mock
                       exec-path-from-shell

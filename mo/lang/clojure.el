@@ -1,5 +1,3 @@
-(durendal-enable)
-
 ;; nrepl
 (eval-after-load 'nrepl
   '(progn
