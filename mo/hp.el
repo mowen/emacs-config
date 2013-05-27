@@ -40,4 +40,24 @@
     (find-file (concat blog-post-dir "/" blog-post-filename))
     (mo-insert-blog-post title)))
 
+(defun mo-list-blog-posts (blog-dir)
+  "List all blog post filenames."
+  (let ((order 0)
+        (result '()))
+    (mapc (lambda (dir)
+            (mapc (lambda (sub-dir)
+                    (setq order (1+ order))
+                    (setq result (cons (list sub-dir order) result)))
+                  (directory-files dir t "[^.]")))
+          (directory-files blog-dir t "[^.]"))
+    result))
+
+(defun mo-find-blog-post ()
+  "Use completion to find blog post."
+  (interactive)
+  (let* ((blog-dir (concat mo-homepage-dir "/content/blog"))
+         (blog-post-filenames (mo-list-blog-posts blog-dir))
+         (blog-post-filename (completing-read "Blog Post: " blog-post-filenames nil t nil nil)))
+    (find-file blog-post-filename)))
+
 (global-set-key (kbd "C-c h") 'mo-compile-homepage)
