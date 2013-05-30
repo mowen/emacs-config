@@ -17,5 +17,5 @@
 ;; Other mode settings
 
 (mapc 'mo-load '(text dired ibuffer org erc
-                 lang/markup lang/javascript lang/ruby
+                 lang/markup lang/javascript lang/ruby lang/sql
                  lang/coffeescript lang/clojure lang/lisp))
