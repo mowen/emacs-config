@@ -74,17 +74,17 @@
 
 (require 'auto-complete)
 (after 'auto-complete
-       ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))
-       (require 'auto-complete-config)
+    ;;(add-to-list 'ac-dictionary-directories (concat mo-dotfiles-dir "elpa/auto-complete-1.4/dict"))
+    (require 'auto-complete-config)
 
-       (ac-config-default)
-       (ac-flyspell-workaround)
-       (ac-linum-workaround)
+  (ac-config-default)
+  (ac-flyspell-workaround)
+  (ac-linum-workaround)
 
-       (setq-default global-auto-complete-mode t)
-       (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
+  (setq-default global-auto-complete-mode t)
+  (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
 
-       (add-to-list 'ac-modes 'nrepl-mode))
+  (add-to-list 'ac-modes 'nrepl-mode))
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)
@@ -123,87 +123,77 @@
             (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
 
 (after 'sr-speedbar
-       ;; Highlight the current line
-       (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
+    ;; Highlight the current line
+    (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
-       (defadvice speedbar-edit-line
-           (after mo-speedbar-edit-line-and-other-window)
-         "Move to other window after selecting line"
-         ;; There's got to be a better way to do this, surely?
-         (other-window 1))
+  (defadvice speedbar-edit-line
+      (after mo-speedbar-edit-line-and-other-window)
+    "Move to other window after selecting line"
+    ;; There's got to be a better way to do this, surely?
+    (other-window 1))
 
-       (ad-activate 'speedbar-edit-line)
+  (ad-activate 'speedbar-edit-line)
 
-       (defun mo-toggle-sr-speedbar ()
-         "Toggle sr-speedbar buffer, creating it if necessary."
-         (interactive)
-         (cond ((sr-speedbar-window-p) (other-window 1))
-               ((sr-speedbar-exist-p) (sr-speedbar-select-window))
-               (t (sr-speedbar-open))))
+  (defun mo-toggle-sr-speedbar ()
+    "Toggle sr-speedbar buffer, creating it if necessary."
+    (interactive)
+    (cond ((sr-speedbar-window-p) (other-window 1))
+          ((sr-speedbar-exist-p) (sr-speedbar-select-window))
+          (t (sr-speedbar-open))))
 
-       (global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
-       (global-set-key (kbd "C-c C-s") 'sr-speedbar-close))
+  (global-set-key (kbd "C-c s") 'mo-toggle-sr-speedbar)
+  (global-set-key (kbd "C-c C-s") 'sr-speedbar-close))
 
 ;; ----------------------------------------
 ;; Expand Region
 
 (require 'expand-region)
-
-(eval-after-load 'expand-region
-  '(progn
-    (global-set-key (kbd "C-=") 'er/expand-region)))
+(after 'expand-region
+    (global-set-key (kbd "C-=") 'er/expand-region))
 
 ;; ----------------------------------------
 ;; Multiple Cursors
 
 (require 'multiple-cursors)
-
-(eval-after-load 'multiple-cursors
-  '(progn
+(after 'multiple-cursors
     (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 ;; ----------------------------------------
 ;; Visible Bookmarks
 
 (require 'bm)
-
-(eval-after-load 'bm
-  '(progn
+(after 'bm
     (autoload 'bm-toggle   "bm" "Toggle bookmark in current buffer." t)
-    (autoload 'bm-next     "bm" "Goto bookmark."                     t)
-    (autoload 'bm-previous "bm" "Goto previous bookmark."            t)
+  (autoload 'bm-next     "bm" "Goto bookmark."                     t)
+  (autoload 'bm-previous "bm" "Goto previous bookmark."            t)
 
-    (global-set-key (kbd "<C-f2>") 'bm-toggle)
-    (global-set-key (kbd "<f2>")   'bm-next)
-    (global-set-key (kbd "<S-f2>") 'bm-previous)))
+  (global-set-key (kbd "<C-f2>") 'bm-toggle)
+  (global-set-key (kbd "<f2>")   'bm-next)
+  (global-set-key (kbd "<S-f2>") 'bm-previous))
 
 ;; ----------------------------------------
 ;; yasnippets
 
-(eval-after-load 'yasnippet-bundle
-  '(progn
-    (yas/load-directory "~/.emacs.d/snippets")))
+(after 'yasnippet-bundle
+    (yas/load-directory "~/.emacs.d/snippets"))
 
 ;; ----------------------------------------
 ;; Diminish (diminish modeline clutter)
 
 (require 'diminish)
-
-(eval-after-load 'diminish
-  '(progn
+(after 'diminish
     (diminish 'undo-tree-mode)
-    (diminish 'yas/minor-mode)))
+  (diminish 'yas/minor-mode))
 
 ;; ----------------------------------------
 ;; Emacs Starter Kit
 
-(eval-after-load 'starter-kit-misc
-  '(progn
+(after 'starter-kit-misc
     (remove-hook 'text-mode-hook 'turn-on-auto-fill)
-    (remove-hook 'text-mode-hook 'turn-on-flyspell)))
+  (remove-hook 'text-mode-hook 'turn-on-flyspell))
 
 ;; ----------------------------------------
 ;; ANSI Color for shell
@@ -253,8 +243,7 @@
       (wg-save wg-file))))
 
 (require 'workgroups)
-(eval-after-load 'workgroups
-  '(progn
+(after 'workgroups
     ;; Useful mappings to revert back to the default workgroups
     ;;(define-key wg-map (kbd "l") 'wg-load-default)
     ;;(define-key wg-map (kbd "s") 'wg-save-default)
@@ -262,12 +251,11 @@
     ;;(add-hook 'emacs-startup-hook 'wg-load-default)
     ;;(add-hook 'auto-save-hook 'wg-save-default)
     ;;(add-hook 'kill-emacs-hook 'wg-save-default)
-    ))
+)
 
 ;; ----------------------------------------
 ;; Browse Kill Ring
 
 (require 'browse-kill-ring)
-(eval-after-load 'browse-kill-ring
-  '(progn
-    (browse-kill-ring-default-keybindings)))
+(after 'browse-kill-ring
+    (browse-kill-ring-default-keybindings))
