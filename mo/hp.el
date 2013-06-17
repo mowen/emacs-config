@@ -1,7 +1,14 @@
 ;; --------------------------------------------------
 ;; Functions to help with editing martinowen.net
 
+(defvar mo-homepage-server-process-name "homepage server"
+  "The name of my homepage server process.")
+
+(defvar mo-homepage-dev-url "http://martinowen.net.dev:3000"
+  "The dev URL of my homepage.")
+
 (defun mo-compile-homepage ()
+  "Run nanoc to compile my homepage."
   (interactive)
   (let ((homepage-command-format (if (eq system-type 'darwin)
                                      "cd %s; nanoc co"
@@ -9,6 +16,22 @@
     (if (boundp 'mo-homepage-dir)
         (compile (format homepage-command-format mo-homepage-dir))
         (message "You need to set the 'mo-homepage-dir' variable."))))
+
+(defun mo-start-homepage-server ()
+  "Start the thin server process for my homepage. Only actually
+necessary on Windows as it runs under Pow on OS X."
+  (interactive)
+  (cd mo-homepage-dir) ;; improve this so that it doesn't modify default-directory
+  (start-process mo-homepage-server-process-name mo-homepage-server-process-name "thin" "start"))
+
+(defun mo-browse-dev-homepage ()
+  (interactive)
+  (browse-url mo-homepage-dev-url))
+
+(defun mo-stop-homepage-server ()
+  "Stop the thin server process for my homepage."
+  (interactive)
+  (delete-process mo-homepage-server-process-name))
 
 (defun mo-insert-blog-post (title)
   "Blog post skeleton."
@@ -62,3 +85,4 @@
     (find-file (concat blog-dir blog-post-filename))))
 
 (global-set-key (kbd "C-c h") 'mo-compile-homepage)
+                
