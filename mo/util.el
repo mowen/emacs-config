@@ -12,7 +12,7 @@
   (save-excursion
     (goto-char 1)
     (setq regexp-repeat 1
-	  positions '())
+          positions '())
     (while (setq pos (re-search-forward regexp nil t regexp-repeat))
       (setq positions (cons pos positions))
       (1+ regexp-repeat))
@@ -23,21 +23,21 @@
   "Loop through all of the lines, and if one doesn't contain a regexp-position,
    set its invisiblity property to make-invisible."
   (setq num-of-lines (count-lines (point-min) (point-max)))
-  (loop with i = 1 
-        for i upto num-of-lines
-        do
-          (unless (memq i regexp-positions) ;; memq checks for membership
-            (goto-line i)
-            (put-text-property (line-beginning-position)
-                               (1+ (line-end-position)) ;; +1 to include newline 
-			       'invisible make-invisible))))
+  (loop with i = 1
+     for i upto num-of-lines
+     do
+       (unless (memq i regexp-positions) ;; memq checks for membership
+         (goto-line i)
+         (put-text-property (line-beginning-position)
+                            (1+ (line-end-position)) ;; +1 to include newline
+                            'invisible make-invisible))))
 
 (defun mo-narrow-regexp (regexp)
   "Hide all lines but the ones which contain the input regexp."
   (interactive "sRegex: ")
-  (setq regexp-lines (mapcar 
-		      'line-number-at-pos 
-		      (mo-get-regexp-positions regexp)))
+  (setq regexp-lines (mapcar
+                      'line-number-at-pos
+                      (mo-get-regexp-positions regexp)))
   (mo-show-or-hide-lines regexp-lines t))
 
 ;; ------------------------------------------------------------------------------
@@ -116,7 +116,7 @@
 (defun font-size-modify (operator &optional amount)
   "Increase the size of the default font."
   (let ((height (face-attribute 'default :height))
-	(amount (or amount 10)))
+        (amount (or amount 10)))
     (set-face-attribute 'default nil :height (funcall operator height amount))
     (message (format "Face height is now %d." height))))
 
@@ -136,7 +136,7 @@
               (if (= (car this-win-edges)
                      (car (window-edges (next-window))))
                   'split-window-horizontally
-                'split-window-vertically)))
+                  'split-window-vertically)))
         (delete-other-windows)
         (let ((first-win (selected-window)))
           (funcall splitter)
@@ -151,3 +151,17 @@
   (declare (indent defun))
   `(eval-after-load ,mode
      '(progn ,@body)))
+
+(defun mo-format-timestamps ()
+  (interactive)
+  (font-lock-add-keywords
+   nil
+   '(("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+      (0 `(face nil display
+                ,(format-time-string "%F %T"
+                                     (seconds-to-time
+                                      (car
+                                       (read-from-string
+                                        (concat
+                                         (match-string 0)
+                                         ".0")))))))))))
