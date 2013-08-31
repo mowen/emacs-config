@@ -56,7 +56,6 @@
                       ido-vertical-mode
                       ioccur
                       magit
-                      magithub
                       markdown-mode
                       marmalade
                       multiple-cursors
