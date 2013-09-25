@@ -10,6 +10,7 @@ url
 elpa/*
 backups
 places
+server
 .mc-lists.el
 .smex-items
 .workgroups

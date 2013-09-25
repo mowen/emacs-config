@@ -13,7 +13,7 @@
  '(ido-everywhere nil)
  '(ido-mode (quote both) nil (ido))
  '(rng-schema-locating-files (\` ("schemas.xml" (\, (concat mo-vendor-dir "/nxml-mode-20041004/schema/schemas.xml")) (\, (concat mo-vendor-dir "/nxml-mode-20041004/schema/html5/html5-schemas.xml")))))
- '(safe-local-variable-values (quote ((Coding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
+ '(safe-local-variable-values (quote ((eval setq flycheck-emacs-lisp-package-user-dir (format ".cask/%s/elpa" emacs-version)) (flycheck-emacs-lisp-initialize-packages . t) (Coding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
