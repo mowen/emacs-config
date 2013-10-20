@@ -27,6 +27,7 @@
 (defun mo-ruby-mode-hook ()
   (local-set-key [f1] 'yari)
   (ruby-block-mode t)
+  (inf-ruby-minor-mode)
   (setq ruby-block-highlight-toggle t)
 
   ;; Fix silly indentation
@@ -43,12 +44,13 @@
   '(progn
     (require 'ruby-electric)
     (require 'ruby-block)
-    (require 'inf-ruby)
+
+    (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 
     (add-hook 'ruby-mode-hook 'mo-ruby-mode-hook)
 
     ;; This is a workaround for emacs-starter-kit-ruby, as it calls a non-existent function inf-ruby-keys
-    (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+    (defalias 'inf-ruby-keys '(lambda ()))
     ;;(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings)
 
     (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))

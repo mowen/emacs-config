@@ -1,4 +1,5 @@
 (setq magit-git-executable "c:\\program files (x86)\\git\\bin\\git.exe")
+(setq magit-emacsclient-executable "\"c:\\program files (x86)\\emacs-24.3\\bin\\emacsclient.exe\"")
 
 (if (eq mo-location 'work)
     (setq org-directory "U:/Documents/OrgMode/")
