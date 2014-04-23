@@ -27,6 +27,7 @@
 (defun mo-ruby-mode-hook ()
   (local-set-key [f1] 'yari)
   (ruby-block-mode t)
+  (ruby-electric-mode t)
   (inf-ruby-minor-mode)
   (setq ruby-block-highlight-toggle t)
 
