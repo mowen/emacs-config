@@ -12,14 +12,14 @@
          :description "Auto-complete sources for emacs lisp"
          :type http
          :url "http://www.cx4a.org/pub/auto-complete-emacs-lisp.el"
-         :post-init (lambda ()
+         :post-init (progn
                       (require 'auto-complete-emacs-lisp)
                       (ac-emacs-lisp-init)))
         (:name perspective
          :description "Perspectives for Emacs."
          :type git
          :url "https://github.com/deactivated/perspective-el.git"
-         :post-init (lambda ()
+         :post-init (progn
                       (require 'perspective)
                       (persp-mode 1)))))
 
