@@ -15,3 +15,5 @@ server
 .smex-items
 .workgroups
 .aspell.en.pws
+.emacs.desktop
+.emacs.desktop.lock
