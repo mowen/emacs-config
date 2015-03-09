@@ -28,8 +28,8 @@
 ;; ----------------------------------------
 ;; Alpha (transparency)
 
-(require 'alpha)
-(transparency-set-value 95)
+;;(require 'alpha)
+;;(transparency-set-value 95)
 
 (unless (boundp 'mo-default-font)
     (setq mo-default-font (face-font 'default)))

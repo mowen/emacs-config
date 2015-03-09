@@ -1,4 +1,5 @@
-(defvar mo-location (if (string-match "TERIYAKI" (system-name)) 'work 'home)
+(defvar mo-location (if (or (string-match "TERIYAKI" (system-name))
+                            (string-match "MOWEN-E6640" (system-name))) 'work 'home)
   "Where am I? At \"work\" or at \"home\"?")
 
 (setq mo-dotfiles-dir (file-name-directory load-file-name))
@@ -16,26 +17,27 @@
 ;; Packages
 
 (require 'package)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 (defvar mo-packages '(ace-jump-mode
+                      ac-cider
                       ac-dabbrev
-                      ac-nrepl
                       ac-slime
                       alert
-                      alpha
+                      ;alpha
                       all
                       auto-complete
                       bookmark+
                       browse-kill-ring
                       bm
                       buffer-move
+                      cider
                       clojure-mode
                       clojure-test-mode
                       coffee-mode
@@ -59,8 +61,7 @@
                       markdown-mode
                       marmalade
                       multiple-cursors
-                      notify
-                      nrepl
+                      ;notify
                       org
                       rinari
                       ruby-block

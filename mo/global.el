@@ -83,8 +83,7 @@
 
   (setq-default global-auto-complete-mode t)
   (setq-default ac-candidate-limit 200) ;; ac-dabbrev breaks if this is left as nil
-
-  (add-to-list 'ac-modes 'nrepl-mode))
+  )
 
 ;; ----------------------------------------
 ;; Linkd (links in text files)

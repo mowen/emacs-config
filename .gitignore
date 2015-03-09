@@ -1,4 +1,6 @@
 *passwords.el
+ido.last
+recentf
 history
 bookmarks
 auto-save-list
