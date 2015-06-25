@@ -13,6 +13,7 @@ elpa/*
 backups
 places
 server
+saves
 .mc-lists.el
 .smex-items
 .workgroups

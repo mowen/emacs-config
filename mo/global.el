@@ -10,7 +10,7 @@
 
 (setq inhibit-startup-screen t)
 (setq transient-mark-mode t)       ;; Transient mark = highlight selection.
-(setq make-backup-files nil)       ;; Don't leave "blah~" files everywhere.
+;;(setq make-backup-files nil)       ;; Don't leave "blah~" files everywhere.
 (setq windmove-wrap-around t)      ;; Wrap around when switching windows with windmove
 (setq delete-by-moving-to-trash t) ;; Use the system's trash can when deleting
 (setq-default indent-tabs-mode nil) ;; Indentation can't insert tabs
@@ -221,36 +221,36 @@
 ;; (require 'save-visited-files)
 ;; (turn-on-save-visited-files-mode)
 
-(setq wg-prefix-key (kbd "C-z")
-      wg-no-confirm t
-      wg-file (concat mo-dotfiles-dir ".workgroups")
-      wg-use-faces nil
-      wg-switch-on-load t
-      wg-morph-on nil)
+;; (setq wg-prefix-key (kbd "C-z")
+;;       wg-no-confirm t
+;;       wg-file (concat mo-dotfiles-dir ".workgroups")
+;;       wg-use-faces nil
+;;       wg-switch-on-load t
+;;       wg-morph-on nil)
 
-(defun wg-load-default ()
-  "Run `wg-load' on `wg-file'."
-  (interactive)
-  (if (file-exists-p wg-file)
-      (wg-load wg-file)))
+;; (defun wg-load-default ()
+;;   "Run `wg-load' on `wg-file'."
+;;   (interactive)
+;;   (if (file-exists-p wg-file)
+;;       (wg-load wg-file)))
 
-(defun wg-save-default ()
-  "Run `wg-save' on `wg-file'."
-  (interactive)
-  (when wg-list
-    (with-temp-message ""
-      (wg-save wg-file))))
+;; (defun wg-save-default ()
+;;   "Run `wg-save' on `wg-file'."
+;;   (interactive)
+;;   (when wg-list
+;;     (with-temp-message ""
+;;       (wg-save wg-file))))
 
-(require 'workgroups)
-(after 'workgroups
-    ;; Useful mappings to revert back to the default workgroups
-    ;;(define-key wg-map (kbd "l") 'wg-load-default)
-    ;;(define-key wg-map (kbd "s") 'wg-save-default)
-    (workgroups-mode 1)
-    ;;(add-hook 'emacs-startup-hook 'wg-load-default)
-    ;;(add-hook 'auto-save-hook 'wg-save-default)
-    ;;(add-hook 'kill-emacs-hook 'wg-save-default)
-)
+;; (require 'workgroups)
+;; (after 'workgroups
+;;     ;; Useful mappings to revert back to the default workgroups
+;;     ;;(define-key wg-map (kbd "l") 'wg-load-default)
+;;     ;;(define-key wg-map (kbd "s") 'wg-save-default)
+;;     (workgroups-mode 1)
+;;     ;;(add-hook 'emacs-startup-hook 'wg-load-default)
+;;     ;;(add-hook 'auto-save-hook 'wg-save-default)
+;;     ;;(add-hook 'kill-emacs-hook 'wg-save-default)
+;; )
 
 ;; ----------------------------------------
 ;; Browse Kill Ring
