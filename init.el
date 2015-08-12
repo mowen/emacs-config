@@ -39,7 +39,6 @@
                       buffer-move
                       cider
                       clojure-mode
-                      clojure-test-mode
                       coffee-mode
                       color-theme
                       color-theme-sanityinc-tomorrow
