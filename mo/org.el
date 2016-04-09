@@ -20,8 +20,8 @@
 
      (setq org-export-html-style-include-scripts nil
            org-export-html-style-include-default nil)
-     (setq org-export-html-style
-           (mo-css-include "org-style.css"))
+     ;; (setq org-export-html-style
+     ;;       (mo-css-include "org-style.css"))
 
      ;; See "bindings.el" for Org's global key mappings
 
